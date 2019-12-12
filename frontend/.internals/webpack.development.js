@@ -25,7 +25,7 @@ module.exports = {
   watch: true,
   entry: [
     'react-hot-loader/patch',
-    './common/index.js'
+    './index.js'
   ],
   output: {
     path: path.resolve(process.cwd(), 'build'),
@@ -138,7 +138,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      template: './common/index.html',
+      template: './index.html',
     }),
   ],
   resolve: {
