@@ -1,8 +1,16 @@
 {
   "template": {
-    "backgroundColor": "#395b88",
-    "textColor": "#fcfcfc",
-    "showSplashScreen": true
+    "showSplashScreen": true,
+    "splashBackgroundColor": "",
+    "splashBackgroundImage": "https://miro.medium.com/max/4800/1*UJmuNSJQ-vwETj1nE7pxJQ.png",
+    "splashBackgroundImageMode": "cover",
+    "splashCenteredImage": "https://www.freelogodesign.org/Content/img/logo-samples/sophia.png",
+    "splashCenteredText": "Play Guppy Blast!",
+    "playButtonBackgroundColor": "blue",
+    "playButtonBackgroundHoverColor": "yellow",
+    "playButtonTextColor": "green",
+    "playButtonTextHoverColor": "lightyellow",
+    "playButtonText": "Play"
   },
   "@@editor": [
     {
@@ -18,9 +26,37 @@
           "type": "boolean"
         },
         {
-          "key": "splashScreenBackgroundImage",
-          "name": "SplashScreenBackgroundImage",
+          "key": "splashBackgroundColor",
+          "name": "Splash Background Color",
+          "type": "color"
+        },
+        {
+          "key": "splashBackgroundImage",
+          "name": "Splash Background Image (if not provided, will use the background color by default)",
           "type": "image"
+        },
+        {
+          "key": "splashBackgroundImageMode",
+          "name": "Splash Background Image Mode (affects how the image is presented)",
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              { "value": "cover", "label": "Cover" },
+              { "value": "contain", "label": "Contain" },
+              { "value": "auto", "label": "Auto (No Resizing)" }
+            ]
+          }
+        },
+        {
+          "key": "splashCenteredImage",
+          "name": "Splash Centered Image (if not provided, will use the splash centered text by default)",
+          "type": "image"
+        },
+        {
+          "key": "splashCenteredText",
+          "name": "Splash Centered Text",
+          "type": "text"
         }
       ]
     }
