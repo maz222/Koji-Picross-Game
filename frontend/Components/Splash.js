@@ -49,6 +49,11 @@ const PlayButton = styled.button`
   }
 `;
 
+const CenteredTextWrapper = styled.div`
+  font-size: ${({ splashCenteredTextFontSize }) => `${parseInt(splashCenteredTextFontSize)}px`};
+  color: ${({ splashCenteredTextColor }) => splashCenteredTextColor};
+`;
+
 class Splash extends PureComponent {
   render() {
     return (
@@ -76,7 +81,21 @@ class Splash extends PureComponent {
           {
             !Koji.config.template.splashCenteredImage &&
             <ContentWrapper>
-              {Koji.config.template.splashCenteredText}
+              <CenteredTextWrapper
+                splashCenteredTextColor={Koji.config.template.splashCenteredTextColor}
+                splashCenteredTextFontSize={Koji.config.template.splashCenteredTextFontSize}
+              >
+                {Koji.config.template.splashCenteredText}
+              </CenteredTextWrapper>
+              <PlayButton
+                playButtonBackgroundColor={Koji.config.template.playButtonBackgroundColor}
+                playButtonBackgroundHoverColor={Koji.config.template.playButtonBackgroundHoverColor}
+                playButtonTextColor={Koji.config.template.playButtonTextColor}
+                playButtonTextHoverColor={Koji.config.template.playButtonTextHoverColor}
+                playButtonTextFontSize={Koji.config.template.playButtonTextFontSize}
+              >
+                {Koji.config.template.playButtonText}
+              </PlayButton>
             </ContentWrapper>
           }
         </FlexWrapper>

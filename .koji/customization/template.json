@@ -6,6 +6,8 @@
     "splashBackgroundImageMode": "cover",
     "splashCenteredImage": "https://www.freelogodesign.org/Content/img/logo-samples/sophia.png",
     "splashCenteredText": "Play Guppy Blast!",
+    "splashCenteredTextColor": "#ffffff",
+    "splashCenteredTextFontSize": "48",
     "playButtonBackgroundColor": "#edc526",
     "playButtonBackgroundHoverColor": "#212120",
     "playButtonTextColor": "#1e1f1e",
@@ -67,6 +69,21 @@
           "key": "splashCenteredText",
           "name": "Splash Centered Text",
           "type": "text"
+        },
+        {
+          "key": "splashCenteredTextColor",
+          "name": "Splash Centered Text Color",
+          "type": "text"
+        },
+        {
+          "key": "splashCenteredTextFontSize",
+          "name": "Splash Centered Text Font Size",
+          "type": "range",
+          "typeOptions": {
+            "min": "16",
+            "max": "72",
+            "step": "1"
+          }
         },
         {
           "key": "playButtonText",
