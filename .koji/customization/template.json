@@ -10,7 +10,8 @@
     "playButtonBackgroundHoverColor": "#212120",
     "playButtonTextColor": "#1e1f1e",
     "playButtonTextHoverColor": "#efef3f",
-    "playButtonText": "Play"
+    "playButtonText": "Play",
+    "playButtonTextFontSize": "16"
   },
   "@@editor": [
     {
@@ -66,6 +67,21 @@
           "key": "splashCenteredText",
           "name": "Splash Centered Text",
           "type": "text"
+        },
+        {
+          "key": "playButtonText",
+          "name": "Play Button Text",
+          "type": "text"
+        },
+        {
+          "key": "playButtonTextFontSize",
+          "name": "Play Button Text Font Size",
+          "type": "range",
+          "typeOptions": {
+            "min": "8",
+            "max": "48",
+            "step": "1"
+          }
         },
         {
           "key": "playButtonBackgroundColor",

@@ -36,6 +36,7 @@ const ContentWrapper = styled.div`
 const PlayButton = styled.button`
   border: 0;
   outline: 0;
+  font-size: ${({ playButtonTextFontSize }) => `${parseInt(playButtonTextFontSize)}px`};
   background: ${({ playButtonBackgroundColor }) => playButtonBackgroundColor};
   color: ${({ playButtonTextColor }) => playButtonTextColor};
   cursor: pointer;
@@ -66,6 +67,7 @@ class Splash extends PureComponent {
                 playButtonBackgroundHoverColor={Koji.config.template.playButtonBackgroundHoverColor}
                 playButtonTextColor={Koji.config.template.playButtonTextColor}
                 playButtonTextHoverColor={Koji.config.template.playButtonTextHoverColor}
+                playButtonTextFontSize={Koji.config.template.playButtonTextFontSize}
               >
                 {Koji.config.template.playButtonText}
               </PlayButton>
