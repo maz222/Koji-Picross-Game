@@ -1,0 +1,28 @@
+{
+  "template": {
+    "backgroundColor": "#395b88",
+    "textColor": "#fcfcfc",
+    "showSplashScreen": true
+  },
+  "@@editor": [
+    {
+      "key": "template",
+      "name": "Template Options",
+      "icon": "📋",
+      "source": "template.json",
+      "fields": [
+        {
+          "key": "showSplashScreen",
+          "name": "Splash Screen",
+          "description": "Should the app show the splash screen?",
+          "type": "boolean"
+        },
+        {
+          "key": "splashScreenBackgroundImage",
+          "name": "SplashScreenBackgroundImage",
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
