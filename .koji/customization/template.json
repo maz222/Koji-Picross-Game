@@ -57,6 +57,26 @@
           "key": "splashCenteredText",
           "name": "Splash Centered Text",
           "type": "text"
+        },
+        {
+          "key": "playButtonBackgroundColor",
+          "name": "Play Button Background Color",
+          "type": "color"
+        },
+        {
+          "key": "playButtonTextColor",
+          "name": "Play Button Text Color",
+          "type": "color"
+        },
+        {
+          "key": "playButtonBackgroundHoverColor",
+          "name": "Play Button Background Color (hover)",
+          "type": "color"
+        },
+        {
+          "key": "playButtonTextHoverColor",
+          "name": "Play Button Text Color (hover)",
+          "type": "color"
         }
       ]
     }
