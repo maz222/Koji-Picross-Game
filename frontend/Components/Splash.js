@@ -31,6 +31,7 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 `;
 
 const PlayButton = styled.button`
@@ -52,6 +53,7 @@ const PlayButton = styled.button`
 const CenteredTextWrapper = styled.div`
   font-size: ${({ splashCenteredTextFontSize }) => `${parseInt(splashCenteredTextFontSize)}px`};
   color: ${({ splashCenteredTextColor }) => splashCenteredTextColor};
+  margin-bottom: 16px;
 `;
 
 class Splash extends PureComponent {
