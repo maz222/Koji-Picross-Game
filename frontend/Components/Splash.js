@@ -19,11 +19,10 @@ const FlexWrapper = styled.div`
   height: 100%;
   justify-content: center;
   align-items: center;
+`;
 
-  img {
-    max-width: 70%;
-    max-height: 20%;
-  }
+const CenteredImage = styled.img`
+  height: ${({ splashCenteredImageHeight }) => `${splashCenteredImageHeight}vh`};
 `;
 
 const ContentWrapper = styled.div`
@@ -43,10 +42,14 @@ const PlayButton = styled.button`
   cursor: pointer;
   padding: 16px;
   border-radius: 4px;
+  transition: transform 0.1s;
 
   &:hover {
-    background: ${({ playButtonBackgroundHoverColor }) => playButtonBackgroundHoverColor};
-    color: ${({ playButtonTextHoverColor }) => playButtonTextHoverColor};
+    transform: scale(1.2);
+  }
+
+  &:active {
+    transform: scale(0.9);
   }
 `;
 
@@ -65,41 +68,31 @@ class Splash extends PureComponent {
         splashBackgroundImageMode={Koji.config.template.splashBackgroundImageMode}
       >
         <FlexWrapper>
-          {
-            Koji.config.template.splashCenteredImage &&
-            <ContentWrapper>
-              <img src={Koji.config.template.splashCenteredImage} />
-              <PlayButton
-                playButtonBackgroundColor={Koji.config.template.playButtonBackgroundColor}
-                playButtonBackgroundHoverColor={Koji.config.template.playButtonBackgroundHoverColor}
-                playButtonTextColor={Koji.config.template.playButtonTextColor}
-                playButtonTextHoverColor={Koji.config.template.playButtonTextHoverColor}
-                playButtonTextFontSize={Koji.config.template.playButtonTextFontSize}
-              >
-                {Koji.config.template.playButtonText}
-              </PlayButton>
-            </ContentWrapper>
-          }
-          {
-            !Koji.config.template.splashCenteredImage &&
-            <ContentWrapper>
-              <CenteredTextWrapper
-                splashCenteredTextColor={Koji.config.template.splashCenteredTextColor}
-                splashCenteredTextFontSize={Koji.config.template.splashCenteredTextFontSize}
-              >
-                {Koji.config.template.splashCenteredText}
-              </CenteredTextWrapper>
-              <PlayButton
-                playButtonBackgroundColor={Koji.config.template.playButtonBackgroundColor}
-                playButtonBackgroundHoverColor={Koji.config.template.playButtonBackgroundHoverColor}
-                playButtonTextColor={Koji.config.template.playButtonTextColor}
-                playButtonTextHoverColor={Koji.config.template.playButtonTextHoverColor}
-                playButtonTextFontSize={Koji.config.template.playButtonTextFontSize}
-              >
-                {Koji.config.template.playButtonText}
-              </PlayButton>
-            </ContentWrapper>
-          }
+          <ContentWrapper>
+            {
+              Koji.config.template.splashCenteredImage && Koji.config.template.splashCenteredImage !== '' &&
+                <CenteredImage
+                  splashCenteredImageHeight={Koji.config.template.splashCenteredImageHeight}
+                  src={Koji.config.template.splashCenteredImage}
+                />
+            }
+            {
+              Koji.config.template.splashCenteredText && Koji.config.template.splashCenteredText !== '' &&
+                <CenteredTextWrapper
+                  splashCenteredTextColor={Koji.config.template.splashCenteredTextColor}
+                  splashCenteredTextFontSize={Koji.config.template.splashCenteredTextFontSize}
+                >
+                  {Koji.config.template.splashCenteredText}
+                </CenteredTextWrapper>
+            }
+            <PlayButton
+              playButtonBackgroundColor={Koji.config.template.playButtonBackgroundColor}
+              playButtonTextColor={Koji.config.template.playButtonTextColor}
+              playButtonTextFontSize={Koji.config.template.playButtonTextFontSize}
+            >
+              {Koji.config.template.playButtonText}
+            </PlayButton>
+          </ContentWrapper>
         </FlexWrapper>
       </Container>
     );

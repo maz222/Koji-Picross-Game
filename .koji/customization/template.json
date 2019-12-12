@@ -4,14 +4,13 @@
     "splashBackgroundColor": "",
     "splashBackgroundImage": "https://miro.medium.com/max/4800/1*UJmuNSJQ-vwETj1nE7pxJQ.png",
     "splashBackgroundImageMode": "cover",
-    "splashCenteredImage": "",
+    "splashCenteredImage": "https://www.freelogodesign.org/Content/img/logo-samples/sophia.png",
+    "splashCenteredImageHeight": "30",
     "splashCenteredText": "Play Guppy Blast!",
     "splashCenteredTextColor": "#ffffff",
     "splashCenteredTextFontSize": "48",
     "playButtonBackgroundColor": "#edc526",
-    "playButtonBackgroundHoverColor": "#212120",
     "playButtonTextColor": "#1e1f1e",
-    "playButtonTextHoverColor": "#efef3f",
     "playButtonText": "Play",
     "playButtonTextFontSize": "16"
   },
@@ -66,6 +65,17 @@
           "type": "image"
         },
         {
+          "key": "splashCenteredImageHeight",
+          "name": "Splash Centered Image Height",
+          "description": "Percentage of Screen Height (0 - 100)",
+          "type": "range",
+          "typeOptions": {
+            "min": "10",
+            "max": "80",
+            "step": "1"
+          }
+        },
+        {
           "key": "splashCenteredText",
           "name": "Splash Centered Text",
           "type": "text"
@@ -108,16 +118,6 @@
         {
           "key": "playButtonTextColor",
           "name": "Play Button Text Color",
-          "type": "color"
-        },
-        {
-          "key": "playButtonBackgroundHoverColor",
-          "name": "Play Button Background Color (hover)",
-          "type": "color"
-        },
-        {
-          "key": "playButtonTextHoverColor",
-          "name": "Play Button Text Color (hover)",
           "type": "color"
         }
       ]
