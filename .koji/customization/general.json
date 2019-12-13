@@ -6,10 +6,10 @@
   },
   "@@editor": [
     {
-      "key": "template",
-      "name": "Template Options",
+      "key": "general",
+      "name": "General Options",
       "icon": "📋",
-      "source": "template.json",
+      "source": "general.json",
       "fields": [
         {
           "key": "backgroundColor",
