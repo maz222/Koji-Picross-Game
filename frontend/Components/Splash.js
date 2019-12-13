@@ -59,7 +59,19 @@ const CenteredTextWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
+const SoundIcon = styled.img`
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+`;
+
 class Splash extends PureComponent {
+  handleSoundIconClick = () => {
+    this.props.setTemplateConfig({
+      soundEnabled: !this.props.templateConfig.soundEnabled,
+    });
+  };
+
   render() {
     return (
       <Container
@@ -94,6 +106,14 @@ class Splash extends PureComponent {
             </PlayButton>
           </ContentWrapper>
         </FlexWrapper>
+        <SoundIcon
+          src={
+            this.props.templateConfig.soundEnabled ?
+            Koji.config.template.soundOnIcon :
+            Koji.config.template.soundOffIcon
+          }
+          onClick={this.handleSoundIconClick}
+        />
       </Container>
     );
   }
