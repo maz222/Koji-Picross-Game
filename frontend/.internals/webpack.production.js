@@ -20,7 +20,7 @@ const { HashedModuleIdsPlugin } = require('webpack');
 
 module.exports = {
   mode: 'production',
-  entry: "./common/index.js",
+  entry: "./index.js",
   output: {
     path: path.resolve(process.cwd(), 'build'),
     filename: '[name].[chunkhash].js',
@@ -140,7 +140,7 @@ module.exports = {
         minifyURLs: true,
       },
       inject: true,
-      template: './common/index.html',
+      template: './index.html',
     }),
     new HashedModuleIdsPlugin({
       hashFunction: 'sha256',
