@@ -20,38 +20,6 @@
       "source": "homeScreen.json",
       "fields": [
         {
-          "key": "backgroundColor",
-          "name": "Background Color",
-          "type": "color"
-        },
-        {
-          "key": "backgroundImage",
-          "name": "Background Image (if not provided, will use the background color by default)",
-          "type": "image"
-        },
-        {
-          "key": "backgroundImageMode",
-          "name": "Background Image Mode (affects how the image is presented)",
-          "type": "select",
-          "typeOptions": {
-            "placeholder": "Choose an option...",
-            "options": [
-              {
-                "value": "cover",
-                "label": "Cover"
-              },
-              {
-                "value": "contain",
-                "label": "Contain"
-              },
-              {
-                "value": "auto",
-                "label": "Auto (No Resizing)"
-              }
-            ]
-          }
-        },
-        {
           "key": "centeredImage",
           "name": "Centered Image (if not provided, will use the centered text by default)",
           "type": "image"
