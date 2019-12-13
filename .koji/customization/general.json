@@ -2,7 +2,10 @@
   "general": {
     "backgroundColor": "",
     "backgroundImage": "https://miro.medium.com/max/4800/1*UJmuNSJQ-vwETj1nE7pxJQ.png",
-    "backgroundImageMode": "cover"
+    "backgroundImageMode": "cover",
+    "primaryColor": "#003087",
+    "secondaryColor": "#7CC6F2",
+    "textColor": "#FCFCFC"
   },
   "@@editor": [
     {
@@ -42,6 +45,21 @@
               }
             ]
           }
+        },
+        {
+          "key": "primaryColor",
+          "name": "Primary Color",
+          "type": "color"
+        },
+        {
+          "key": "secondaryColor",
+          "name": "Secondary Color",
+          "type": "color"
+        },
+        {
+          "key": "textColor",
+          "name": "Text Color",
+          "type": "color"
         }
       ]
     }

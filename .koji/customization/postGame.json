@@ -1,6 +1,10 @@
 {
   "postGame": {
-    "title": "Thanks for playing!"
+    "title": "Thanks for playing!",
+    "collectName": true,
+    "collectEmail": true,
+    "emailOptInText": "I want to receive promotional updates via email",
+    "showPlayAgainButton": true
   },
   "@@editor": [
     {
@@ -28,6 +32,26 @@
             "max": "72",
             "step": "1"
           }
+        },
+        {
+          "key": "collectName",
+          "name": "Collect Name",
+          "type": "boolean"
+        },
+        {
+          "key": "collectEmail",
+          "name": "Collect Email",
+          "type": "boolean"
+        },
+        {
+          "key": "emailOptInText",
+          "name": "Email Opt In Text",
+          "type": "text"
+        },
+        {
+          "key": "showPlayAgainButton",
+          "name": "Show Play Again Button",
+          "type": "boolean"
         }
       ]
     }

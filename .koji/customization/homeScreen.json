@@ -1,14 +1,16 @@
 {
   "homeScreen": {
-    "centeredImage": "https://www.freelogodesign.org/Content/img/logo-samples/sophia.png",
-    "centeredImageHeight": "30",
-    "centeredText": "Play Guppy Blast!",
-    "centeredTextColor": "#ffffff",
-    "centeredTextFontSize": "48",
+    "image": "https://cdn.freebiesupply.com/logos/large/2x/oreo-1-logo-png-transparent.png",
+    "imageHeight": "30",
+    "imageLink": "",
+    "text": "Play Oreo Blast!",
+    "textColor": "#ffffff",
+    "textFontSize": "48",
     "playButtonBackgroundColor": "#edc526",
     "playButtonTextColor": "#1e1f1e",
     "playButtonText": "Play",
     "playButtonTextFontSize": "16",
+    "cardBackdrop": true,
     "soundOnIcon": "https://images.koji-cdn.com/b4acde8c-96d4-4b1e-9e6e-4cca208833fe/dqabb-bbb8d67c83064aedb2fc9428ab6c3d8a.png",
     "soundOffIcon": "https://images.koji-cdn.com/b4acde8c-96d4-4b1e-9e6e-4cca208833fe/hqr5b-caf83cefc49348cb8a46c9e5647abcbb.png"
   },
@@ -20,13 +22,13 @@
       "source": "homeScreen.json",
       "fields": [
         {
-          "key": "centeredImage",
-          "name": "Centered Image (if not provided, will use the centered text by default)",
+          "key": "image",
+          "name": "Logo/Image",
           "type": "image"
         },
         {
-          "key": "centeredImageHeight",
-          "name": "Centered Image Height",
+          "key": "imageHeight",
+          "name": "Logo/Image Height",
           "description": "Percentage of Screen Height (0 - 100)",
           "type": "range",
           "typeOptions": {
@@ -36,18 +38,24 @@
           }
         },
         {
-          "key": "centeredText",
-          "name": "Centered Text",
+          "key": "imageLink",
+          "name": "Logo/Image Link",
+          "description": "A link for your image; will open in a new tab",
           "type": "text"
         },
         {
-          "key": "centeredTextColor",
-          "name": "Centered Text Color",
+          "key": "text",
+          "name": "Text",
           "type": "text"
         },
         {
-          "key": "centeredTextFontSize",
-          "name": "Centered Text Font Size",
+          "key": "textColor",
+          "name": "Text Color",
+          "type": "text"
+        },
+        {
+          "key": "textFontSize",
+          "name": "Text Font Size",
           "type": "range",
           "typeOptions": {
             "min": "16",
@@ -81,6 +89,11 @@
           "type": "color"
         },
         {
+          "key": "cardBackdrop",
+          "name": "Use a Card Backdrop for the Home Screen",
+          "type": "boolean"
+        },
+        {
           "key": "soundOffIcon",
           "name": "Icon to Turn Sounds Off",
           "type": "image"
@@ -89,33 +102,6 @@
           "key": "soundOnIcon",
           "name": "Icon to Turn Sounds On",
           "type": "image"
-        },
-        {
-          "key": "gameBackgroundImage",
-          "name": "Game Background Image",
-          "type": "image"
-        },
-        {
-          "key": "gameBackgroundImageMode",
-          "name": "Game Background Image Mode (affects how the image is presented)",
-          "type": "select",
-          "typeOptions": {
-            "placeholder": "Choose an option...",
-            "options": [
-              {
-                "value": "cover",
-                "label": "Cover"
-              },
-              {
-                "value": "contain",
-                "label": "Contain"
-              },
-              {
-                "value": "auto",
-                "label": "Auto (No Resizing)"
-              }
-            ]
-          }
         }
       ]
     }

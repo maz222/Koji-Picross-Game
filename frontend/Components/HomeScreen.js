@@ -21,8 +21,8 @@ const FlexWrapper = styled.div`
   align-items: center;
 `;
 
-const CenteredImage = styled.img`
-  height: ${({ centeredImageHeight }) => `${centeredImageHeight}vh`};
+const Image = styled.img`
+  height: ${({ imageHeight }) => `${imageHeight}vh`};
 `;
 
 const ContentWrapper = styled.div`
@@ -31,6 +31,11 @@ const ContentWrapper = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 24px;
+
+  background: ${({ cardBackdrop, secondaryColor }) => cardBackdrop ? secondaryColor : 'none'};
+  border: ${({ cardBackdrop, primaryColor }) => cardBackdrop ? `4px solid ${primaryColor}` : 'none'};
+  border-radius: ${({ cardBackdrop }) => cardBackdrop ? '4px' : '0'};
 `;
 
 const PlayButton = styled.button`
@@ -53,9 +58,21 @@ const PlayButton = styled.button`
   }
 `;
 
-const CenteredTextWrapper = styled.div`
-  font-size: ${({ centeredTextFontSize }) => `${parseInt(centeredTextFontSize)}px`};
-  color: ${({ centeredTextColor }) => centeredTextColor};
+const ImageLinkWrapper = styled.a`
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+`;
+
+const TextWrapper = styled.div`
+  font-size: ${({ textFontSize }) => `${parseInt(textFontSize)}px`};
+  color: ${({ textColor }) => textColor};
   margin-bottom: 16px;
 `;
 
@@ -73,6 +90,28 @@ class HomeScreen extends PureComponent {
   };
 
   render() {
+    let CI = () => (
+      <Image
+        imageHeight={Koji.config.homeScreen.imageHeight}
+        src={Koji.config.homeScreen.image}
+      />
+    );
+
+    if (Koji.config.homeScreen.imageLink && Koji.config.homeScreen.imageLink !== '') {
+      CI = () => (
+        <ImageLinkWrapper
+          href={Koji.config.homeScreen.imageLink}
+          rel={'nofollow noreferrer'}
+          target={'_blank'}
+        >
+          <Image
+            imageHeight={Koji.config.homeScreen.imageHeight}
+            src={Koji.config.homeScreen.image}
+          />
+        </ImageLinkWrapper>
+      );
+    }
+
     return (
       <Container
         backgroundColor={Koji.config.general.backgroundColor}
@@ -80,22 +119,23 @@ class HomeScreen extends PureComponent {
         backgroundImageMode={Koji.config.general.backgroundImageMode}
       >
         <FlexWrapper>
-          <ContentWrapper>
+          <ContentWrapper
+            primaryColor={Koji.config.general.primaryColor}
+            cardBackdrop={Koji.config.homeScreen.cardBackdrop}
+            secondaryColor={Koji.config.general.secondaryColor}
+          >
             {
-              Koji.config.homeScreen.centeredImage && Koji.config.homeScreen.centeredImage !== '' &&
-                <CenteredImage
-                  centeredImageHeight={Koji.config.homeScreen.centeredImageHeight}
-                  src={Koji.config.homeScreen.centeredImage}
-                />
+              Koji.config.homeScreen.image && Koji.config.homeScreen.image !== '' &&
+              <CI />
             }
             {
-              Koji.config.homeScreen.centeredText && Koji.config.homeScreen.centeredText !== '' &&
-                <CenteredTextWrapper
-                  centeredTextColor={Koji.config.homeScreen.centeredTextColor}
-                  centeredTextFontSize={Koji.config.homeScreen.centeredTextFontSize}
+              Koji.config.homeScreen.text && Koji.config.homeScreen.text !== '' &&
+                <TextWrapper
+                  textColor={Koji.config.homeScreen.textColor}
+                  textFontSize={Koji.config.homeScreen.textFontSize}
                 >
-                  {Koji.config.homeScreen.centeredText}
-                </CenteredTextWrapper>
+                  {Koji.config.homeScreen.text}
+                </TextWrapper>
             }
             <PlayButton
               onClick={() => this.props.setAppView('game')}

@@ -49,7 +49,9 @@ class App extends PureComponent {
 
     if (this.state.view === 'postGame') {
       return (
-        <PostGameScreen />
+        <PostGameScreen
+          setAppView={view => this.setState({ view })}
+        />
       );
     }
 
