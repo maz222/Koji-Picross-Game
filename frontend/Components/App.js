@@ -9,11 +9,17 @@ window.__template_config = {};
 
 class App extends PureComponent {
   state = {
+    score: 0,
     templateConfig: {
       soundEnabled: true,
     },
     view: 'home',
   };
+
+  componentDidMount() {
+    // Expose the setScore function
+    window.setScore = score => this.setState({ score });
+  }
 
   componentDidUpdate() {
     window.__template_config = this.state.templateConfig;
@@ -50,6 +56,7 @@ class App extends PureComponent {
     if (this.state.view === 'postGame') {
       return (
         <PostGameScreen
+          score={this.state.score}
           setAppView={view => this.setState({ view })}
         />
       );

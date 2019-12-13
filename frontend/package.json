@@ -12,6 +12,7 @@
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@withkoji/custom-vcc-sdk": "0.0.6",
     "@withkoji/vcc": "^1.1.1",
+    "md5": "^2.2.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
