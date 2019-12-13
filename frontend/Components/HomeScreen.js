@@ -32,6 +32,7 @@ const ContentWrapper = styled.div`
   justify-content: center;
   text-align: center;
   padding: 24px;
+  max-width: 90vw;
 
   background: ${({ cardBackdrop, secondaryColor }) => cardBackdrop ? secondaryColor : 'none'};
   border: ${({ cardBackdrop, primaryColor }) => cardBackdrop ? `4px solid ${primaryColor}` : 'none'};
