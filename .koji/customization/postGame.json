@@ -4,7 +4,8 @@
     "collectName": true,
     "collectEmail": true,
     "emailOptInText": "I want to receive promotional updates via email",
-    "showPlayAgainButton": true
+    "showPlayAgainButton": true,
+    "leaderboardPointsText": "PTS"
   },
   "@@editor": [
     {
@@ -52,6 +53,12 @@
           "key": "showPlayAgainButton",
           "name": "Show Play Again Button",
           "type": "boolean"
+        },
+        {
+          "key": "leaderboardPointsText",
+          "name": "Leaderboard Points Text",
+          "description": "What to display after the score on the leaderboard",
+          "type": "text"
         }
       ]
     }

@@ -67,6 +67,28 @@ const CheckboxWrapper = styled.div`
   }
 `;
 
+const ViewLeaderboardButton = styled.button`
+  border: 0;
+  outline: 0;
+  font-size: ${({ playButtonTextFontSize }) =>
+    `${parseInt(playButtonTextFontSize)}px`};
+  background: ${({ playButtonBackgroundColor }) => playButtonBackgroundColor};
+  color: ${({ playButtonTextColor }) => playButtonTextColor};
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 4px;
+  transition: transform 0.1s;
+  margin-bottom: 16px;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+`;
+
 const PlayAgainButton = styled.button`
   border: 0;
   outline: 0;
@@ -94,6 +116,7 @@ class PostGameScreen extends PureComponent {
     name: '',
     emailOptIn: true,
     formSubmitted: false,
+    modalIsOpen: false,
   };
 
   handleSubmit = e => {
@@ -135,53 +158,67 @@ class PostGameScreen extends PureComponent {
           <ContentWrapper>
             {
               (Koji.config.postGame.collectName || Koji.config.postGame.collectEmail) &&
-              <Form onSubmit={this.handleSubmit}>
+              <Fragment>
                 {
-                  Koji.config.postGame.collectName &&
-                  <Fragment>
-                    <label for={'name-input'}>{'Your Name'}</label>
-                    <input
-                      id={'name-input'}
-                      name={'name-input'}
-                      onChange={e =>
-                        this.setState({ name: e.currentTarget.value })
-                      }
-                      type={'text'}
-                      value={this.state.name}
-                    />
-                  </Fragment>
+                  this.state.formSubmitted &&
+                  <div>
+                    <h1>{'Thanks for playing!'}</h1>
+                    <ViewLeaderboardButton onClick={() => this.props.showLeaderboard()}>
+                      {'View Leaderboard'}
+                    </ViewLeaderboardButton>
+                  </div>
                 }
                 {
-                  Koji.config.postGame.collectEmail &&
-                  <Fragment>
-                    <label for={'email-input'}>{'Your Email'}</label>
-                    <input
-                      id={'email-input'}
-                      name={'email-input'}
-                      onChange={e =>
-                        this.setState({ email: e.currentTarget.value })
-                      }
-                      type={'email'}
-                      value={this.state.email}
-                    />
-                    <CheckboxWrapper>
-                      <input
-                        checked={this.state.emailOptIn}
-                        id={'opt-in'}
-                        name={'opt-in'}
-                        onChange={e =>
-                          this.setState({ emailOptIn: e.currentTarget.checked })
-                        }
-                        type={'checkbox'}
-                      />
-                      <label for={'opt-in'}>
-                        {Koji.config.postGame.emailOptInText}
-                      </label>
-                    </CheckboxWrapper>
-                  </Fragment>
+                  !this.state.formSubmitted &&
+                  <Form onSubmit={this.handleSubmit}>
+                    {
+                      Koji.config.postGame.collectName &&
+                      <Fragment>
+                        <label htmlFor={'name-input'}>{'Your Name'}</label>
+                        <input
+                          id={'name-input'}
+                          name={'name-input'}
+                          onChange={e =>
+                            this.setState({ name: e.currentTarget.value })
+                          }
+                          type={'text'}
+                          value={this.state.name}
+                        />
+                      </Fragment>
+                    }
+                    {
+                      Koji.config.postGame.collectEmail &&
+                      <Fragment>
+                        <label htmlFor={'email-input'}>{'Your Email'}</label>
+                        <input
+                          id={'email-input'}
+                          name={'email-input'}
+                          onChange={e =>
+                            this.setState({ email: e.currentTarget.value })
+                          }
+                          type={'email'}
+                          value={this.state.email}
+                        />
+                        <CheckboxWrapper>
+                          <input
+                            checked={this.state.emailOptIn}
+                            id={'opt-in'}
+                            name={'opt-in'}
+                            onChange={e =>
+                              this.setState({ emailOptIn: e.currentTarget.checked })
+                            }
+                            type={'checkbox'}
+                          />
+                          <label htmlFor={'opt-in'}>
+                            {Koji.config.postGame.emailOptInText}
+                          </label>
+                        </CheckboxWrapper>
+                      </Fragment>
+                    }
+                    <button type={'submit'}>{'Submit'}</button>
+                  </Form>
                 }
-                <button htmlType={'submit'}>{'Submit'}</button>
-              </Form>
+              </Fragment>
             }
             {
               Koji.config.postGame.showPlayAgainButton &&
