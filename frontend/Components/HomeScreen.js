@@ -75,43 +75,43 @@ class HomeScreen extends PureComponent {
   render() {
     return (
       <Container
-        backgroundColor={Koji.config.template.backgroundColor}
-        backgroundImage={Koji.config.template.backgroundImage}
-        backgroundImageMode={Koji.config.template.backgroundImageMode}
+        backgroundColor={Koji.config.general.backgroundColor}
+        backgroundImage={Koji.config.general.backgroundImage}
+        backgroundImageMode={Koji.config.general.backgroundImageMode}
       >
         <FlexWrapper>
           <ContentWrapper>
             {
-              Koji.config.template.centeredImage && Koji.config.template.centeredImage !== '' &&
+              Koji.config.homeScreen.centeredImage && Koji.config.homeScreen.centeredImage !== '' &&
                 <CenteredImage
-                  centeredImageHeight={Koji.config.template.centeredImageHeight}
-                  src={Koji.config.template.centeredImage}
+                  centeredImageHeight={Koji.config.homeScreen.centeredImageHeight}
+                  src={Koji.config.homeScreen.centeredImage}
                 />
             }
             {
-              Koji.config.template.centeredText && Koji.config.template.centeredText !== '' &&
+              Koji.config.homeScreen.centeredText && Koji.config.homeScreen.centeredText !== '' &&
                 <CenteredTextWrapper
-                  centeredTextColor={Koji.config.template.centeredTextColor}
-                  centeredTextFontSize={Koji.config.template.centeredTextFontSize}
+                  centeredTextColor={Koji.config.homeScreen.centeredTextColor}
+                  centeredTextFontSize={Koji.config.homeScreen.centeredTextFontSize}
                 >
-                  {Koji.config.template.centeredText}
+                  {Koji.config.homeScreen.centeredText}
                 </CenteredTextWrapper>
             }
             <PlayButton
               onClick={() => this.props.setAppView('game')}
-              playButtonBackgroundColor={Koji.config.template.playButtonBackgroundColor}
-              playButtonTextColor={Koji.config.template.playButtonTextColor}
-              playButtonTextFontSize={Koji.config.template.playButtonTextFontSize}
+              playButtonBackgroundColor={Koji.config.homeScreen.playButtonBackgroundColor}
+              playButtonTextColor={Koji.config.homeScreen.playButtonTextColor}
+              playButtonTextFontSize={Koji.config.homeScreen.playButtonTextFontSize}
             >
-              {Koji.config.template.playButtonText}
+              {Koji.config.homeScreen.playButtonText}
             </PlayButton>
           </ContentWrapper>
         </FlexWrapper>
         <SoundIcon
           src={
             this.props.templateConfig.soundEnabled ?
-            Koji.config.template.soundOnIcon :
-            Koji.config.template.soundOffIcon
+            Koji.config.homeScreen.soundOnIcon :
+            Koji.config.homeScreen.soundOffIcon
           }
           onClick={this.handleSoundIconClick}
         />

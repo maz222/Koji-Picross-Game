@@ -33,9 +33,9 @@ class PostGameScreen extends PureComponent {
   render() {
     return (
       <Container
-        backgroundColor={Koji.config.template.backgroundColor}
-        backgroundImage={Koji.config.template.backgroundImage}
-        backgroundImageMode={Koji.config.template.backgroundImageMode}
+        backgroundColor={Koji.config.general.backgroundColor}
+        backgroundImage={Koji.config.general.backgroundImage}
+        backgroundImageMode={Koji.config.general.backgroundImageMode}
       >
         <FlexWrapper>
           <ContentWrapper>

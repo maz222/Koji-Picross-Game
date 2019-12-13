@@ -17,8 +17,8 @@ class Game extends PureComponent {
   render() {
     return (
       <GameContainer
-        gameBackgroundImage={Koji.config.template.backgroundImage}
-        gameBackgroundImageMode={Koji.config.template.backgroundImageMode}
+        gameBackgroundImage={Koji.config.general.backgroundImage}
+        gameBackgroundImageMode={Koji.config.general.backgroundImageMode}
         id={'game-container'}
       >
         <GlobalP5Sketch
