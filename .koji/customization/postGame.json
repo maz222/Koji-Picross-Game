@@ -1,0 +1,35 @@
+{
+  "postGame": {
+    "title": "Thanks for playing!"
+  },
+  "@@editor": [
+    {
+      "key": "postGame",
+      "name": "Post Game Options",
+      "icon": "📋",
+      "source": "postGame.json",
+      "fields": [
+        {
+          "key": "title",
+          "name": "Title Text",
+          "type": "text"
+        },
+        {
+          "key": "titleTextColor",
+          "name": "Title Text Color",
+          "type": "text"
+        },
+        {
+          "key": "titleTextFontSize",
+          "name": "Title Text Font Size",
+          "type": "range",
+          "typeOptions": {
+            "min": "16",
+            "max": "72",
+            "step": "1"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "template": {
+    "backgroundColor": "",
+    "backgroundImage": "https://miro.medium.com/max/4800/1*UJmuNSJQ-vwETj1nE7pxJQ.png",
+    "backgroundImageMode": "cover"
+  },
+  "@@editor": [
+    {
+      "key": "template",
+      "name": "Template Options",
+      "icon": "📋",
+      "source": "template.json",
+      "fields": [
+        {
+          "key": "backgroundColor",
+          "name": "Splash Background Color",
+          "type": "color"
+        },
+        {
+          "key": "backgroundImage",
+          "name": "Splash Background Image (if not provided, will use the background color by default)",
+          "type": "image"
+        },
+        {
+          "key": "backgroundImageMode",
+          "name": "Splash Background Image Mode (affects how the image is presented)",
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "value": "cover",
+                "label": "Cover"
+              },
+              {
+                "value": "contain",
+                "label": "Contain"
+              },
+              {
+                "value": "auto",
+                "label": "Auto (No Resizing)"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

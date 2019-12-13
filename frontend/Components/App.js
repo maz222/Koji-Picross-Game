@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
-import Koji from '@withkoji/vcc';
-import Splash from './Splash';
+import Game from './Game';
+import PostGameScreen from './PostGameScreen';
+import HomeScreen from './HomeScreen';
 
 // Template level config is stored on the window
 window.__template_config = {};
@@ -11,7 +12,7 @@ class App extends PureComponent {
     templateConfig: {
       soundEnabled: true,
     },
-    view: Koji.config.template.showSplashScreen ? 'splash' : 'game',
+    view: 'home',
   };
 
   componentDidUpdate() {
@@ -28,20 +29,31 @@ class App extends PureComponent {
   }
 
   render() {
-    if (this.state.view === 'splash') {
+    if (this.state.view === 'home') {
       return (
-        <Splash
+        <HomeScreen
+          setAppView={view => this.setState({ view })}
           setTemplateConfig={this.setTemplateConfig}
           templateConfig={this.state.templateConfig}
         />
       );
     }
 
-    return (
-      <div>
-        <h1>{this.state.view}</h1>
-      </div>
-    );
+    if (this.state.view === 'game') {
+      return (
+        <Game
+          setAppView={view => this.setState({ view })}
+        />
+      );
+    }
+
+    if (this.state.view === 'postGame') {
+      return (
+        <PostGameScreen />
+      );
+    }
+
+    return null;
   }
 }
 

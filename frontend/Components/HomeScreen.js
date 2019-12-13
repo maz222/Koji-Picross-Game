@@ -5,11 +5,11 @@ import Koji from '@withkoji/vcc';
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: ${({ splashBackgroundColor, splashBackgroundImage, splashBackgroundImageMode }) => {
-    if (splashBackgroundImage && splashBackgroundImage !== '') {
-      return `url("${splashBackgroundImage}") no-repeat center center / ${splashBackgroundImageMode}`;
+  background: ${({ backgroundColor, backgroundImage, backgroundImageMode }) => {
+    if (backgroundImage && backgroundImage !== '') {
+      return `url("${backgroundImage}") no-repeat center center / ${backgroundImageMode}`;
     }
-    return splashBackgroundColor;
+    return backgroundColor;
   }}
 `;
 
@@ -22,7 +22,7 @@ const FlexWrapper = styled.div`
 `;
 
 const CenteredImage = styled.img`
-  height: ${({ splashCenteredImageHeight }) => `${splashCenteredImageHeight}vh`};
+  height: ${({ centeredImageHeight }) => `${centeredImageHeight}vh`};
 `;
 
 const ContentWrapper = styled.div`
@@ -54,8 +54,8 @@ const PlayButton = styled.button`
 `;
 
 const CenteredTextWrapper = styled.div`
-  font-size: ${({ splashCenteredTextFontSize }) => `${parseInt(splashCenteredTextFontSize)}px`};
-  color: ${({ splashCenteredTextColor }) => splashCenteredTextColor};
+  font-size: ${({ centeredTextFontSize }) => `${parseInt(centeredTextFontSize)}px`};
+  color: ${({ centeredTextColor }) => centeredTextColor};
   margin-bottom: 16px;
 `;
 
@@ -65,7 +65,7 @@ const SoundIcon = styled.img`
   right: 8px;
 `;
 
-class Splash extends PureComponent {
+class HomeScreen extends PureComponent {
   handleSoundIconClick = () => {
     this.props.setTemplateConfig({
       soundEnabled: !this.props.templateConfig.soundEnabled,
@@ -75,29 +75,30 @@ class Splash extends PureComponent {
   render() {
     return (
       <Container
-        splashBackgroundColor={Koji.config.template.splashBackgroundColor}
-        splashBackgroundImage={Koji.config.template.splashBackgroundImage}
-        splashBackgroundImageMode={Koji.config.template.splashBackgroundImageMode}
+        backgroundColor={Koji.config.template.backgroundColor}
+        backgroundImage={Koji.config.template.backgroundImage}
+        backgroundImageMode={Koji.config.template.backgroundImageMode}
       >
         <FlexWrapper>
           <ContentWrapper>
             {
-              Koji.config.template.splashCenteredImage && Koji.config.template.splashCenteredImage !== '' &&
+              Koji.config.template.centeredImage && Koji.config.template.centeredImage !== '' &&
                 <CenteredImage
-                  splashCenteredImageHeight={Koji.config.template.splashCenteredImageHeight}
-                  src={Koji.config.template.splashCenteredImage}
+                  centeredImageHeight={Koji.config.template.centeredImageHeight}
+                  src={Koji.config.template.centeredImage}
                 />
             }
             {
-              Koji.config.template.splashCenteredText && Koji.config.template.splashCenteredText !== '' &&
+              Koji.config.template.centeredText && Koji.config.template.centeredText !== '' &&
                 <CenteredTextWrapper
-                  splashCenteredTextColor={Koji.config.template.splashCenteredTextColor}
-                  splashCenteredTextFontSize={Koji.config.template.splashCenteredTextFontSize}
+                  centeredTextColor={Koji.config.template.centeredTextColor}
+                  centeredTextFontSize={Koji.config.template.centeredTextFontSize}
                 >
-                  {Koji.config.template.splashCenteredText}
+                  {Koji.config.template.centeredText}
                 </CenteredTextWrapper>
             }
             <PlayButton
+              onClick={() => this.props.setAppView('game')}
               playButtonBackgroundColor={Koji.config.template.playButtonBackgroundColor}
               playButtonTextColor={Koji.config.template.playButtonTextColor}
               playButtonTextFontSize={Koji.config.template.playButtonTextFontSize}
@@ -119,4 +120,4 @@ class Splash extends PureComponent {
   }
 }
 
-export default Splash;
+export default HomeScreen;

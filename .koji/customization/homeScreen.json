@@ -1,14 +1,10 @@
 {
   "template": {
-    "showSplashScreen": true,
-    "splashBackgroundColor": "",
-    "splashBackgroundImage": "https://miro.medium.com/max/4800/1*UJmuNSJQ-vwETj1nE7pxJQ.png",
-    "splashBackgroundImageMode": "cover",
-    "splashCenteredImage": "https://www.freelogodesign.org/Content/img/logo-samples/sophia.png",
-    "splashCenteredImageHeight": "30",
-    "splashCenteredText": "Play Guppy Blast!",
-    "splashCenteredTextColor": "#ffffff",
-    "splashCenteredTextFontSize": "48",
+    "centeredImage": "https://www.freelogodesign.org/Content/img/logo-samples/sophia.png",
+    "centeredImageHeight": "30",
+    "centeredText": "Play Guppy Blast!",
+    "centeredTextColor": "#ffffff",
+    "centeredTextFontSize": "48",
     "playButtonBackgroundColor": "#edc526",
     "playButtonTextColor": "#1e1f1e",
     "playButtonText": "Play",
@@ -18,30 +14,24 @@
   },
   "@@editor": [
     {
-      "key": "template",
-      "name": "Template Options",
+      "key": "homeScreen",
+      "name": "Home Screen Options",
       "icon": "📋",
-      "source": "template.json",
+      "source": "homeScreen.json",
       "fields": [
         {
-          "key": "showSplashScreen",
-          "name": "Splash Screen",
-          "description": "Should the app show the splash screen?",
-          "type": "boolean"
-        },
-        {
-          "key": "splashBackgroundColor",
-          "name": "Splash Background Color",
+          "key": "backgroundColor",
+          "name": "Background Color",
           "type": "color"
         },
         {
-          "key": "splashBackgroundImage",
-          "name": "Splash Background Image (if not provided, will use the background color by default)",
+          "key": "backgroundImage",
+          "name": "Background Image (if not provided, will use the background color by default)",
           "type": "image"
         },
         {
-          "key": "splashBackgroundImageMode",
-          "name": "Splash Background Image Mode (affects how the image is presented)",
+          "key": "backgroundImageMode",
+          "name": "Background Image Mode (affects how the image is presented)",
           "type": "select",
           "typeOptions": {
             "placeholder": "Choose an option...",
@@ -62,13 +52,13 @@
           }
         },
         {
-          "key": "splashCenteredImage",
-          "name": "Splash Centered Image (if not provided, will use the splash centered text by default)",
+          "key": "centeredImage",
+          "name": "Centered Image (if not provided, will use the centered text by default)",
           "type": "image"
         },
         {
-          "key": "splashCenteredImageHeight",
-          "name": "Splash Centered Image Height",
+          "key": "centeredImageHeight",
+          "name": "Centered Image Height",
           "description": "Percentage of Screen Height (0 - 100)",
           "type": "range",
           "typeOptions": {
@@ -78,18 +68,18 @@
           }
         },
         {
-          "key": "splashCenteredText",
-          "name": "Splash Centered Text",
+          "key": "centeredText",
+          "name": "Centered Text",
           "type": "text"
         },
         {
-          "key": "splashCenteredTextColor",
-          "name": "Splash Centered Text Color",
+          "key": "centeredTextColor",
+          "name": "Centered Text Color",
           "type": "text"
         },
         {
-          "key": "splashCenteredTextFontSize",
-          "name": "Splash Centered Text Font Size",
+          "key": "centeredTextFontSize",
+          "name": "Centered Text Font Size",
           "type": "range",
           "typeOptions": {
             "min": "16",
@@ -131,6 +121,33 @@
           "key": "soundOnIcon",
           "name": "Icon to Turn Sounds On",
           "type": "image"
+        },
+        {
+          "key": "gameBackgroundImage",
+          "name": "Game Background Image",
+          "type": "image"
+        },
+        {
+          "key": "gameBackgroundImageMode",
+          "name": "Game Background Image Mode (affects how the image is presented)",
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "value": "cover",
+                "label": "Cover"
+              },
+              {
+                "value": "contain",
+                "label": "Contain"
+              },
+              {
+                "value": "auto",
+                "label": "Auto (No Resizing)"
+              }
+            ]
+          }
         }
       ]
     }
