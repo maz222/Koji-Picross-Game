@@ -2,6 +2,10 @@ import React, { Fragment, PureComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Koji from '@withkoji/vcc';
 import md5 from 'md5';
+import Bounce from 'react-reveal/Bounce';
+import Fade from 'react-reveal/Fade';
+import RubberBand from 'react-reveal/RubberBand';
+import Zoom from 'react-reveal/Zoom';
 
 const Container = styled.div`
   width: 100vw;
@@ -16,8 +20,9 @@ const Container = styled.div`
 
 const FlexWrapper = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   justify-content: center;
   align-items: center;
 `;
@@ -148,6 +153,17 @@ class PostGameScreen extends PureComponent {
   };
 
   render() {
+    let Reveal = ({ children }) => (
+      <RubberBand>{children}</RubberBand>
+    );
+
+    if (Koji.config.postGame.reveal === 'bounceTop') Reveal = ({ children }) => (<Bounce top>{children}</Bounce>);
+    if (Koji.config.postGame.reveal === 'bounceBottom') Reveal = ({ children }) => (<Bounce bottom>{children}</Bounce>);
+    if (Koji.config.postGame.reveal === 'fadeTop') Reveal = ({ children }) => (<Fade top>{children}</Fade>);
+    if (Koji.config.postGame.reveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
+    if (Koji.config.postGame.reveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
+    if (Koji.config.postGame.reveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
+
     return (
       <Container
         backgroundColor={Koji.config.general.backgroundColor}
@@ -155,78 +171,80 @@ class PostGameScreen extends PureComponent {
         backgroundImageMode={Koji.config.general.backgroundImageMode}
       >
         <FlexWrapper>
-          <ContentWrapper>
-            {
-              (Koji.config.postGame.collectName || Koji.config.postGame.collectEmail) &&
-              <Fragment>
-                {
-                  this.state.formSubmitted &&
-                  <div>
-                    <h1>{'Thanks for playing!'}</h1>
-                    <ViewLeaderboardButton onClick={() => this.props.showLeaderboard()}>
-                      {'View Leaderboard'}
-                    </ViewLeaderboardButton>
-                  </div>
-                }
-                {
-                  !this.state.formSubmitted &&
-                  <Form onSubmit={this.handleSubmit}>
-                    {
-                      Koji.config.postGame.collectName &&
-                      <Fragment>
-                        <label htmlFor={'name-input'}>{'Your Name'}</label>
-                        <input
-                          id={'name-input'}
-                          name={'name-input'}
-                          onChange={e =>
-                            this.setState({ name: e.currentTarget.value })
-                          }
-                          type={'text'}
-                          value={this.state.name}
-                        />
-                      </Fragment>
-                    }
-                    {
-                      Koji.config.postGame.collectEmail &&
-                      <Fragment>
-                        <label htmlFor={'email-input'}>{'Your Email'}</label>
-                        <input
-                          id={'email-input'}
-                          name={'email-input'}
-                          onChange={e =>
-                            this.setState({ email: e.currentTarget.value })
-                          }
-                          type={'email'}
-                          value={this.state.email}
-                        />
-                        <CheckboxWrapper>
+          <Reveal>
+            <ContentWrapper>
+              {
+                (Koji.config.postGame.collectName || Koji.config.postGame.collectEmail) &&
+                <Fragment>
+                  {
+                    this.state.formSubmitted &&
+                    <div>
+                      <h1>{'Thanks for playing!'}</h1>
+                      <ViewLeaderboardButton onClick={() => this.props.showLeaderboard()}>
+                        {'View Leaderboard'}
+                      </ViewLeaderboardButton>
+                    </div>
+                  }
+                  {
+                    !this.state.formSubmitted &&
+                    <Form onSubmit={this.handleSubmit}>
+                      {
+                        Koji.config.postGame.collectName &&
+                        <Fragment>
+                          <label htmlFor={'name-input'}>{'Your Name'}</label>
                           <input
-                            checked={this.state.emailOptIn}
-                            id={'opt-in'}
-                            name={'opt-in'}
+                            id={'name-input'}
+                            name={'name-input'}
                             onChange={e =>
-                              this.setState({ emailOptIn: e.currentTarget.checked })
+                              this.setState({ name: e.currentTarget.value })
                             }
-                            type={'checkbox'}
+                            type={'text'}
+                            value={this.state.name}
                           />
-                          <label htmlFor={'opt-in'}>
-                            {Koji.config.postGame.emailOptInText}
-                          </label>
-                        </CheckboxWrapper>
-                      </Fragment>
-                    }
-                    <button type={'submit'}>{'Submit'}</button>
-                  </Form>
-                }
-              </Fragment>
-            }
-            {
-              Koji.config.postGame.showPlayAgainButton &&
-              <PlayAgainButton onClick={() => this.props.setAppView('game')}>
-                {'Play Again'}
-              </PlayAgainButton>
-            }
-          </ContentWrapper>
+                        </Fragment>
+                      }
+                      {
+                        Koji.config.postGame.collectEmail &&
+                        <Fragment>
+                          <label htmlFor={'email-input'}>{'Your Email'}</label>
+                          <input
+                            id={'email-input'}
+                            name={'email-input'}
+                            onChange={e =>
+                              this.setState({ email: e.currentTarget.value })
+                            }
+                            type={'email'}
+                            value={this.state.email}
+                          />
+                          <CheckboxWrapper>
+                            <input
+                              checked={this.state.emailOptIn}
+                              id={'opt-in'}
+                              name={'opt-in'}
+                              onChange={e =>
+                                this.setState({ emailOptIn: e.currentTarget.checked })
+                              }
+                              type={'checkbox'}
+                            />
+                            <label htmlFor={'opt-in'}>
+                              {Koji.config.postGame.emailOptInText}
+                            </label>
+                          </CheckboxWrapper>
+                        </Fragment>
+                      }
+                      <button type={'submit'}>{'Submit'}</button>
+                    </Form>
+                  }
+                </Fragment>
+              }
+              {
+                Koji.config.postGame.showPlayAgainButton &&
+                <PlayAgainButton onClick={() => this.props.setAppView('game')}>
+                  {'Play Again'}
+                </PlayAgainButton>
+              }
+            </ContentWrapper>
+          </Reveal>
         </FlexWrapper>
       </Container>
     );

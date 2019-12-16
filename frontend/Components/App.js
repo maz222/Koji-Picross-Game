@@ -32,7 +32,7 @@ class App extends PureComponent {
     templateConfig: {
       soundEnabled: true,
     },
-    view: 'home',
+    view: Koji.config.general.startScreen || 'home',
   };
 
   componentDidMount() {
