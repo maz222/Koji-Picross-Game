@@ -8,6 +8,17 @@ import Leaderboard from './Leaderboard';
 import Koji from '@withkoji/vcc';
 import WebFont from 'webfontloader';
 
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: ${({ backgroundColor, backgroundImage, backgroundImageMode }) => {
+    if (backgroundImage && backgroundImage !== '') {
+      return `url("${backgroundImage}") no-repeat center center / ${backgroundImageMode}`;
+    }
+    return backgroundColor;
+  }}
+`;
+
 const CloseModalButton = styled.button`
   position: absolute;
   top: 8px;
@@ -64,7 +75,11 @@ class App extends PureComponent {
 
   render() {
     return (
-      <Fragment>
+      <Container
+        backgroundColor={Koji.config.general.backgroundColor}
+        backgroundImage={Koji.config.general.backgroundImage}
+        backgroundImageMode={Koji.config.general.backgroundImageMode}
+      >
         {
           this.state.view === 'home' &&
           <HomeScreen
@@ -109,7 +124,7 @@ class App extends PureComponent {
             <Leaderboard />
           </div>
         </Modal>
-      </Fragment>
+      </Container>
     );
   }
 }

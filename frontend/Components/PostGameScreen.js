@@ -7,16 +7,17 @@ import RubberBand from 'react-reveal/RubberBand';
 import Zoom from 'react-reveal/Zoom';
 import PostGameScreenForm from './PostGameScreenForm';
 
-const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: ${({ backgroundColor, backgroundImage, backgroundImageMode }) => {
-    if (backgroundImage && backgroundImage !== '') {
-      return `url('${backgroundImage}') no-repeat center center / ${backgroundImageMode}`;
-    }
-    return backgroundColor;
-  }};
-`;
+let Reveal = ({ children }) => (
+  <div>{children}</div>
+);
+
+if (Koji.config.postGame.reveal === 'rubberBand') Reveal = ({ children }) => (<RubberBand>{children}</RubberBand>);
+if (Koji.config.postGame.reveal === 'bounceTop') Reveal = ({ children }) => (<Bounce top>{children}</Bounce>);
+if (Koji.config.postGame.reveal === 'bounceBottom') Reveal = ({ children }) => (<Bounce bottom>{children}</Bounce>);
+if (Koji.config.postGame.reveal === 'fadeTop') Reveal = ({ children }) => (<Fade top>{children}</Fade>);
+if (Koji.config.postGame.reveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
+if (Koji.config.postGame.reveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
+if (Koji.config.postGame.reveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -84,24 +85,8 @@ class PostGameScreen extends PureComponent {
   };
 
   render() {
-    let Reveal = ({ children }) => (
-      <div>{children}</div>
-    );
-
-    if (Koji.config.postGame.reveal === 'rubberBand') Reveal = ({ children }) => (<RubberBand>{children}</RubberBand>);
-    if (Koji.config.postGame.reveal === 'bounceTop') Reveal = ({ children }) => (<Bounce top>{children}</Bounce>);
-    if (Koji.config.postGame.reveal === 'bounceBottom') Reveal = ({ children }) => (<Bounce bottom>{children}</Bounce>);
-    if (Koji.config.postGame.reveal === 'fadeTop') Reveal = ({ children }) => (<Fade top>{children}</Fade>);
-    if (Koji.config.postGame.reveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
-    if (Koji.config.postGame.reveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
-    if (Koji.config.postGame.reveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
-
     return (
-      <Container
-        backgroundColor={Koji.config.general.backgroundColor}
-        backgroundImage={Koji.config.general.backgroundImage}
-        backgroundImageMode={Koji.config.general.backgroundImageMode}
-      >
+      <Fragment>
         <FlexWrapper>
           <Reveal>
             <ContentWrapper>
@@ -139,7 +124,7 @@ class PostGameScreen extends PureComponent {
             </ContentWrapper>
           </Reveal>
         </FlexWrapper>
-      </Container>
+      </Fragment>
     );
   }
 }

@@ -57,6 +57,15 @@ const SubmitButton = styled.button`
   cursor: pointer;
   padding: 8px;
   border-radius: 4px;
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 class PostGameScreenForm extends PureComponent {

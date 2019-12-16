@@ -1,5 +1,6 @@
 {
   "homeScreen": {
+    "reveal": "zoomBottom",
     "image": "https://cdn.freebiesupply.com/logos/large/2x/oreo-1-logo-png-transparent.png",
     "imageHeight": "30",
     "imageLink": "",
@@ -19,6 +20,44 @@
       "icon": "📋",
       "source": "homeScreen.json",
       "fields": [
+        {
+          "key": "reveal",
+          "name": "Post Game Content Reveal Mode",
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "value": "bounceBottom",
+                "label": "Bounce from the Bottom"
+              },
+              {
+                "value": "bounceTop",
+                "label": "Bounce from the Top"
+              },
+              {
+                "value": "fadeBottom",
+                "label": "Fade from the Bottom"
+              },
+              {
+                "value": "fadeTop",
+                "label": "Fade from the Top"
+              },
+              {
+                "value": "zoomBottom",
+                "label": "Zoom from the Bottom"
+              },
+              {
+                "value": "zoomTop",
+                "label": "Zoom from the Top"
+              },
+              {
+                "value": "rubberBand",
+                "label": "RubberBand"
+              }
+            ]
+          }
+        },
         {
           "key": "image",
           "name": "Logo/Image",

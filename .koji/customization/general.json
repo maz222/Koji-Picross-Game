@@ -7,7 +7,7 @@
     "primaryColor": "#003087",
     "secondaryColor": "#7CC6F2",
     "textColor": "#FCFCFC",
-    "startScreen": "postGame"
+    "startScreen": "home"
   },
   "@@editor": [
     {

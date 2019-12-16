@@ -10,7 +10,6 @@ const GameContainer = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background: ${({ gameBackgroundImage, gameBackgroundImageMode }) => `url("${gameBackgroundImage}") no-repeat center center / ${gameBackgroundImageMode}`};
 `;
 
 class Game extends PureComponent {
