@@ -8,15 +8,15 @@
     "requireEmail": true,
     "emailOptInText": "I want to receive promotional updates via email",
     "submitButtonText": "Submit",
-    "showPlayAgainButton": true,
+    "showPlayAgainButton": false,
     "playButtonText": "Play Again",
     "playButtonTextFontSize": "16",
     "leaderboardTitleText": "Leaderboard",
     "leaderboardPointsText": "PTS",
     "viewLeaderboardButtonText": "View Leaderboard",
-    "ctaLink": "",
-    "ctaText": "",
-    "ctaButtonText": ""
+    "ctaLink": "https://google.com",
+    "ctaText": "Thanks for playing, click below for your free trial!",
+    "ctaButtonText": "Get Your Free Trial"
   },
   "@@editor": [
     {

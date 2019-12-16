@@ -1,10 +1,10 @@
 {
   "homeScreen": {
     "reveal": "zoomBottom",
-    "image": "https://cdn.freebiesupply.com/logos/large/2x/oreo-1-logo-png-transparent.png",
+    "image": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/y49op-a919d612f4f045a1a2015b8d48831e80.png",
     "imageHeight": "30",
     "imageLink": "",
-    "text": "Play Oreo Blast!",
+    "text": "Play Star Blast!",
     "textColor": "#ffffff",
     "textFontSize": "48",
     "playButtonText": "Play",

@@ -2,10 +2,10 @@
   "general": {
     "fontFamily": "Lobster",
     "backgroundColor": "",
-    "backgroundImage": "https://miro.medium.com/max/4800/1*UJmuNSJQ-vwETj1nE7pxJQ.png",
+    "backgroundImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/7yfjf-dd28b942e53c4a649cec0353a0d95dcc.png",
     "backgroundImageMode": "cover",
     "primaryColor": "#003087",
-    "secondaryColor": "#7CC6F2",
+    "secondaryColor": "#d50715",
     "textColor": "#FCFCFC",
     "startScreen": "home"
   },
