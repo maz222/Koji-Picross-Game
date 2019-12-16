@@ -61,11 +61,6 @@
           "type": "text"
         },
         {
-          "key": "titleTextColor",
-          "name": "Title Text Color",
-          "type": "text"
-        },
-        {
           "key": "titleTextFontSize",
           "name": "Title Text Font Size",
           "type": "range",

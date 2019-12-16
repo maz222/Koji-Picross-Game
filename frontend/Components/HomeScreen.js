@@ -43,8 +43,8 @@ const PlayButton = styled.button`
   border: 0;
   outline: 0;
   font-size: ${({ playButtonTextFontSize }) => `${parseInt(playButtonTextFontSize)}px`};
-  background: ${({ playButtonBackgroundColor }) => playButtonBackgroundColor};
-  color: ${({ playButtonTextColor }) => playButtonTextColor};
+  background: ${({ primaryColor }) => primaryColor};
+  color: ${({ textColor }) => textColor};
   cursor: pointer;
   padding: 16px;
   border-radius: 4px;
@@ -140,9 +140,9 @@ class HomeScreen extends PureComponent {
             }
             <PlayButton
               onClick={() => this.props.setAppView('game')}
-              playButtonBackgroundColor={Koji.config.homeScreen.playButtonBackgroundColor}
-              playButtonTextColor={Koji.config.homeScreen.playButtonTextColor}
+              primaryColor={Koji.config.general.primaryColor}
               playButtonTextFontSize={Koji.config.homeScreen.playButtonTextFontSize}
+              textColor={Koji.config.general.textColor}
             >
               {Koji.config.homeScreen.playButtonText}
             </PlayButton>

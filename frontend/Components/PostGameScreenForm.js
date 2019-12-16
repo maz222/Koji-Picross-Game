@@ -37,6 +37,7 @@ const CheckboxWrapper = styled.div`
   flex-direction: row;
   font-size: 14px;
   width: 100%;
+  text-align: left;
 
   input {
     width: auto;
