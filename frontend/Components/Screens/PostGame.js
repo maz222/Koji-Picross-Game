@@ -97,11 +97,11 @@ class PostGame extends PureComponent {
                   </Fragment>
                 }
                 {
-                  Koji.config.postGameScreen.enableCTA && (Koji.config.postGameScreen.collectName || Koji.config.postGameScreen.collectEmail) &&
+                  Koji.config.postGameScreen.enableCTA && Koji.config.postGameScreen.enableLeaderboard &&
                   <Spacer />
                 }
                 {
-                  (Koji.config.postGameScreen.collectName || Koji.config.postGameScreen.collectEmail) &&
+                  Koji.config.postGameScreen.enableLeaderboard &&
                   <Fragment>
                     {
                       this.state.formSubmitted &&
