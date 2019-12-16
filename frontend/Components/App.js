@@ -7,6 +7,7 @@ import HomeScreen from './HomeScreen';
 import Leaderboard from './Leaderboard';
 import Koji from '@withkoji/vcc';
 import WebFont from 'webfontloader';
+import Fade from 'react-reveal/Fade';
 
 const Container = styled.div`
   width: 100vw;
@@ -104,26 +105,28 @@ class App extends PureComponent {
             setAppView={view => this.setState({ view })}
           />
         }
-        <Modal
-          isOpen={this.state.leaderBoardModalIsOpen}
-          contentLabel={'Leaderboard'}
-          style={{
-            content: {
-              background: Koji.config.general.primaryColor,
-              color: Koji.config.general.textColor,
-            }
-          }}
-        >
-          <div>
-            <CloseModalButton
-              onClick={() => this.setState({ leaderBoardModalIsOpen: false })}
-              textColor={Koji.config.general.textColor}
-            >
-              {'Close'}
-            </CloseModalButton>
-            <Leaderboard />
-          </div>
-        </Modal>
+        <Fade bottom>
+          <Modal
+            isOpen={this.state.leaderBoardModalIsOpen}
+            contentLabel={'Leaderboard'}
+            style={{
+              content: {
+                background: Koji.config.general.primaryColor,
+                color: Koji.config.general.textColor,
+              }
+            }}
+          >
+            <div>
+              <CloseModalButton
+                onClick={() => this.setState({ leaderBoardModalIsOpen: false })}
+                textColor={Koji.config.general.textColor}
+              >
+                {'Close'}
+              </CloseModalButton>
+              <Leaderboard />
+            </div>
+          </Modal>
+        </Fade>
       </Container>
     );
   }
