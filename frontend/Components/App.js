@@ -6,6 +6,7 @@ import PostGameScreen from './PostGameScreen';
 import HomeScreen from './HomeScreen';
 import Leaderboard from './Leaderboard';
 import Koji from '@withkoji/vcc';
+import WebFont from 'webfontloader';
 
 const CloseModalButton = styled.button`
   position: absolute;
@@ -39,6 +40,10 @@ class App extends PureComponent {
   componentDidMount() {
     // Expose the setScore function
     window.setScore = score => this.setState({ score });
+    
+    // Set the font; fallback to Roboto
+    WebFont.load({ google: { families: [Koji.config.general.fontFamily || 'Roboto'] } });
+    document.body.style.fontFamily = Koji.config.general.fontFamily;
   }
 
   componentDidUpdate(prevState, prevProps) {
