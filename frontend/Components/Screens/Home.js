@@ -5,6 +5,7 @@ import Bounce from 'react-reveal/Bounce';
 import Fade from 'react-reveal/Fade';
 import RubberBand from 'react-reveal/RubberBand';
 import Zoom from 'react-reveal/Zoom';
+import PropTypes from 'prop-types';
 import PlayButton from '../Buttons/PlayButton';
 
 let Reveal = ({ children }) => (
@@ -72,6 +73,25 @@ const SoundIcon = styled.img`
 `;
 
 class Home extends PureComponent {
+  static propTypes = {
+    setAppView: PropTypes.func,
+    setTemplateConfig: PropTypes.func,
+    templateConfig: PropTypes.object,
+  };
+
+  static defaultProps = {
+    setAppView() {},
+    setTemplateConfig() {},
+    templateConfig: {},
+  };
+
+  componentDidMount() {
+    const elem = document.getElementById('content-wrapper');
+    if (elem && elem.offsetHeight > window.innerHeight) {
+      elem.style.transform = `scale(${window.innerHeight / elem.offsetHeight })`;
+    }
+  }
+
   handleSoundIconClick = () => {
     this.props.setTemplateConfig({
       soundEnabled: !this.props.templateConfig.soundEnabled,
@@ -106,6 +126,7 @@ class Home extends PureComponent {
         <FlexWrapper>
           <Reveal>
             <ContentWrapper
+              id={'content-wrapper'}
               primaryColor={Koji.config.general.primaryColor}
               cardBackdrop={Koji.config.homeScreen.cardBackdrop}
               secondaryColor={Koji.config.general.secondaryColor}

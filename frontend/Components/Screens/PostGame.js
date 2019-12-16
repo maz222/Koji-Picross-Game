@@ -73,15 +73,21 @@ class PostGame extends PureComponent {
 
   state = {
     formSubmitted: false,
-    modalIsOpen: false,
   };
+
+  componentDidMount() {
+    const elem = document.getElementById('content-wrapper');
+    if (elem && elem.offsetHeight > window.innerHeight) {
+      elem.style.transform = `scale(${window.innerHeight / elem.offsetHeight })`;
+    }
+  }
 
   render() {
     return (
       <Fragment>
         <FlexWrapper>
           <Reveal>
-            <ContentWrapper>
+            <ContentWrapper id={'content-wrapper'}>
               <CardWrapper>
                 {
                   Koji.config.postGameScreen.enableCTA &&
