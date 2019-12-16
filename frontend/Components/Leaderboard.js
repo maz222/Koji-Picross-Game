@@ -92,7 +92,7 @@ class Leaderboard extends PureComponent {
               >
                 <ScoreIndex>{`${index + 1}`}</ScoreIndex>
                 <ScoreName>{score.name}</ScoreName>
-                <ScorePoints>{`${score.score.toLocaleString()} ${Koji.config.postGame.leaderboardPointsText}`}</ScorePoints>
+                <ScorePoints>{`${score.score.toLocaleString()} ${Koji.config.postGameScreen.leaderboardPointsText}`}</ScorePoints>
               </Score>
             ))
           }

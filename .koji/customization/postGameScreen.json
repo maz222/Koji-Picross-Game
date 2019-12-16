@@ -1,5 +1,5 @@
 {
-  "postGame": {
+  "postGameScreen": {
     "reveal": "bounceBottom",
     "title": "Thanks for playing!",
     "collectName": true,
@@ -7,15 +7,19 @@
     "collectEmail": true,
     "requireEmail": true,
     "emailOptInText": "I want to receive promotional updates via email",
+    "submitButtonText": "Submit",
     "showPlayAgainButton": true,
-    "leaderboardPointsText": "PTS"
+    "playButtonText": "Play Again",
+    "playButtonTextFontSize": "16",
+    "leaderboardPointsText": "PTS",
+    "viewLeaderboardButtonText": "View Leaderboard"
   },
   "@@editor": [
     {
-      "key": "postGame",
-      "name": "Post Game Options",
+      "key": "postGameScreen",
+      "name": "Post Game Screen Options",
       "icon": "📋",
-      "source": "postGame.json",
+      "source": "postGameScreen.json",
       "fields": [
         {
           "key": "reveal",
@@ -98,9 +102,34 @@
           "type": "text"
         },
         {
+          "key": "submitButtonText",
+          "name": "Submit Button Text",
+          "type": "text"
+        },
+        {
           "key": "showPlayAgainButton",
           "name": "Show Play Again Button",
           "type": "boolean"
+        },
+        {
+          "key": "playButtonText",
+          "name": "Play Again Button Text",
+          "type": "text"
+        },
+        {
+          "key": "playButtonTextFontSize",
+          "name": "Play Again Button Text Font Size",
+          "type": "range",
+          "typeOptions": {
+            "min": "8",
+            "max": "48",
+            "step": "1"
+          }
+        },
+        {
+          "key": "viewLeaderboardButtonText",
+          "name": "Leaderboard Button Text",
+          "type": "text"
         },
         {
           "key": "leaderboardPointsText",

@@ -1,11 +1,11 @@
 import React, { Fragment, PureComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
-import Modal from 'react-modal';
-import Game from './Game';
-import PostGameScreen from './PostGameScreen';
-import HomeScreen from './HomeScreen';
-import Leaderboard from './Leaderboard';
+import GameScreen from './Screens/Game';
+import PostGameScreen from './Screens/PostGame';
+import HomeScreen from './Screens/Home';
+import LeaderboardModal from './Modals/Leaderboard';
 import Koji from '@withkoji/vcc';
+import Modal from 'react-modal';
 import WebFont from 'webfontloader';
 import Fade from 'react-reveal/Fade';
 
@@ -18,18 +18,6 @@ const Container = styled.div`
     }
     return backgroundColor;
   }}
-`;
-
-const CloseModalButton = styled.button`
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  border: 0;
-  background: 0;
-  padding: 16px;
-  font-size: 24px;
-  cursor: pointer;
-  color: ${({ textColor }) => textColor};
 `;
 
 // Set the root element for our modal
@@ -92,7 +80,7 @@ class App extends PureComponent {
 
         {
           this.state.view === 'game' &&
-          <Game
+          <GameScreen
             setAppView={view => this.setState({ view })}
           />
         }
@@ -105,28 +93,10 @@ class App extends PureComponent {
             setAppView={view => this.setState({ view })}
           />
         }
-        <Fade bottom>
-          <Modal
-            isOpen={this.state.leaderBoardModalIsOpen}
-            contentLabel={'Leaderboard'}
-            style={{
-              content: {
-                background: Koji.config.general.primaryColor,
-                color: Koji.config.general.textColor,
-              }
-            }}
-          >
-            <div>
-              <CloseModalButton
-                onClick={() => this.setState({ leaderBoardModalIsOpen: false })}
-                textColor={Koji.config.general.textColor}
-              >
-                {'Close'}
-              </CloseModalButton>
-              <Leaderboard />
-            </div>
-          </Modal>
-        </Fade>
+        <LeaderboardModal
+          isOpen={this.state.leaderBoardModalIsOpen}
+          onCloseClick={() => this.setState({ leaderBoardModalIsOpen: false })}
+        />
       </Container>
     );
   }
