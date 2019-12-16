@@ -6,13 +6,6 @@ import PropTypes from 'prop-types';
 import SubmitFormButton from '../Buttons/SubmitFormButton';
 
 const Form = styled.form`
-  color: ${({ color }) => color};
-  width: 80vw;
-  min-width: 280px;
-  max-width: 480px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 24px;
-
   label {
     font-size: 16px;
     margin-bottom: 8px;
@@ -27,8 +20,6 @@ const Form = styled.form`
     padding: 6px;
     border-radius: 2px;
   }
-
-  margin-bottom: 16px;
 `;
 
 const FormFields = styled.div`

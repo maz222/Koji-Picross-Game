@@ -39,6 +39,16 @@ const ContentWrapper = styled.div`
   text-align: center;
 `;
 
+const CardWrapper = styled.div`
+  color: ${({ color }) => color};
+  width: 80vw;
+  min-width: 280px;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 24px;
+  margin-bottom: 16px;
+`;
+
 class PostGame extends PureComponent {
   static propTypes = {
     setAppView: PropTypes.func,
@@ -65,7 +75,7 @@ class PostGame extends PureComponent {
             <ContentWrapper>
               {
                 (Koji.config.postGameScreen.collectName || Koji.config.postGameScreen.collectEmail) &&
-                <Fragment>
+                <CardWrapper>
                   {
                     this.state.formSubmitted &&
                     <div>
@@ -80,7 +90,7 @@ class PostGame extends PureComponent {
                       score={this.props.score}
                     />
                   }
-                </Fragment>
+                </CardWrapper>
               }
               {
                 Koji.config.postGameScreen.showPlayAgainButton &&
