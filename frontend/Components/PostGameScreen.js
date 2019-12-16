@@ -154,9 +154,10 @@ class PostGameScreen extends PureComponent {
 
   render() {
     let Reveal = ({ children }) => (
-      <RubberBand>{children}</RubberBand>
+      <div>{children}</div>
     );
 
+    if (Koji.config.postGame.reveal === 'rubberBand') Reveal = ({ children }) => (<RubberBand>{children}</RubberBand>);
     if (Koji.config.postGame.reveal === 'bounceTop') Reveal = ({ children }) => (<Bounce top>{children}</Bounce>);
     if (Koji.config.postGame.reveal === 'bounceBottom') Reveal = ({ children }) => (<Bounce bottom>{children}</Bounce>);
     if (Koji.config.postGame.reveal === 'fadeTop') Reveal = ({ children }) => (<Fade top>{children}</Fade>);
