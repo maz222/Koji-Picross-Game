@@ -1,11 +1,11 @@
 import React, { Fragment, PureComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Koji from '@withkoji/vcc';
-import md5 from 'md5';
 import Bounce from 'react-reveal/Bounce';
 import Fade from 'react-reveal/Fade';
 import RubberBand from 'react-reveal/RubberBand';
 import Zoom from 'react-reveal/Zoom';
+import PostGameScreenForm from './PostGameScreenForm';
 
 const Container = styled.div`
   width: 100vw;
@@ -33,43 +33,6 @@ const ContentWrapper = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 50vw;
-  min-width: 280px;
-  max-width: 720px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 24px;
-
-  label {
-    font-size: 14px;
-    margin-bottom: 4px;
-  }
-
-  input {
-    border: 0;
-    outline: 0;
-    font-size: 16px;
-    margin-bottom: 16px;
-    width: 100%;
-  }
-
-  margin-bottom: 16px;
-`;
-
-const CheckboxWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-size: 14px;
-  width: 100%;
-
-  input {
-    width: auto;
-  }
 `;
 
 const ViewLeaderboardButton = styled.button`
@@ -117,39 +80,8 @@ const PlayAgainButton = styled.button`
 
 class PostGameScreen extends PureComponent {
   state = {
-    email: '',
-    name: '',
-    emailOptIn: true,
     formSubmitted: false,
     modalIsOpen: false,
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const body = {
-      name: this.state.name,
-      score: this.props.score,
-      email: this.state.email,
-      emailOptIn: this.state.emailOptIn
-    };
-    const hash = md5(JSON.stringify(body));
-
-    fetch(`${Koji.config.serviceMap.backend}/leaderboard/save`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: hash
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => response.json())
-      .then(jsonResponse => {
-        this.setState({ formSubmitted: true });
-      })
-      .catch(err => {
-        console.log(err);
-      });
   };
 
   render() {
@@ -188,53 +120,10 @@ class PostGameScreen extends PureComponent {
                   }
                   {
                     !this.state.formSubmitted &&
-                    <Form onSubmit={this.handleSubmit}>
-                      {
-                        Koji.config.postGame.collectName &&
-                        <Fragment>
-                          <label htmlFor={'name-input'}>{'Your Name'}</label>
-                          <input
-                            id={'name-input'}
-                            name={'name-input'}
-                            onChange={e =>
-                              this.setState({ name: e.currentTarget.value })
-                            }
-                            type={'text'}
-                            value={this.state.name}
-                          />
-                        </Fragment>
-                      }
-                      {
-                        Koji.config.postGame.collectEmail &&
-                        <Fragment>
-                          <label htmlFor={'email-input'}>{'Your Email'}</label>
-                          <input
-                            id={'email-input'}
-                            name={'email-input'}
-                            onChange={e =>
-                              this.setState({ email: e.currentTarget.value })
-                            }
-                            type={'email'}
-                            value={this.state.email}
-                          />
-                          <CheckboxWrapper>
-                            <input
-                              checked={this.state.emailOptIn}
-                              id={'opt-in'}
-                              name={'opt-in'}
-                              onChange={e =>
-                                this.setState({ emailOptIn: e.currentTarget.checked })
-                              }
-                              type={'checkbox'}
-                            />
-                            <label htmlFor={'opt-in'}>
-                              {Koji.config.postGame.emailOptInText}
-                            </label>
-                          </CheckboxWrapper>
-                        </Fragment>
-                      }
-                      <button type={'submit'}>{'Submit'}</button>
-                    </Form>
+                    <PostGameScreenForm
+                      onSubmitSuccess={() => this.setState({ formSubmitted: true })}
+                      score={this.props.score}
+                    />
                   }
                 </Fragment>
               }

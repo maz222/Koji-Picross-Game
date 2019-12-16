@@ -1,13 +1,13 @@
 {
   "general": {
-    "fontFamily": "Droid Sans",
+    "fontFamily": "Lobster",
     "backgroundColor": "",
     "backgroundImage": "https://miro.medium.com/max/4800/1*UJmuNSJQ-vwETj1nE7pxJQ.png",
     "backgroundImageMode": "cover",
     "primaryColor": "#003087",
     "secondaryColor": "#7CC6F2",
     "textColor": "#FCFCFC",
-    "startScreen": "game"
+    "startScreen": "home"
   },
   "@@editor": [
     {
