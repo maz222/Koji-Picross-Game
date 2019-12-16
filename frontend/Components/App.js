@@ -27,6 +27,7 @@ window.__template_config = {};
 
 class App extends PureComponent {
   state = {
+    initView: Koji.config.general.startScreen,
     leaderBoardModalIsOpen: false,
     score: 0,
     templateConfig: {
@@ -40,7 +41,10 @@ class App extends PureComponent {
     window.setScore = score => this.setState({ score });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevState, prevProps) {
+    if (this.state.initView !== Koji.config.general.startScreen) {
+      this.setState({ initView: Koji.config.general.startScreen, view: Koji.config.general.startScreen });
+    }
     window.__template_config = this.state.templateConfig;
   }
 
