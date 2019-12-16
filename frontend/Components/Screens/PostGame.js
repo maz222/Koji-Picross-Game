@@ -78,7 +78,7 @@ class PostGame extends PureComponent {
   componentDidMount() {
     const elem = document.getElementById('content-wrapper');
     if (elem && elem.offsetHeight > window.innerHeight) {
-      elem.style.transform = `scale(${window.innerHeight / elem.offsetHeight })`;
+      elem.style.transform = `scale(${(window.innerHeight / elem.offsetHeight) * 0.9 })`;
     }
   }
 
