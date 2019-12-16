@@ -54,6 +54,10 @@ const CardWrapper = styled.div`
   }
 `;
 
+const Spacer = styled.div`
+  margin: 24px 0;
+`;
+
 class PostGame extends PureComponent {
   static propTypes = {
     setAppView: PropTypes.func,
@@ -80,7 +84,7 @@ class PostGame extends PureComponent {
             <ContentWrapper>
               <CardWrapper>
                 {
-                  Koji.config.postGameScreen.ctaLink &&
+                  Koji.config.postGameScreen.enableCTA &&
                   <Fragment>
                     <h1>{Koji.config.postGameScreen.ctaText}</h1>
                     <a
@@ -91,6 +95,10 @@ class PostGame extends PureComponent {
                       <CTAButton />
                     </a>
                   </Fragment>
+                }
+                {
+                  Koji.config.postGameScreen.enableCTA && (Koji.config.postGameScreen.collectName || Koji.config.postGameScreen.collectEmail) &&
+                  <Spacer />
                 }
                 {
                   (Koji.config.postGameScreen.collectName || Koji.config.postGameScreen.collectEmail) &&

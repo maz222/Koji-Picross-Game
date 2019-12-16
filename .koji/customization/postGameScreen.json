@@ -2,18 +2,21 @@
   "postGameScreen": {
     "reveal": "bounceBottom",
     "title": "Thanks for playing!",
+    "enableLeaderboard": true,
+    "formTitle": "Submit Your Score to the Leaderboard",
     "collectName": true,
     "requireName": true,
     "collectEmail": true,
     "requireEmail": true,
     "emailOptInText": "I want to receive promotional updates via email",
     "submitButtonText": "Submit",
-    "showPlayAgainButton": false,
+    "showPlayAgainButton": true,
     "playButtonText": "Play Again",
     "playButtonTextFontSize": "16",
     "leaderboardTitleText": "Leaderboard",
     "leaderboardPointsText": "PTS",
     "viewLeaderboardButtonText": "View Leaderboard",
+    "enableCTA": true,
     "ctaLink": "https://google.com",
     "ctaText": "Thanks for playing, click below for your free trial!",
     "ctaButtonText": "Get Your Free Trial"
@@ -64,19 +67,20 @@
           }
         },
         {
+          "key": "enableLeaderboard",
+          "name": "Enable Leaderboard/LeadGen",
+          "description": "Turn the post game Leaderboard Lead Gen on/off",
+          "type": "boolean"
+        },
+        {
           "key": "title",
-          "name": "Title Text",
+          "name": "Post Leaderboard Submission Text",
           "type": "text"
         },
         {
-          "key": "titleTextFontSize",
-          "name": "Title Text Font Size",
-          "type": "range",
-          "typeOptions": {
-            "min": "16",
-            "max": "72",
-            "step": "1"
-          }
+          "key": "formTitle",
+          "name": "Lead Gen/Leaderboard Form Title",
+          "type": "text"
         },
         {
           "key": "collectName",
@@ -111,26 +115,6 @@
           "type": "text"
         },
         {
-          "key": "showPlayAgainButton",
-          "name": "Show Play Again Button",
-          "type": "boolean"
-        },
-        {
-          "key": "playButtonText",
-          "name": "Play Again Button Text",
-          "type": "text"
-        },
-        {
-          "key": "playButtonTextFontSize",
-          "name": "Play Again Button Text Font Size",
-          "type": "range",
-          "typeOptions": {
-            "min": "8",
-            "max": "48",
-            "step": "1"
-          }
-        },
-        {
           "key": "viewLeaderboardButtonText",
           "name": "Leaderboard Button Text",
           "type": "text"
@@ -145,6 +129,12 @@
           "name": "Leaderboard Points Text",
           "description": "What to display after the score on the leaderboard",
           "type": "text"
+        },
+        {
+          "key": "enableCTA",
+          "name": "Enable CTA",
+          "description": "Turn the post game CTA on/off",
+          "type": "boolean"
         },
         {
           "key": "ctaLink",
@@ -163,6 +153,26 @@
           "name": "CTA Button Text",
           "description": "The button text for the CTA",
           "type": "text"
+        },
+        {
+          "key": "showPlayAgainButton",
+          "name": "Show Play Again Button",
+          "type": "boolean"
+        },
+        {
+          "key": "playButtonText",
+          "name": "Play Again Button Text",
+          "type": "text"
+        },
+        {
+          "key": "playButtonTextFontSize",
+          "name": "Play Again Button Text Font Size",
+          "type": "range",
+          "typeOptions": {
+            "min": "8",
+            "max": "48",
+            "step": "1"
+          }
         }
       ]
     }

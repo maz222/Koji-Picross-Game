@@ -22,6 +22,10 @@ const Form = styled.form`
     padding: 6px;
     border-radius: 2px;
   }
+
+  h1 {
+    text-align: left;
+  }
 `;
 
 const FormFields = styled.div`
@@ -91,6 +95,7 @@ class PostGameForm extends PureComponent {
         primaryColor={Koji.config.general.primaryColor}
         onSubmit={this.handleSubmit}
       >
+        <h1>{Koji.config.postGameScreen.formTitle}</h1>
         <FormFields>
           {
             Koji.config.postGameScreen.collectName &&
