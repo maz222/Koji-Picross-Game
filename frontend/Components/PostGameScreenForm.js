@@ -5,9 +5,6 @@ import md5 from 'md5';
 
 const Form = styled.form`
   color: ${({ color }) => color};
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   width: 80vw;
   min-width: 280px;
   max-width: 480px;
@@ -32,6 +29,12 @@ const Form = styled.form`
   margin-bottom: 16px;
 `;
 
+const FormFields = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
 const CheckboxWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -42,6 +45,18 @@ const CheckboxWrapper = styled.div`
   input {
     width: auto;
   }
+`;
+
+const SubmitButton = styled.button`
+  margin-top: 16px;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-size: ${({ playButtonTextFontSize }) => `${parseInt(playButtonTextFontSize)}px`};
+  color: ${({ primaryColor }) => primaryColor};
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
 `;
 
 class PostGameScreenForm extends PureComponent {
@@ -85,53 +100,60 @@ class PostGameScreenForm extends PureComponent {
         color={Koji.config.general.primaryColor}
         onSubmit={this.handleSubmit}
       >
-        {
-          Koji.config.postGame.collectName &&
-          <Fragment>
-            <label htmlFor={'name-input'}>{'Your Name'}</label>
-            <input
-              id={'name-input'}
-              name={'name-input'}
-              onChange={e =>
-                this.setState({ name: e.currentTarget.value })
-              }
-              required={Koji.config.postGame.requireName || false}
-              type={'text'}
-              value={this.state.name}
-            />
-          </Fragment>
-        }
-        {
-          Koji.config.postGame.collectEmail &&
-          <Fragment>
-            <label htmlFor={'email-input'}>{'Your Email'}</label>
-            <input
-              id={'email-input'}
-              name={'email-input'}
-              onChange={e =>
-                this.setState({ email: e.currentTarget.value })
-              }
-              required={Koji.config.postGame.requireEmail || false}
-              type={'email'}
-              value={this.state.email}
-            />
-            <CheckboxWrapper>
+        <FormFields>
+          {
+            Koji.config.postGame.collectName &&
+            <Fragment>
+              <label htmlFor={'name-input'}>{'Your Name'}</label>
               <input
-                checked={this.state.emailOptIn}
-                id={'opt-in'}
-                name={'opt-in'}
+                id={'name-input'}
+                name={'name-input'}
                 onChange={e =>
-                  this.setState({ emailOptIn: e.currentTarget.checked })
+                  this.setState({ name: e.currentTarget.value })
                 }
-                type={'checkbox'}
+                required={Koji.config.postGame.requireName || false}
+                type={'text'}
+                value={this.state.name}
               />
-              <label htmlFor={'opt-in'}>
-                {Koji.config.postGame.emailOptInText}
-              </label>
-            </CheckboxWrapper>
-          </Fragment>
-        }
-        <button type={'submit'}>{'Submit'}</button>
+            </Fragment>
+          }
+          {
+            Koji.config.postGame.collectEmail &&
+            <Fragment>
+              <label htmlFor={'email-input'}>{'Your Email'}</label>
+              <input
+                id={'email-input'}
+                name={'email-input'}
+                onChange={e =>
+                  this.setState({ email: e.currentTarget.value })
+                }
+                required={Koji.config.postGame.requireEmail || false}
+                type={'email'}
+                value={this.state.email}
+              />
+              <CheckboxWrapper>
+                <input
+                  checked={this.state.emailOptIn}
+                  id={'opt-in'}
+                  name={'opt-in'}
+                  onChange={e =>
+                    this.setState({ emailOptIn: e.currentTarget.checked })
+                  }
+                  type={'checkbox'}
+                />
+                <label htmlFor={'opt-in'}>
+                  {Koji.config.postGame.emailOptInText}
+                </label>
+              </CheckboxWrapper>
+            </Fragment>
+          }
+        </FormFields>
+        <SubmitButton
+          primaryColor={Koji.config.general.primaryColor}
+          type={'submit'}
+        >
+          {'Submit'}
+        </SubmitButton>
       </Form>
     )
   }

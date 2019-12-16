@@ -60,10 +60,9 @@ const ViewLeaderboardButton = styled.button`
 const PlayAgainButton = styled.button`
   border: 0;
   outline: 0;
-  font-size: ${({ playButtonTextFontSize }) =>
-    `${parseInt(playButtonTextFontSize)}px`};
-  background: ${({ playButtonBackgroundColor }) => playButtonBackgroundColor};
-  color: ${({ playButtonTextColor }) => playButtonTextColor};
+  font-size: ${({ playButtonTextFontSize }) => `${parseInt(playButtonTextFontSize)}px`};
+  background: ${({ primaryColor }) => primaryColor};
+  color: ${({ textColor }) => textColor};
   cursor: pointer;
   padding: 16px;
   border-radius: 4px;
@@ -129,7 +128,11 @@ class PostGameScreen extends PureComponent {
               }
               {
                 Koji.config.postGame.showPlayAgainButton &&
-                <PlayAgainButton onClick={() => this.props.setAppView('game')}>
+                <PlayAgainButton
+                  primaryColor={Koji.config.general.primaryColor}
+                  textColor={Koji.config.general.textColor}
+                  onClick={() => this.props.setAppView('game')}
+                >
                   {'Play Again'}
                 </PlayAgainButton>
               }
