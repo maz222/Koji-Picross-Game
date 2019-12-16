@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import SubmitFormButton from '../Buttons/SubmitFormButton';
 
 const Form = styled.form`
+  color: ${({ primaryColor }) => primaryColor};
+
   label {
     font-size: 16px;
     margin-bottom: 8px;
@@ -86,7 +88,7 @@ class PostGameForm extends PureComponent {
   render() {
     return (
       <Form
-        color={Koji.config.general.primaryColor}
+        primaryColor={Koji.config.general.primaryColor}
         onSubmit={this.handleSubmit}
       >
         <FormFields>

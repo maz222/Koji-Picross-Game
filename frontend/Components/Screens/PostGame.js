@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import PlayAgainButton from '../Buttons/PlayAgainButton';
 import PostGameForm from '../Forms/PostGame';
 import ViewLeaderboardButton from '../Buttons/ViewLeaderboardButton';
+import CTAButton from '../Buttons/CTAButton';
 
 let Reveal = ({ children }) => (
   <div>{children}</div>
@@ -40,13 +41,17 @@ const ContentWrapper = styled.div`
 `;
 
 const CardWrapper = styled.div`
-  color: ${({ color }) => color};
   width: 80vw;
   min-width: 280px;
   max-width: 480px;
   background: rgba(255, 255, 255, 0.9);
   padding: 24px;
   margin-bottom: 16px;
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
 `;
 
 class PostGame extends PureComponent {
@@ -73,25 +78,40 @@ class PostGame extends PureComponent {
         <FlexWrapper>
           <Reveal>
             <ContentWrapper>
-              {
-                (Koji.config.postGameScreen.collectName || Koji.config.postGameScreen.collectEmail) &&
-                <CardWrapper>
-                  {
-                    this.state.formSubmitted &&
-                    <div>
-                      <h1>{'Thanks for playing!'}</h1>
-                      <ViewLeaderboardButton onClick={() => this.props.showLeaderboard()} />
-                    </div>
-                  }
-                  {
-                    !this.state.formSubmitted &&
-                    <PostGameForm
-                      onSubmitSuccess={() => this.setState({ formSubmitted: true })}
-                      score={this.props.score}
-                    />
-                  }
-                </CardWrapper>
-              }
+              <CardWrapper>
+                {
+                  Koji.config.postGameScreen.ctaLink &&
+                  <Fragment>
+                    <h1>{Koji.config.postGameScreen.ctaText}</h1>
+                    <a
+                      href={Koji.config.postGameScreen.ctaLink}
+                      ref={'nofollow noreferrer'}
+                      target={'_blank'}
+                    >
+                      <CTAButton />
+                    </a>
+                  </Fragment>
+                }
+                {
+                  (Koji.config.postGameScreen.collectName || Koji.config.postGameScreen.collectEmail) &&
+                  <Fragment>
+                    {
+                      this.state.formSubmitted &&
+                      <div>
+                        <h1>{'Thanks for playing!'}</h1>
+                        <ViewLeaderboardButton onClick={() => this.props.showLeaderboard()} />
+                      </div>
+                    }
+                    {
+                      !this.state.formSubmitted &&
+                      <PostGameForm
+                        onSubmitSuccess={() => this.setState({ formSubmitted: true })}
+                        score={this.props.score}
+                      />
+                    }
+                  </Fragment>
+                }
+              </CardWrapper>
               {
                 Koji.config.postGameScreen.showPlayAgainButton &&
                 <PlayAgainButton onClick={() => this.props.setAppView('game')} />

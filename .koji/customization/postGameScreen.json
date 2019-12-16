@@ -11,8 +11,12 @@
     "showPlayAgainButton": true,
     "playButtonText": "Play Again",
     "playButtonTextFontSize": "16",
+    "leaderboardTitleText": "Leaderboard",
     "leaderboardPointsText": "PTS",
-    "viewLeaderboardButtonText": "View Leaderboard"
+    "viewLeaderboardButtonText": "View Leaderboard",
+    "ctaLink": "",
+    "ctaText": "",
+    "ctaButtonText": ""
   },
   "@@editor": [
     {
@@ -132,9 +136,32 @@
           "type": "text"
         },
         {
+          "key": "leaderboardTitleText",
+          "name": "Leaderboard Title Text",
+          "type": "text"
+        },
+        {
           "key": "leaderboardPointsText",
           "name": "Leaderboard Points Text",
           "description": "What to display after the score on the leaderboard",
+          "type": "text"
+        },
+        {
+          "key": "ctaLink",
+          "name": "CTA Link",
+          "description": "The link/href for the Post Game CTA",
+          "type": "text"
+        },
+        {
+          "key": "ctaText",
+          "name": "CTA Text",
+          "description": "The text shown above the CTA",
+          "type": "text"
+        },
+        {
+          "key": "ctaButtonText",
+          "name": "CTA Button Text",
+          "description": "The button text for the CTA",
           "type": "text"
         }
       ]
