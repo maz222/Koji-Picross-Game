@@ -1,16 +1,15 @@
 {
   "homeScreen": {
-    "image": "https://cdn.freebiesupply.com/logos/large/2x/oreo-1-logo-png-transparent.png",
+    "reveal": "zoomBottom",
+    "image": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/y49op-a919d612f4f045a1a2015b8d48831e80.png",
     "imageHeight": "30",
     "imageLink": "",
-    "text": "Play Oreo Blast!",
+    "text": "Play Star Blast!",
     "textColor": "#ffffff",
     "textFontSize": "48",
-    "playButtonBackgroundColor": "#edc526",
-    "playButtonTextColor": "#1e1f1e",
     "playButtonText": "Play",
     "playButtonTextFontSize": "16",
-    "cardBackdrop": false,
+    "cardBackdrop": true,
     "soundOnIcon": "https://images.koji-cdn.com/b4acde8c-96d4-4b1e-9e6e-4cca208833fe/dqabb-bbb8d67c83064aedb2fc9428ab6c3d8a.png",
     "soundOffIcon": "https://images.koji-cdn.com/b4acde8c-96d4-4b1e-9e6e-4cca208833fe/hqr5b-caf83cefc49348cb8a46c9e5647abcbb.png"
   },
@@ -21,6 +20,44 @@
       "icon": "📋",
       "source": "homeScreen.json",
       "fields": [
+        {
+          "key": "reveal",
+          "name": "Post Game Content Reveal Mode",
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "value": "bounceBottom",
+                "label": "Bounce from the Bottom"
+              },
+              {
+                "value": "bounceTop",
+                "label": "Bounce from the Top"
+              },
+              {
+                "value": "fadeBottom",
+                "label": "Fade from the Bottom"
+              },
+              {
+                "value": "fadeTop",
+                "label": "Fade from the Top"
+              },
+              {
+                "value": "zoomBottom",
+                "label": "Zoom from the Bottom"
+              },
+              {
+                "value": "zoomTop",
+                "label": "Zoom from the Top"
+              },
+              {
+                "value": "rubberBand",
+                "label": "RubberBand"
+              }
+            ]
+          }
+        },
         {
           "key": "image",
           "name": "Logo/Image",
@@ -77,16 +114,6 @@
             "max": "48",
             "step": "1"
           }
-        },
-        {
-          "key": "playButtonBackgroundColor",
-          "name": "Play Button Background Color",
-          "type": "color"
-        },
-        {
-          "key": "playButtonTextColor",
-          "name": "Play Button Text Color",
-          "type": "color"
         },
         {
           "key": "cardBackdrop",

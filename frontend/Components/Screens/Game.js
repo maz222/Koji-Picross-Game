@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import Koji from '@withkoji/vcc';
-import GlobalP5Sketch from './GlobalP5Sketch';
+import GlobalP5Sketch from '../Game/GlobalP5Sketch';
 
 const GameContainer = styled.div`
   display: flex;
@@ -10,7 +10,6 @@ const GameContainer = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background: ${({ gameBackgroundImage, gameBackgroundImageMode }) => `url("${gameBackgroundImage}") no-repeat center center / ${gameBackgroundImageMode}`};
 `;
 
 class Game extends PureComponent {

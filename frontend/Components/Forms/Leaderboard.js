@@ -10,6 +10,12 @@ const LeaderboardContainer = styled.div`
   margin: 0 auto;
   background: ${({ primaryColor }) => primaryColor};
   color: ${({ textColor }) => textColor};
+  margin-top: 16px;
+
+  h1 {
+    font-size: 24px !important;
+    margin-bottom: 24px !important;
+  }
 `;
 
 const ScoreContainer = styled.div`
@@ -81,7 +87,7 @@ class Leaderboard extends PureComponent {
         secondaryColor={Koji.config.general.secondaryColor}
         textColor={Koji.config.homeScreen.textColor}
       >
-        <h1>{'Leaderboard'}</h1>
+        <h1>{Koji.config.postGameScreen.leaderboardTitleText}</h1>
         <ScoreContainer>
           {
             this.state.scores.slice(0, 100).map((score, index) => (
@@ -92,7 +98,7 @@ class Leaderboard extends PureComponent {
               >
                 <ScoreIndex>{`${index + 1}`}</ScoreIndex>
                 <ScoreName>{score.name}</ScoreName>
-                <ScorePoints>{`${score.score.toLocaleString()} ${Koji.config.postGame.leaderboardPointsText}`}</ScorePoints>
+                <ScorePoints>{`${score.score.toLocaleString()} ${Koji.config.postGameScreen.leaderboardPointsText}`}</ScorePoints>
               </Score>
             ))
           }
