@@ -42,16 +42,25 @@ class App extends PureComponent {
     window.setScore = score => this.setState({ score });
     
     // Set the font; fallback to Roboto
-    WebFont.load({ google: { families: [Koji.config.template.config.fontFamily || 'Roboto'] } });
-    document.body.style.fontFamily = Koji.config.template.config.fontFamily;
+    this.loadFont();
   }
 
   componentDidUpdate(prevState, prevProps) {
     if (this.state.initView !== Koji.config.general.startScreen) {
       this.setState({ initView: Koji.config.general.startScreen, view: Koji.config.general.startScreen });
     }
+
+    if (Koji.config.template.config.fontFamily !== document.body.style.fontFamily) {
+      this.loadFont();
+    }
+    
     window.__template_config = this.state.templateConfig;
   }
+
+  loadFont = () => {
+    WebFont.load({ google: { families: [Koji.config.template.config.fontFamily] } });
+    document.body.style.fontFamily = Koji.config.template.config.fontFamily;
+  };
 
   setTemplateConfig = (newConfig) => {
     this.setState({
@@ -65,7 +74,6 @@ class App extends PureComponent {
   render() {
     return (
       <Container
-        backgroundColor={Koji.config.general.backgroundColor}
         backgroundImage={Koji.config.template.config.backgroundImage}
         backgroundImageMode={Koji.config.template.config.backgroundImageMode}
       >

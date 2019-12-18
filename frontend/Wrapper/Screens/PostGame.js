@@ -6,10 +6,8 @@ import Fade from 'react-reveal/Fade';
 import RubberBand from 'react-reveal/RubberBand';
 import Zoom from 'react-reveal/Zoom';
 import PropTypes from 'prop-types';
-import PlayAgainButton from '../Buttons/PlayAgainButton';
 import PostGameForm from '../Forms/PostGame';
 import ViewLeaderboardButton from '../Buttons/ViewLeaderboardButton';
-import CTAButton from '../Buttons/CTAButton';
 
 let Reveal = ({ children }) => (
   <div>{children}</div>
@@ -22,6 +20,55 @@ if (Koji.config.template.config.postGameScreenReveal === 'fadeTop') Reveal = ({ 
 if (Koji.config.template.config.postGameScreenReveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
 if (Koji.config.template.config.postGameScreenReveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
 if (Koji.config.template.config.postGameScreenReveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
+
+const PlayAgainButton = styled.button`
+  border: 0;
+  outline: 0;
+  font-size: ${({ playButtonTextFontSize }) => `${parseInt(playButtonTextFontSize)}px`};
+  background: ${({ primaryColor }) => primaryColor};
+  color: ${({ textColor }) => textColor};
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 4px;
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`;
+
+const ButtonLinkWrapper = styled.a`
+  margin: 24px 0 0 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+`;
+
+const CTAButton = styled.button`
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  color: ${({ primaryColor }) => primaryColor};
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 4px;
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`;
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -83,6 +130,48 @@ class PostGameScreen extends PureComponent {
   }
 
   render() {
+    const { postGameAction } = Koji.config.template.config;
+
+    if (postGameAction === 'traffic') {
+        return (
+            <FlexWrapper>
+                <Reveal>
+                    <ContentWrapper id={'content-wrapper'}>
+                        <CardWrapper>
+                            <h1>{Koji.config.template.config.postGameScreenTitle}</h1>
+                            <p>{Koji.config.template.config.postGameScreenText}</p>
+                            <ButtonLinkWrapper
+                              href={Koji.config.template.config.postGameScreenButtonLink}
+                              rel={'nofollow noreferrer'}
+                              target={'_blank'}
+                            >
+                              <CTAButton>
+                                {Koji.config.template.config.postGameScreenButtonText}
+                              </CTAButton>
+                            </ButtonLinkWrapper>
+                        </CardWrapper>
+                        {
+                          Koji.config.template.config.postGameScreenShowPlayAgainButton &&
+                          <PlayAgainButton onClick={() => this.props.setAppView('game')}>
+                            {Koji.config.template.config.postGameScreenPlayAgainButtonText}
+                          </PlayAgainButton>
+                        }
+                    </ContentWrapper>
+                </Reveal>
+            </FlexWrapper>
+        );
+    }
+
+    if (postGameAction === 'leads') {
+        return (
+            <div>{'Leads'}</div>
+        );
+    }
+
+    return (
+        <div>{'Engage'}</div>
+    );
+
     return (
       <Fragment>
         <FlexWrapper>

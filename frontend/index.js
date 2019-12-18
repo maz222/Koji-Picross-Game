@@ -17,7 +17,7 @@ import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import "./index.css";
 import App from "./Wrapper/App";
-import Koji from "@withkoji/vcc";
+import Koji from '@withkoji/vcc';
 
 const render = Component => {
   ReactDOM.render(

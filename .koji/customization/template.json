@@ -1,18 +1,30 @@
 {
   "template": {
     "config": {
-      "primaryColor": "#544897",
-      "secondaryColor": "#d6d4de",
-      "textColor": "#171719",
-      "fontFamily": "Open Sans",
+      "primaryColor": "#74400f",
+      "secondaryColor": "#978bcf",
+      "textColor": "#705bda",
+      "fontFamily": "Merriweather",
       "leaderboardEnabled": false,
-      "homeScreenReveal": "fadeBottom",
-      "postGameScreenReveal": "fadeBottom",
+      "homeScreenReveal": "zoomBottom",
+      "postGameScreenReveal": "zoomTop",
       "postGameAction": "traffic",
-      "startScreen": "home",
+      "startScreen": "postGame",
       "backgroundImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/rhctq-facf6ed4487941c088943aa9ec3b778d.png",
       "backgroundImageMode": "cover",
-      "logoImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/52oss-306fb5305726445e8f4345a66d6c8aad.png"
+      "logoImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/52oss-306fb5305726445e8f4345a66d6c8aad.png",
+      "homeScreenLogoHeight": "32",
+      "homeScreenDisplayType": "borderedCard",
+      "homeScreenTitle": "Play this game!",
+      "homeScreenTitleFontSize": "44",
+      "homeScreenPlayButtonText": "Press Play",
+      "homeScreenPlayButtonFontSize": "36",
+      "postGameScreenTitle": "Thanks for playing!",
+      "postGameScreenText": "We have exclusive deals today, just for you.",
+      "postGameScreenButtonText": "Show me Today's Deals",
+      "postGameScreenButtonLink": "https://google.com",
+      "postGameScreenShowPlayAgainButton": true,
+      "postGameScreenPlayAgainButtonText": "Play Again?"
     }
   },
   "@@editor": [

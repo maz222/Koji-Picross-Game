@@ -6,8 +6,8 @@ import Koji from '@withkoji/vcc';
 const Button = styled.button`
   border: 0;
   outline: 0;
-  font-size: ${({ playButtonTextFontSize }) => `${parseInt(playButtonTextFontSize)}px`};
-  background: ${({ primaryColor }) => primaryColor};
+  font-size: ${({ playButtonTextFontSize }) => `${parseInt(playButtonTextFontSize, 10)}px !important`};
+  border: ${({ primaryColor }) => primaryColor} 4px solid;
   color: ${({ textColor }) => textColor};
   cursor: pointer;
   padding: 16px;
@@ -15,11 +15,11 @@ const Button = styled.button`
   transition: transform 0.1s;
 
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
   &:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
 `;
 
@@ -36,11 +36,11 @@ class PlayButton extends PureComponent {
     return (
       <Button
         onClick={this.props.onClick}
-        playButtonTextFontSize={Koji.config.homeScreen.playButtonTextFontSize}
-        primaryColor={Koji.config.general.primaryColor}
-        textColor={Koji.config.general.textColor}
+        playButtonTextFontSize={Koji.config.template.config.homeScreenPlayButtonFontSize}
+        primaryColor={Koji.config.template.config.primaryColor}
+        textColor={Koji.config.template.config.textColor}
       >
-        {Koji.config.homeScreen.playButtonText}
+        {Koji.config.template.config.homeScreenPlayButtonText}
       </Button>
     );
   }
