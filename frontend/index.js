@@ -16,7 +16,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import "./index.css";
-import App from "./Components/App";
+import App from "./Wrapper/App";
 import Koji from "@withkoji/vcc";
 
 const render = Component => {
@@ -31,7 +31,7 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept("./Components/App", () => {
+  module.hot.accept("./Wrapper/App", () => {
     render(App);
   });
 }

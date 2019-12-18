@@ -15,13 +15,13 @@ let Reveal = ({ children }) => (
   <div>{children}</div>
 );
 
-if (Koji.config.postGameScreen.reveal === 'rubberBand') Reveal = ({ children }) => (<RubberBand>{children}</RubberBand>);
-if (Koji.config.postGameScreen.reveal === 'bounceTop') Reveal = ({ children }) => (<Bounce top>{children}</Bounce>);
-if (Koji.config.postGameScreen.reveal === 'bounceBottom') Reveal = ({ children }) => (<Bounce bottom>{children}</Bounce>);
-if (Koji.config.postGameScreen.reveal === 'fadeTop') Reveal = ({ children }) => (<Fade top>{children}</Fade>);
-if (Koji.config.postGameScreen.reveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
-if (Koji.config.postGameScreen.reveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
-if (Koji.config.postGameScreen.reveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
+if (Koji.config.template.config.postGameScreenReveal === 'rubberBand') Reveal = ({ children }) => (<RubberBand>{children}</RubberBand>);
+if (Koji.config.template.config.postGameScreenReveal === 'bounceTop') Reveal = ({ children }) => (<Bounce top>{children}</Bounce>);
+if (Koji.config.template.config.postGameScreenReveal === 'bounceBottom') Reveal = ({ children }) => (<Bounce bottom>{children}</Bounce>);
+if (Koji.config.template.config.postGameScreenReveal === 'fadeTop') Reveal = ({ children }) => (<Fade top>{children}</Fade>);
+if (Koji.config.template.config.postGameScreenReveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
+if (Koji.config.template.config.postGameScreenReveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
+if (Koji.config.template.config.postGameScreenReveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -58,7 +58,7 @@ const Spacer = styled.div`
   margin: 24px 0;
 `;
 
-class PostGame extends PureComponent {
+class PostGameScreen extends PureComponent {
   static propTypes = {
     setAppView: PropTypes.func,
     showLeaderboard: PropTypes.func,
@@ -138,4 +138,4 @@ class PostGame extends PureComponent {
   }
 }
 
-export default PostGame;
+export default PostGameScreen;

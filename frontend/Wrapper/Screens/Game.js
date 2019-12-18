@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import Koji from '@withkoji/vcc';
-import GlobalP5Sketch from '../Game/GlobalP5Sketch';
+import Game from '../../Game';
 
 const GameContainer = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const GameContainer = styled.div`
   height: 100vh;
 `;
 
-class Game extends PureComponent {
+class GameScreen extends PureComponent {
   render() {
     return (
       <GameContainer
@@ -20,7 +20,7 @@ class Game extends PureComponent {
         gameBackgroundImageMode={Koji.config.general.backgroundImageMode}
         id={'game-container'}
       >
-        <GlobalP5Sketch
+        <Game
           setAppView={this.props.setAppView}
         />
       </GameContainer>
@@ -28,4 +28,4 @@ class Game extends PureComponent {
   }
 }
 
-export default Game;
+export default GameScreen;

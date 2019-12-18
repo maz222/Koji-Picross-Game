@@ -34,7 +34,7 @@ class App extends PureComponent {
     templateConfig: {
       soundEnabled: true,
     },
-    view: Koji.config.general.startScreen || 'home',
+    view: Koji.config.template.config.startScreen || 'home',
   };
 
   componentDidMount() {
@@ -42,8 +42,8 @@ class App extends PureComponent {
     window.setScore = score => this.setState({ score });
     
     // Set the font; fallback to Roboto
-    WebFont.load({ google: { families: [Koji.config.general.fontFamily || 'Roboto'] } });
-    document.body.style.fontFamily = Koji.config.general.fontFamily;
+    WebFont.load({ google: { families: [Koji.config.template.config.fontFamily || 'Roboto'] } });
+    document.body.style.fontFamily = Koji.config.template.config.fontFamily;
   }
 
   componentDidUpdate(prevState, prevProps) {
@@ -66,8 +66,8 @@ class App extends PureComponent {
     return (
       <Container
         backgroundColor={Koji.config.general.backgroundColor}
-        backgroundImage={Koji.config.general.backgroundImage}
-        backgroundImageMode={Koji.config.general.backgroundImageMode}
+        backgroundImage={Koji.config.template.config.backgroundImage}
+        backgroundImageMode={Koji.config.template.config.backgroundImageMode}
       >
         {
           this.state.view === 'home' &&

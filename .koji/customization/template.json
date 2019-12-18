@@ -1,0 +1,33 @@
+{
+  "template": {
+    "config": {
+      "primaryColor": "#544897",
+      "secondaryColor": "#d6d4de",
+      "textColor": "#171719",
+      "fontFamily": "Open Sans",
+      "leaderboardEnabled": false,
+      "homeScreenReveal": "fadeBottom",
+      "postGameScreenReveal": "fadeBottom",
+      "postGameAction": "traffic",
+      "startScreen": "home",
+      "backgroundImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/rhctq-facf6ed4487941c088943aa9ec3b778d.png",
+      "backgroundImageMode": "cover",
+      "logoImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/52oss-306fb5305726445e8f4345a66d6c8aad.png"
+    }
+  },
+  "@@editor": [
+    {
+      "key": "template",
+      "name": "Template Options",
+      "icon": "📋",
+      "source": "template.json",
+      "fields": [
+        {
+          "key": "config",
+          "name": "Configuration",
+          "type": "custom<https://8080-2eceb803-ed22-40b9-a069-d272ded63cf5.koji-staging.com>"
+        }
+      ]
+    }
+  ]
+}

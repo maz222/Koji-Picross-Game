@@ -15,9 +15,9 @@ class GlobalP5Sketch extends PureComponent {
     window.setAppView = this.props.setAppView;
 
     // Require the functions
-    window.preload = require('../../Game/preload').default;
-    window.setup = require('../../Game/setup').default;
-    window.draw = require('../../Game/draw').default;
+    window.preload = require('./preload').default;
+    window.setup = require('./setup').default;
+    window.draw = require('./draw').default;
 
     // Create the game
     this.p5Game = new window.p5(null, document.getElementById('game-container'));
