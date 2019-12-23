@@ -22,6 +22,8 @@ class GameScreen extends PureComponent {
       >
         <Game
           setAppView={this.props.setAppView}
+          setScore={this.props.setScore}
+          setOutcome={this.props.setOutcome}
         />
       </GameContainer>
     );

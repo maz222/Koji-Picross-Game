@@ -30,6 +30,7 @@ class App extends PureComponent {
   state = {
     initView: Koji.config.general.startScreen,
     leaderBoardModalIsOpen: false,
+    outcome: undefined,
     score: 0,
     templateConfig: {
       soundEnabled: true,
@@ -90,6 +91,8 @@ class App extends PureComponent {
           this.state.view === 'game' &&
           <GameScreen
             setAppView={view => this.setState({ view })}
+            setOutcome={outcome => this.setState({ outcome })}
+            setScore={score => this.setState({ score })}
           />
         }
 

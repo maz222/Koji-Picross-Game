@@ -1,18 +1,23 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-class GlobalP5Sketch extends PureComponent {
+class Game extends PureComponent {
   static propTypes = {
     setAppView: PropTypes.func,
+    setOutcome: PropTypes.func,
+    setScore: PropTypes.func,
   };
 
   static defaultProps = {
     setAppView() {},
+    setOutcome() {},
+    setScore() {},
   };
 
   initGame = () => {
-    // Still exposing this at the window level, but it should happen within scope
     window.setAppView = this.props.setAppView;
+    window.setScore = this.props.setScore;
+    window.setOutcome = this.props.setOutcome;
 
     // Require the functions
     window.preload = require('./preload').default;
@@ -53,4 +58,4 @@ class GlobalP5Sketch extends PureComponent {
   }
 }
 
-export default GlobalP5Sketch;
+export default Game;

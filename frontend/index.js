@@ -22,7 +22,7 @@ import Koji from '@withkoji/vcc';
 const render = Component => {
   ReactDOM.render(
     <AppContainer>
-      <Component config={Koji.config} />
+      <Component />
     </AppContainer>,
     document.getElementById("root")
   );

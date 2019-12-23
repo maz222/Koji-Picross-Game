@@ -6,6 +6,7 @@ import Fade from 'react-reveal/Fade';
 import RubberBand from 'react-reveal/RubberBand';
 import Zoom from 'react-reveal/Zoom';
 import PropTypes from 'prop-types';
+import isDarkColor from 'is-dark-color'
 
 let Reveal = ({ children }) => (
     <div>{children}</div>
@@ -24,7 +25,7 @@ const PlayButton = styled.button`
   outline: 0;
   font-size: ${({ fontSize }) => `${fontSize}px`};
   background: ${({ primaryColor }) => primaryColor};
-  color: ${({ textColor }) => textColor};
+  color: ${({ primaryColor }) => isDarkColor(primaryColor) ? '#f1f1f1' : '#111111' };
   cursor: pointer;
   padding: 16px;
   border-radius: 4px;
@@ -61,7 +62,14 @@ const ContentWrapper = styled.div`
   padding: 32px;
   max-width: 90vw;
 
-  background: ${({ homeScreenDisplayType, secondaryColor }) => homeScreenDisplayType === 'borderedCard' ? secondaryColor : 'none'};
+  background: ${({ homeScreenDisplayType, homeScreenCardBackgroundImage, secondaryColor }) => {
+      if (homeScreenDisplayType === 'borderedCard') {
+          if (homeScreenCardBackgroundImage) {
+              return `url("${homeScreenCardBackgroundImage}") no-repeat center center / cover`;
+          }
+          return secondaryColor;
+      } return 'none';
+    }};
   border: ${({ homeScreenDisplayType, primaryColor }) => homeScreenDisplayType === 'borderedCard' ? `4px solid ${primaryColor}` : 'none'};
   border-radius: ${({ homeScreenDisplayType }) => homeScreenDisplayType === 'borderedCard' ? '4px' : '0'};
 `;
@@ -80,7 +88,7 @@ const ImageLinkWrapper = styled.a`
 
 const TextWrapper = styled.div`
   font-size: ${({ textFontSize }) => `${textFontSize}px`};
-  color: ${({ textColor }) => textColor};
+  color: #111111;
   margin: ${({ textFontSize }) => `${textFontSize/ 1.2}px auto`};
 `;
 
@@ -146,8 +154,9 @@ class HomeScreen extends PureComponent {
             <ContentWrapper
               id={'content-wrapper'}
               primaryColor={Koji.config.template.config.primaryColor}
-              homeScreenDisplayType={Koji.config.template.config.homeScreenDisplayType}
               secondaryColor={Koji.config.template.config.secondaryColor}
+              homeScreenDisplayType={Koji.config.template.config.homeScreenDisplayType} 
+              homeScreenCardBackgroundImage={Koji.config.template.config.homeScreenCardBackgroundImage}
             >
               {
                 Koji.config.homeScreen.image && Koji.config.homeScreen.image !== '' &&
@@ -164,9 +173,8 @@ class HomeScreen extends PureComponent {
               }
               <PlayButton
                 onClick={() => this.props.setAppView('game')}
-                fontSize={parseInt(Koji.config.postGameScreen.playButtonTextFontSize, 10)}
-                primaryColor={Koji.config.general.primaryColor}
-                textColor={Koji.config.general.textColor}
+                fontSize={parseInt(Koji.config.template.config.homeScreenPlayButtonFontSize, 10)}
+                primaryColor={Koji.config.template.config.primaryColor}
                 >
                     {Koji.config.template.config.homeScreenPlayButtonText}
                 </PlayButton>
