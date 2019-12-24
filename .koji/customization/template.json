@@ -46,7 +46,7 @@
         {
           "key": "config",
           "name": "Configuration",
-          "type": "custom<https://8080-ab198c29-feb3-46fd-92ae-a5c14057fe14.koji-staging.com>"
+          "type": "custom<game-wrapper>"
         }
       ]
     }
