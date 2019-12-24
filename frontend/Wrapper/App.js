@@ -20,6 +20,10 @@ const Container = styled.div`
   }}
 `;
 
+const GameScreenWrapper = styled.div`
+    display: ${({ show }) => show ? 'block' : 'none'}
+`;
+
 // Set the root element for our modal
 Modal.setAppElement('#root');
 
@@ -28,7 +32,7 @@ window.__template_config = {};
 
 class App extends PureComponent {
   state = {
-    initView: Koji.config.general.startScreen,
+    initView: Koji.config.template.config.startScreen,
     leaderBoardModalIsOpen: false,
     outcome: undefined,
     score: 0,
@@ -47,8 +51,8 @@ class App extends PureComponent {
   }
 
   componentDidUpdate(prevState, prevProps) {
-    if (this.state.initView !== Koji.config.general.startScreen) {
-      this.setState({ initView: Koji.config.general.startScreen, view: Koji.config.general.startScreen });
+    if (this.state.initView !== Koji.config.template.config.startScreen) {
+      this.setState({ initView: Koji.config.template.config.startScreen, view: Koji.config.template.config.startScreen });
     }
 
     if (Koji.config.template.config.fontFamily !== document.body.style.fontFamily) {
@@ -87,18 +91,19 @@ class App extends PureComponent {
           />
         }
 
-        {
-          this.state.view === 'game' &&
-          <GameScreen
-            setAppView={view => this.setState({ view })}
-            setOutcome={outcome => this.setState({ outcome })}
-            setScore={score => this.setState({ score })}
-          />
-        }
+        <GameScreenWrapper show={this.state.view === 'game'}>
+            <GameScreen
+                setAppView={view => this.setState({ view })}
+                setOutcome={outcome => this.setState({ outcome })}
+                setScore={score => this.setState({ score })}
+                view={this.state.view === 'game'}
+            />
+        </GameScreenWrapper>
 
         {
           this.state.view === 'postGame' &&
           <PostGameScreen
+            outcome={this.state.outcome}
             showLeaderboard={() => this.setState({ leaderBoardModalIsOpen: true })}
             score={this.state.score}
             setAppView={view => this.setState({ view })}

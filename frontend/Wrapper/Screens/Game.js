@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import Koji from '@withkoji/vcc';
+import PropTypes from 'prop-types';
 import Game from '../../Game';
 
 const GameContainer = styled.div`
@@ -13,17 +14,30 @@ const GameContainer = styled.div`
 `;
 
 class GameScreen extends PureComponent {
+  static propTypes = {
+    setAppView: PropTypes.func,
+    setOutcome: PropTypes.func,
+    setScore: PropTypes.func,
+  };
+
+  static defaultProps = {
+    setAppView() {},
+    setOutcome() {},
+    setScore() {},
+  };
+
   render() {
     return (
       <GameContainer
-        gameBackgroundImage={Koji.config.general.backgroundImage}
-        gameBackgroundImageMode={Koji.config.general.backgroundImageMode}
+        gameBackgroundImage={Koji.config.template.config.backgroundImage}
+        gameBackgroundImageMode={Koji.config.template.config.backgroundImageMode}
         id={'game-container'}
       >
         <Game
           setAppView={this.props.setAppView}
           setScore={this.props.setScore}
           setOutcome={this.props.setOutcome}
+          view={this.props.view}
         />
       </GameContainer>
     );

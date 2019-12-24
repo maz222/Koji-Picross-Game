@@ -108,17 +108,33 @@ const ContentWrapper = styled.div`
   text-align: center;
 `;
 
+const CheckboxField = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 16px;
+
+    label {
+        text-align: left;
+        font-size: 13px;
+    }
+
+    input[type="checkbox"] {
+        width: auto;
+    }
+`;
+
 const InputField = styled.div`
     width: 100%;
     display: flex;
-    flex-direction: ${({ inline }) => inline ? 'row' : 'column'};
-    align-items: ${({ inline }) => inline ? 'center' : 'flex-start'};
+    flex-direction: column;
+    align-items: flex-start;
     margin-bottom: 16px;
 
     label {
         margin-bottom: 4px;
         text-align: left;
-        font-size: ${({ inline }) => inline ? '13px' : 'inherit'};
     }
 
     input {
@@ -155,12 +171,14 @@ const Spacer = styled.div`
 
 class PostGameScreen extends PureComponent {
   static propTypes = {
+    outcome: PropTypes.string,
     setAppView: PropTypes.func,
     showLeaderboard: PropTypes.func,
     score: PropTypes.number,
   };
 
   static defaultProps = {
+    outcome: 'lose',
     setAppView() {},
     showLeaderboard() {},
     score: 0,
@@ -205,6 +223,37 @@ class PostGameScreen extends PureComponent {
                                 {Koji.config.template.config.postGameScreenButtonText}
                               </CTAButton>
                             </ButtonLinkWrapper>
+                        </CardWrapper>
+                        {
+                          Koji.config.template.config.postGameScreenShowPlayAgainButton &&
+                          <PlayAgainButton
+                            onClick={() => this.props.setAppView('game')}
+                            primaryColor={Koji.config.template.config.primaryColor}
+                        >
+                            {Koji.config.template.config.postGameScreenPlayAgainButtonText}
+                          </PlayAgainButton>
+                        }
+                    </ContentWrapper>
+                </Reveal>
+            </FlexWrapper>
+        );
+    }
+
+    if (postGameAction === 'reveal') {
+        return (
+            <FlexWrapper>
+                <Reveal>
+                    <ContentWrapper id={'content-wrapper'}>
+                        <CardWrapper>
+                            <h1>{Koji.config.template.config.postGameScreenTitle}</h1>
+                            {
+                              this.props.outcome === 'win' &&
+                              <div dangerouslySetInnerHTML={{ __html: Koji.config.template.config.postGameWinText }} />
+                            }
+                            {
+                              this.props.outcome === 'lose' &&
+                              <div dangerouslySetInnerHTML={{ __html: Koji.config.template.config.postGameLoseText }} />
+                            }
                         </CardWrapper>
                         {
                           Koji.config.template.config.postGameScreenShowPlayAgainButton &&
@@ -267,18 +316,19 @@ class PostGameScreen extends PureComponent {
                                 }
                                 {
                                     (['yes', 'required'].includes(Koji.config.template.config.emailCollection) || ['yes', 'required'].includes(Koji.config.template.config.phoneCollection)) &&
-                                    <InputField inline>
+                                    <CheckboxField inline>
                                         <input
                                             checked={this.state.optIn}
                                             onChange={e => this.setState({ optIn: e.currentTarget.checked })}
                                             type={'checkbox'}
                                         />
                                         <label dangerouslySetInnerHTML={{ __html: Koji.config.template.config.optInText }} />
-                                    </InputField>
+                                    </CheckboxField>
                                 }
                                 <CTAButton
                                     type={'submit'}
                                     onClick={this.handleScoreSubmit}
+                                    primaryColor={Koji.config.template.config.primaryColor}
                                 >
                                     {Koji.config.template.config.postGameScreenSubmitButtonText}
                                 </CTAButton>

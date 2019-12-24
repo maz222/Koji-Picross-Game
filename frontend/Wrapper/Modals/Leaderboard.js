@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Koji from '@withkoji/vcc';
 import Modal from 'react-modal';
 import styled from 'styled-components';
+import isDarkColor from 'is-dark-color';
 import LeaderboardForm from '../Forms/Leaderboard';
 
 const CloseModalButton = styled.button`
@@ -14,7 +15,7 @@ const CloseModalButton = styled.button`
   padding: 16px;
   font-size: 24px;
   cursor: pointer;
-  color: ${({ textColor }) => textColor};
+  color: ${({ primaryColor }) => isDarkColor(primaryColor) ? '#f1f1f1' : '#111111' };
 `;
 
 class Leaderboard extends PureComponent {
@@ -33,8 +34,8 @@ class Leaderboard extends PureComponent {
         contentLabel={'Leaderboard'}
         style={{
           content: {
-            background: Koji.config.general.primaryColor,
-            color: Koji.config.general.textColor,
+            background: Koji.config.template.config.primaryColor,
+            color: isDarkColor(Koji.config.template.config.primaryColor) ? '#f1f1f1' : '#111111',
             padding: 0,
             width: '90vw',
             minWidth: '280px',
@@ -49,7 +50,7 @@ class Leaderboard extends PureComponent {
         <div>
           <CloseModalButton
             onClick={this.props.onCloseClick}
-            textColor={Koji.config.general.textColor}
+            primaryColor={Koji.config.template.config.primaryColor}
           >
             {'Close'}
           </CloseModalButton>

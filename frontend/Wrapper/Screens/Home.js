@@ -6,7 +6,7 @@ import Fade from 'react-reveal/Fade';
 import RubberBand from 'react-reveal/RubberBand';
 import Zoom from 'react-reveal/Zoom';
 import PropTypes from 'prop-types';
-import isDarkColor from 'is-dark-color'
+import isDarkColor from 'is-dark-color';
 
 let Reveal = ({ children }) => (
     <div>{children}</div>
@@ -132,10 +132,10 @@ class HomeScreen extends PureComponent {
       />
     );
 
-    if (Koji.config.homeScreen.imageLink && Koji.config.homeScreen.imageLink !== '') {
+    if (Koji.config.template.config.homeScreenImageLink && Koji.config.template.config.homeScreenImageLink !== '') {
       CI = () => (
         <ImageLinkWrapper
-          href={Koji.config.homeScreen.imageLink}
+          href={Koji.config.template.config.homeScreenImageLink}
           rel={'nofollow noreferrer'}
           target={'_blank'}
         >
@@ -159,11 +159,11 @@ class HomeScreen extends PureComponent {
               homeScreenCardBackgroundImage={Koji.config.template.config.homeScreenCardBackgroundImage}
             >
               {
-                Koji.config.homeScreen.image && Koji.config.homeScreen.image !== '' &&
+                Koji.config.template.config.logoImage && Koji.config.template.config.logoImage !== '' &&
                 <CI />
               }
               {
-                Koji.config.homeScreen.text && Koji.config.homeScreen.text !== '' &&
+                Koji.config.template.config.homeScreenTitle && Koji.config.template.config.homeScreenTitle !== '' &&
                   <TextWrapper
                     textColor={Koji.config.template.config.textColor}
                     textFontSize={parseInt(Koji.config.template.config.homeScreenTitleFontSize, 10)}
@@ -184,8 +184,8 @@ class HomeScreen extends PureComponent {
         <SoundIcon
           src={
             this.props.templateConfig.soundEnabled ?
-            Koji.config.homeScreen.soundOnIcon :
-            Koji.config.homeScreen.soundOffIcon
+            Koji.config.template.config.soundOnIcon :
+            Koji.config.template.config.soundOffIcon
           }
           onClick={this.handleSoundIconClick}
         />

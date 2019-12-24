@@ -6,6 +6,14 @@ You will want to replace the contents of `frontend/Game` with your game.
 
 There is a `Game` component, where you will want to place the init/destroy functions. `componentDidMount` and `componentWillUnmount` would be handy places to do this.
 
+## Functions
+
+The following functions are passed to the `Game` component. From there, you can pass them to a game instance, expose them globally, etc.
+
+`setAppView`: Use this to set the app view. Primarily, you will only want to set it to `postGame`, to trigger the post game screen from inside your game
+`setScore`: Use this to set the score for submission to the leaderboard
+`setOutcome`: Use this to set the outcome of the game, either `win` or `lose`, which will allow for conditional rendering on the post game screen
+
 ## Updating
 
 You can pull in updates from the original Game Wrapper.
