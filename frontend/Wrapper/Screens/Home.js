@@ -88,7 +88,7 @@ const ImageLinkWrapper = styled.a`
 
 const TextWrapper = styled.div`
   font-size: ${({ textFontSize }) => `${textFontSize}px`};
-  color: #111111;
+  color: ${({ textColor }) => `${textColor}`};
   margin: ${({ textFontSize }) => `${textFontSize/ 1.2}px auto`};
 `;
 
