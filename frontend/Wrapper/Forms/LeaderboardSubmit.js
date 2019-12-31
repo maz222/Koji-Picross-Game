@@ -95,7 +95,6 @@ class LeaderboardSubmit extends PureComponent {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <h1>{Koji.config.template.config.postGameScreenTitle}</h1>
                 <div>
                     <p>{`Your Score: ${this.props.score}`}</p>
                 </div>
