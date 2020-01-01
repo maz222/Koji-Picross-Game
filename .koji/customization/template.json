@@ -2,7 +2,7 @@
   "template": {
     "config": {
       "primaryColor": "#1f691f",
-      "secondaryColor": "#f4eae2",
+      "secondaryColor": "#4e2b10",
       "fontFamily": "Raleway",
       "leaderboardEnabled": true,
       "homeScreenReveal": "bounceTop",
