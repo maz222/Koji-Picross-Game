@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import md5 from 'md5';
 import Koji from '@withkoji/vcc';
 import styled from 'styled-components';
-import CTAButton from '../Buttons/CTAButton';
+import PrimaryButton from '../Buttons/Primary';
+
+const emailRegEx = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g);
 
 const InputField = styled.div`
     width: 100%;
@@ -142,13 +144,10 @@ class LeaderboardSubmit extends PureComponent {
                         <label dangerouslySetInnerHTML={{ __html: Koji.config.template.config.optInText }} />
                     </CheckboxField>
                 }
-                <CTAButton
+                <PrimaryButton
                     type={'submit'}
-                    onClick={this.handleSubmit}
-                    primaryColor={Koji.config.template.config.primaryColor}
-                >
-                    {Koji.config.template.config.postGameScreenSubmitButtonText}
-                </CTAButton>
+                    text={Koji.config.template.config.postGameScreenSubmitButtonText}
+                />
             </form>
         );
     }

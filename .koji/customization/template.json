@@ -3,17 +3,16 @@
     "config": {
       "primaryColor": "#1f691f",
       "secondaryColor": "#f4eae2",
-      "textColor": "#24185c",
       "fontFamily": "Raleway",
       "leaderboardEnabled": true,
-      "homeScreenReveal": "zoomBottom",
+      "homeScreenReveal": "bounceTop",
       "postGameScreenReveal": "fadeBottom",
       "postGameAction": "leads",
       "startScreen": "home",
-      "backgroundImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/rhctq-facf6ed4487941c088943aa9ec3b778d.png",
+      "backgroundImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/lqp22-e01f92a7aae248a9b4211a3369a93b07.png",
       "backgroundImageMode": "cover",
       "logoImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/52oss-306fb5305726445e8f4345a66d6c8aad.png",
-      "homeScreenLogoHeight": "32",
+      "homeScreenLogoHeight": "23",
       "homeScreenDisplayType": "borderedCard",
       "homeScreenTitle": "Play this game!",
       "homeScreenTitleFontSize": "29",
@@ -25,7 +24,6 @@
       "postGameScreenButtonLink": "https://google.com",
       "postGameScreenShowPlayAgainButton": true,
       "postGameScreenPlayAgainButtonText": "Play Again????",
-      "homeScreenCardBackgroundImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/lzty2-notebook336634_1280.jpg",
       "emailCollection": "required",
       "phoneCollection": "yes",
       "optInText": "I accept the <a href=\"https://google.com\">terms and conditions</a>.",
@@ -34,7 +32,9 @@
       "soundOffIcon": "https://images.koji-cdn.com/b4acde8c-96d4-4b1e-9e6e-4cca208833fe/hqr5b-caf83cefc49348cb8a46c9e5647abcbb.png",
       "postGameWinText": "You Win!",
       "postGameLoseText": "<a href=\"\">You Lose</a>",
-      "viewLeaderboardButtonText": "View Leaderboard"
+      "viewLeaderboardButtonText": "View Leaderboard",
+      "homeScreenCardBackgroundImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/0udyb-6701ecbc5ebd4022ad13313581d008c6.png",
+      "hiddenPostGameOptions": []
     }
   },
   "@@editor": [
