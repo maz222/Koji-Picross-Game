@@ -1,0 +1,12 @@
+{
+  "postGameScreen": {},
+  "@@editor": [
+    {
+      "key": "postGameScreen",
+      "name": "4. Post Game Screen",
+      "icon": "📋",
+      "source": "postGameScreen.json",
+      "fields": []
+    }
+  ]
+}

@@ -55,7 +55,7 @@ class App extends PureComponent {
       this.setState({ initView: Koji.config.template.config.startScreen, view: Koji.config.template.config.startScreen });
     }
 
-    if (Koji.config.template.config.fontFamily !== document.body.style.fontFamily) {
+    if (Koji.config.general.fontFamily !== document.body.style.fontFamily) {
       this.loadFont();
     }
     
@@ -63,8 +63,8 @@ class App extends PureComponent {
   }
 
   loadFont = () => {
-    WebFont.load({ google: { families: [Koji.config.template.config.fontFamily] } });
-    document.body.style.fontFamily = Koji.config.template.config.fontFamily;
+    WebFont.load({ google: { families: [Koji.config.general.fontFamily] } });
+    document.body.style.fontFamily = Koji.config.general.fontFamily;
   };
 
   setTemplateConfig = (newConfig) => {
@@ -79,8 +79,8 @@ class App extends PureComponent {
   render() {
     return (
       <Container
-        backgroundImage={Koji.config.template.config.backgroundImage}
-        backgroundImageMode={Koji.config.template.config.backgroundImageMode}
+        backgroundImage={Koji.config.general.backgroundImage}
+        backgroundImageMode={Koji.config.general.backgroundImageMode}
       >
         {
           this.state.view === 'home' &&

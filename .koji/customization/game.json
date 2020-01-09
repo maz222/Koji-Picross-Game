@@ -1,0 +1,12 @@
+{
+  "settings": {},
+  "@@editor": [
+    {
+      "key": "settings",
+      "name": "3. Game Settings",
+      "icon": "📋",
+      "source": "settings.json",
+      "fields": []
+    }
+  ]
+}

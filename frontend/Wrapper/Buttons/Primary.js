@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import isDarkColor from 'is-dark-color';
-import Koji from '@withkoji/vcc';
 import PropTypes from 'prop-types';
 
 const StyledButton = styled.button`
@@ -28,6 +27,7 @@ class PrimaryButton extends PureComponent {
     static propTypes = {
         fontSize: PropTypes.string,
         onClick: PropTypes.func,
+        primaryColor: PropTypes.string,
         text: PropTypes.string.isRequired,
         type: PropTypes.string,
     };
@@ -35,6 +35,7 @@ class PrimaryButton extends PureComponent {
     static defaultProps = {
         fontSize: '16px',
         onClick() {},
+        primaryColor: '#000000',
         type: 'button',
     };
 
@@ -43,7 +44,7 @@ class PrimaryButton extends PureComponent {
             <StyledButton
                 fontSize={this.props.fontSize}
                 onClick={this.props.onClick}
-                primaryColor={Koji.config.template.config.primaryColor}
+                primaryColor={this.props.primaryColor}
                 type={this.props.type}
             >
                 {this.props.text}

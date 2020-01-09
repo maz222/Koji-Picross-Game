@@ -12,12 +12,12 @@
       "backgroundImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/lqp22-e01f92a7aae248a9b4211a3369a93b07.png",
       "backgroundImageMode": "cover",
       "logoImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/52oss-306fb5305726445e8f4345a66d6c8aad.png",
-      "homeScreenLogoHeight": "23",
+      "homeScreenLogoHeight": "38",
       "homeScreenDisplayType": "borderedCard",
       "homeScreenTitle": "Play this game!",
-      "homeScreenTitleFontSize": "29",
+      "homeScreenTitleFontSize": "42",
       "homeScreenPlayButtonText": "Press Play",
-      "homeScreenPlayButtonFontSize": "24",
+      "homeScreenPlayButtonFontSize": "40",
       "postGameScreenTitle": "Thanks for playing!",
       "postGameScreenText": "We have exclusive deals today, just for you.",
       "postGameScreenButtonText": "Show me Today's Deals",
@@ -33,7 +33,6 @@
       "postGameWinText": "You Win!",
       "postGameLoseText": "<a href=\"\">You Lose</a>",
       "viewLeaderboardButtonText": "View Leaderboard",
-      "homeScreenCardBackgroundImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/0udyb-6701ecbc5ebd4022ad13313581d008c6.png",
       "hiddenPostGameOptions": []
     }
   },

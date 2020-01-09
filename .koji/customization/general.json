@@ -1,0 +1,118 @@
+{
+  "general": {
+    "fontFamily": "Oxygen",
+    "backgroundImage": "https://images.koji-cdn.com/d4d2aab7-1847-481d-8aa6-6866d81d5e0f/x67xx-bg6.png",
+    "backgroundImageMode": "cover",
+    "backgroundColor": ""
+  },
+  "@@editor": [
+    {
+      "key": "general",
+      "name": "1. General Settings",
+      "icon": "📋",
+      "source": "general.json",
+      "fields": [
+        {
+          "key": "fontFamily",
+          "name": "Font Family",
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "label": "Concert One",
+                "value": "Concert One"
+              },
+              {
+                "label": "Exo 2",
+                "value": "Exo 2"
+              },
+              {
+                "label": "Fira Sans",
+                "value": "Fira Sans"
+              },
+              {
+                "label": "Lato",
+                "value": "Lato"
+              },
+              {
+                "label": "Merriweather",
+                "value": "Merriweather"
+              },
+              {
+                "label": "Nunito",
+                "value": "Nunito"
+              },
+              {
+                "label": "Noto Sans",
+                "value": "Noto Sans"
+              },
+              {
+                "label": "Open Sans",
+                "value": "Open Sans"
+              },
+              {
+                "label": "Oswald",
+                "value": "Oswald"
+              },
+              {
+                "label": "Oxygen",
+                "value": "Oxygen"
+              },
+              {
+                "label": "Poppins",
+                "value": "Poppins"
+              },
+              {
+                "label": "PT Sans",
+                "value": "PT Sans"
+              },
+              {
+                "label": "Raleway",
+                "value": "Raleway"
+              },
+              {
+                "label": "Source Sans Pro",
+                "value": "Source Sans Pro"
+              }
+            ]
+          }
+        },
+        {
+          "key": "backgroundImage",
+          "name": "Background Image",
+          "description": "Background Image for all screens. If none is selected, will fall back to Background Color",
+          "type": "image"
+        },
+        {
+          "key": "backgroundImageMode",
+          "name": "Background Image Display Mode",
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "label": "Cover",
+                "value": "cover"
+              },
+              {
+                "label": "Fit to Window",
+                "value": "contain"
+              },
+              {
+                "label": "Auto (No Resizing)",
+                "value": "auto"
+              }
+            ]
+          }
+        },
+        {
+          "key": "backgroundColor",
+          "name": "Background Color",
+          "description": "Background Color for all screens.",
+          "type": "color"
+        }
+      ]
+    }
+  ]
+}

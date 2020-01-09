@@ -13,13 +13,13 @@ let Reveal = ({ children }) => (
     <div>{children}</div>
 );
 
-if (Koji.config.template.config.homeScreenReveal === 'rubberBand') Reveal = ({ children }) => (<RubberBand>{children}</RubberBand>);
-if (Koji.config.template.config.homeScreenReveal === 'bounceTop') Reveal = ({ children }) => (<Bounce top>{children}</Bounce>);
-if (Koji.config.template.config.homeScreenReveal === 'bounceBottom') Reveal = ({ children }) => (<Bounce bottom>{children}</Bounce>);
-if (Koji.config.template.config.homeScreenReveal === 'fadeTop') Reveal = ({ children }) => (<Fade top>{children}</Fade>);
-if (Koji.config.template.config.homeScreenReveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
-if (Koji.config.template.config.homeScreenReveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
-if (Koji.config.template.config.homeScreenReveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
+if (Koji.config.homeScreen.reveal === 'rubberBand') Reveal = ({ children }) => (<RubberBand>{children}</RubberBand>);
+if (Koji.config.homeScreen.reveal === 'bounceTop') Reveal = ({ children }) => (<Bounce top>{children}</Bounce>);
+if (Koji.config.homeScreen.reveal === 'bounceBottom') Reveal = ({ children }) => (<Bounce bottom>{children}</Bounce>);
+if (Koji.config.homeScreen.reveal === 'fadeTop') Reveal = ({ children }) => (<Fade top>{children}</Fade>);
+if (Koji.config.homeScreen.reveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
+if (Koji.config.homeScreen.reveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
+if (Koji.config.homeScreen.reveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -109,7 +109,7 @@ class HomeScreen extends PureComponent {
     let CI = () => (
       <Image
         imageHeight={parseInt(Koji.config.template.config.homeScreenLogoHeight, 10)}
-        src={Koji.config.template.config.logoImage}
+        src={Koji.config.homeScreen.featuredImage}
       />
     );
 
@@ -122,7 +122,7 @@ class HomeScreen extends PureComponent {
         >
           <Image
             imageHeight={parseInt(Koji.config.template.config.homeScreenLogoHeight, 10)}
-            src={Koji.config.template.config.logoImage}
+            src={Koji.config.homeScreen.featuredImage}
           />
         </ImageLinkWrapper>
       );
@@ -134,30 +134,28 @@ class HomeScreen extends PureComponent {
           <Reveal>
             <ContentWrapper
               id={'content-wrapper'}
-              secondaryColor={Koji.config.template.config.secondaryColor}
-              homeScreenDisplayType={Koji.config.template.config.homeScreenDisplayType} 
-              homeScreenCardBackgroundImage={Koji.config.template.config.homeScreenCardBackgroundImage}
+              secondaryColor={Koji.config.homeScreen.cardBackgroundColor}
+              homeScreenDisplayType={Koji.config.homeScreen.displayType} 
+              homeScreenCardBackgroundImage={Koji.config.homeScreen.cardBackgroundImage}
             >
               {
-                Koji.config.template.config.logoImage && Koji.config.template.config.logoImage !== '' &&
+                Koji.config.homeScreen.featuredImage && Koji.config.homeScreen.featuredImage !== '' &&
                 <CI />
               }
               {
-                Koji.config.template.config.homeScreenTitle && Koji.config.template.config.homeScreenTitle !== '' &&
+                Koji.config.homeScreen.titleText && Koji.config.homeScreen.titleText !== '' &&
                   <TextWrapper
-                    textColor={Koji.config.template.config.homeScreenCardBackgroundImage ?
-                        Koji.config.template.config.secondaryColor :
-                        isDarkColor(Koji.config.template.config.secondaryColor) ? '#f1f1f1' : '#111111'
-                    }
+                    textColor={Koji.config.homeScreen.titleColor}
                     textFontSize={parseInt(Koji.config.template.config.homeScreenTitleFontSize, 10)}
                   >
-                    {Koji.config.template.config.homeScreenTitle}
+                    {Koji.config.homeScreen.titleText}
                   </TextWrapper>
               }
               <PrimaryButton
                 fontSize={`${parseInt(Koji.config.template.config.homeScreenPlayButtonFontSize, 10)}px`}
                 onClick={() => this.props.setAppView('game')}
-                text={Koji.config.template.config.homeScreenPlayButtonText}
+                primaryColor={Koji.config.homeScreen.playButtonColor}
+                text={Koji.config.homeScreen.playButtonText}
               />
             </ContentWrapper>
           </Reveal>
