@@ -106,28 +106,6 @@ class HomeScreen extends PureComponent {
   };
 
   render() {
-    let CI = () => (
-      <Image
-        imageHeight={parseInt(Koji.config.template.config.homeScreenLogoHeight, 10)}
-        src={Koji.config.homeScreen.featuredImage}
-      />
-    );
-
-    if (Koji.config.template.config.homeScreenImageLink && Koji.config.template.config.homeScreenImageLink !== '') {
-      CI = () => (
-        <ImageLinkWrapper
-          href={Koji.config.template.config.homeScreenImageLink}
-          rel={'nofollow noreferrer'}
-          target={'_blank'}
-        >
-          <Image
-            imageHeight={parseInt(Koji.config.template.config.homeScreenLogoHeight, 10)}
-            src={Koji.config.homeScreen.featuredImage}
-          />
-        </ImageLinkWrapper>
-      );
-    }
-
     return (
       <Fragment>
         <FlexWrapper>
@@ -140,19 +118,22 @@ class HomeScreen extends PureComponent {
             >
               {
                 Koji.config.homeScreen.featuredImage && Koji.config.homeScreen.featuredImage !== '' &&
-                <CI />
+                <Image
+                  imageHeight={parseInt(Koji.config.homeScreen.featuredImageSize, 10)}
+                  src={Koji.config.homeScreen.featuredImage}
+                />
               }
               {
                 Koji.config.homeScreen.titleText && Koji.config.homeScreen.titleText !== '' &&
                   <TextWrapper
                     textColor={Koji.config.homeScreen.titleColor}
-                    textFontSize={parseInt(Koji.config.template.config.homeScreenTitleFontSize, 10)}
+                    textFontSize={parseInt(Koji.config.homeScreen.titleFontSize, 10)}
                   >
                     {Koji.config.homeScreen.titleText}
                   </TextWrapper>
               }
               <PrimaryButton
-                fontSize={`${parseInt(Koji.config.template.config.homeScreenPlayButtonFontSize, 10)}px`}
+                fontSize={`${parseInt(Koji.config.homeScreen.playButtonFontSize, 10)}px`}
                 onClick={() => this.props.setAppView('game')}
                 primaryColor={Koji.config.homeScreen.playButtonColor}
                 text={Koji.config.homeScreen.playButtonText}
@@ -163,8 +144,8 @@ class HomeScreen extends PureComponent {
         <SoundIcon
           src={
             this.props.templateConfig.soundEnabled ?
-            Koji.config.template.config.soundOnIcon :
-            Koji.config.template.config.soundOffIcon
+            Koji.config.general.soundOnIcon :
+            Koji.config.general.soundOffIcon
           }
           onClick={this.handleSoundIconClick}
         />

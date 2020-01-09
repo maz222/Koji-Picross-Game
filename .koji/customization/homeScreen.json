@@ -1,6 +1,6 @@
 {
   "homeScreen": {
-    "reveal": "bounceTop",
+    "reveal": "fadeBottom",
     "displayType": "borderedCard",
     "cardBackgroundImage": "",
     "cardBackgroundColor": "#542525",
@@ -11,7 +11,10 @@
     "titleText": "This is a fun game!",
     "titleColor": "#cbbdbd",
     "playButtonText": "Play Now",
-    "playButtonColor": "#d01212"
+    "playButtonColor": "#d01212",
+    "titleFontSize": 32,
+    "playButtonFontSize": 32,
+    "featuredImageSize": 40
   },
   "@@editor": [
     {
@@ -95,9 +98,31 @@
           "type": "image"
         },
         {
+          "key": "featuredImageSize",
+          "name": "Featured Image Size",
+          "description": "Note: Values are capped automatically to make sure the content stays on screen",
+          "type": "range",
+          "typeOptions": {
+            "min": 8,
+            "max": 40,
+            "step": 1
+          }
+        },
+        {
           "key": "titleText",
           "name": "Title Text",
           "type": "text"
+        },
+        {
+          "key": "titleFontSize",
+          "name": "Title Font Size",
+          "description": "Note: Values are capped automatically to make sure the content stays on screen",
+          "type": "range",
+          "typeOptions": {
+            "min": 8,
+            "max": 32,
+            "step": 1
+          }
         },
         {
           "key": "titleColor",
@@ -113,6 +138,17 @@
           "key": "playButtonColor",
           "name": "Play Button Color",
           "type": "color"
+        },
+        {
+          "key": "playButtonFontSize",
+          "name": "Play Button Font Size",
+          "description": "Note: Values are capped automatically to make sure the content stays on screen",
+          "type": "range",
+          "typeOptions": {
+            "min": 8,
+            "max": 32,
+            "step": 1
+          }
         }
       ]
     }

@@ -6,7 +6,47 @@
       "name": "4. Post Game Screen",
       "icon": "📋",
       "source": "postGameScreen.json",
-      "fields": []
+      "fields": [
+          {
+          "key": "reveal",
+          "name": "Reveal Animation",
+          "description": "How the home screen reveal is animated",
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "label": "Bounce Bottom",
+                "value": "bounceBottom"
+              },
+              {
+                "label": "Bounce Top",
+                "value": "bounceTop"
+              },
+              {
+                "label": "Fade Bottom",
+                "value": "fadeBottom"
+              },
+              {
+                "label": "Fade Top",
+                "value": "fadeTop"
+              },
+              {
+                "label": "Zoom Bottom",
+                "value": "zoomBottom"
+              },
+              {
+                "label": "Zoom Top",
+                "value": "zoomTop"
+              },
+              {
+                "label": "Rubber Band",
+                "value": "rubberBand"
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }

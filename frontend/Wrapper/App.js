@@ -32,14 +32,14 @@ window.__template_config = {};
 
 class App extends PureComponent {
   state = {
-    initView: Koji.config.template.config.startScreen,
+    initView: Koji.config.general.debug.startScreen,
     leaderBoardModalIsOpen: false,
     outcome: undefined,
     score: 0,
     templateConfig: {
       soundEnabled: true,
     },
-    view: Koji.config.template.config.startScreen || 'home',
+    view: Koji.config.general.debug.startScreen || 'home',
   };
 
   componentDidMount() {
@@ -51,8 +51,8 @@ class App extends PureComponent {
   }
 
   componentDidUpdate(prevState, prevProps) {
-    if (this.state.initView !== Koji.config.template.config.startScreen) {
-      this.setState({ initView: Koji.config.template.config.startScreen, view: Koji.config.template.config.startScreen });
+    if (this.state.initView !== Koji.config.general.debug.startScreen) {
+      this.setState({ initView: Koji.config.general.debug.startScreen, view: Koji.config.general.debug.startScreen });
     }
 
     if (Koji.config.general.fontFamily !== document.body.style.fontFamily) {
