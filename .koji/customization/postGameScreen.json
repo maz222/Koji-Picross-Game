@@ -1,5 +1,30 @@
 {
-  "postGameScreen": {},
+  "postGameScreen": {
+    "showPlayAgainButton": true,
+    "playAgainButtonText": "Play Again",
+    "playAgainButtonFontSize": 20,
+    "playAgainButtonColor": "#c31919",
+    "title": "Thanks for Playing!",
+    "actions": {
+      "action": "leads",
+      "emailCollection": "yes",
+      "phoneCollection": "no",
+      "optInText": "I agree to be contacted",
+      "submitButtonText": "Submit",
+      "submitButtonColor": "#2d179b",
+      "viewLeaderboardButtonText": "View Leaderboard",
+      "viewLeaderboardButtonColor": "#2f1f7d",
+      "text": "Create a game on Koji in 5 minutes!",
+      "buttonText": "Get Started",
+      "buttonLink": "https://withkoji.com",
+      "leaderboardColor": "#361db3",
+      "leaderboardBackgroundColor": "#5a4d9c",
+      "buttonColor": "#b4b933",
+      "winText": "You win!",
+      "loseText": "You lose!",
+      "message": "Visit <a href=\"https://withkoji.com\">our site</a> to learn more."
+    }
+  },
   "@@editor": [
     {
       "key": "postGameScreen",
@@ -7,7 +32,7 @@
       "icon": "📋",
       "source": "postGameScreen.json",
       "fields": [
-          {
+        {
           "key": "reveal",
           "name": "Reveal Animation",
           "description": "How the home screen reveal is animated",
@@ -45,6 +70,43 @@
               }
             ]
           }
+        },
+        {
+          "key": "title",
+          "name": "Title Text",
+          "description": "The title for the post game card (e.g., Thanks for playing!)",
+          "type": "text"
+        },
+        {
+          "key": "showPlayAgainButton",
+          "name": "Show Play Again Button",
+          "type": "boolean"
+        },
+        {
+          "key": "playAgainButtonText",
+          "name": "Play Again Button Text",
+          "type": "text"
+        },
+        {
+          "key": "playAgainButtonColor",
+          "name": "Play Again Button Color",
+          "type": "color"
+        },
+        {
+          "key": "playAgainButtonFontSize",
+          "name": "Play Again Button Font Size",
+          "description": "Note: Values are capped automatically to make sure the content stays on screen",
+          "type": "range",
+          "typeOptions": {
+            "min": 8,
+            "max": 32,
+            "step": 1
+          }
+        },
+        {
+          "key": "actions",
+          "name": "Actions",
+          "type": "custom<post-game-actions>"
         }
       ]
     }

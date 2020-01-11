@@ -26,6 +26,7 @@ const StyledButton = styled.button`
 class PrimaryButton extends PureComponent {
     static propTypes = {
         fontSize: PropTypes.string,
+        loading: PropTypes.bool,
         onClick: PropTypes.func,
         primaryColor: PropTypes.string,
         text: PropTypes.string.isRequired,
@@ -34,12 +35,26 @@ class PrimaryButton extends PureComponent {
 
     static defaultProps = {
         fontSize: '16px',
+        loading: false,
         onClick() {},
         primaryColor: '#000000',
         type: 'button',
     };
 
     render() {
+        if (this.props.loading) {
+            return (
+                <StyledButton
+                    fontSize={this.props.fontSize}
+                    onClick={this.props.onClick}
+                    primaryColor={this.props.primaryColor}
+                    type={this.props.type}
+                >
+                    <div className={'lds-ring'}><div></div><div></div><div></div><div></div></div>
+                </StyledButton>
+            );
+        }
+
         return (
             <StyledButton
                 fontSize={this.props.fontSize}

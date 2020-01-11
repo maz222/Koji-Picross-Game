@@ -1,13 +1,13 @@
 {
   "general": {
-    "fontFamily": "Merriweather",
+    "fontFamily": "Raleway",
     "backgroundImage": "https://images.koji-cdn.com/d4d2aab7-1847-481d-8aa6-6866d81d5e0f/hweb2-bg2.png",
     "backgroundImageMode": "cover",
     "backgroundColor": "",
     "soundOnIcon": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/fmvax-5b0754d85f5f44339e01e5ac6d6e5c6c.png",
     "soundOffIcon": "https://images.koji-cdn.com/b4acde8c-96d4-4b1e-9e6e-4cca208833fe/hqr5b-caf83cefc49348cb8a46c9e5647abcbb.png",
     "debug": {
-      "startScreen": "postGame"
+      "startScreen": "home"
     }
   },
   "@@editor": [
@@ -19,69 +19,9 @@
       "fields": [
         {
           "key": "fontFamily",
-          "name": "Font Family",
-          "type": "select",
-          "typeOptions": {
-            "placeholder": "Choose an option...",
-            "options": [
-              {
-                "label": "Concert One",
-                "value": "Concert One"
-              },
-              {
-                "label": "Exo 2",
-                "value": "Exo 2"
-              },
-              {
-                "label": "Fira Sans",
-                "value": "Fira Sans"
-              },
-              {
-                "label": "Lato",
-                "value": "Lato"
-              },
-              {
-                "label": "Merriweather",
-                "value": "Merriweather"
-              },
-              {
-                "label": "Nunito",
-                "value": "Nunito"
-              },
-              {
-                "label": "Noto Sans",
-                "value": "Noto Sans"
-              },
-              {
-                "label": "Open Sans",
-                "value": "Open Sans"
-              },
-              {
-                "label": "Oswald",
-                "value": "Oswald"
-              },
-              {
-                "label": "Oxygen",
-                "value": "Oxygen"
-              },
-              {
-                "label": "Poppins",
-                "value": "Poppins"
-              },
-              {
-                "label": "PT Sans",
-                "value": "PT Sans"
-              },
-              {
-                "label": "Raleway",
-                "value": "Raleway"
-              },
-              {
-                "label": "Source Sans Pro",
-                "value": "Source Sans Pro"
-              }
-            ]
-          }
+          "name": "Google Font Family",
+          "description": "Visit https://fonts.google.com, and copy and paste the name only (e.g., Roboto)",
+          "type": "text"
         },
         {
           "key": "backgroundImage",
@@ -136,7 +76,7 @@
             "Debug": {
               "startScreen": {
                 "name": "Start Screen",
-                "description": "Note: Helpful for testing your updates, make sure to set back to \"Game\" before publishing!",
+                "description": "Note: Helpful for testing your updates, make sure to set back to \"Home Screen\" before publishing!",
                 "type": "select",
                 "typeOptions": {
                   "placeholder": "Choose an option...",
