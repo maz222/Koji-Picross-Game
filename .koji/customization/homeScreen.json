@@ -20,7 +20,7 @@
     {
       "key": "homeScreen",
       "name": "2. Home Screen",
-      "icon": "📋",
+      "icon": "🏠",
       "source": "homeScreen.json",
       "fields": [
         {

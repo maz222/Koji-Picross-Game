@@ -14,7 +14,7 @@
     {
       "key": "general",
       "name": "1. General Settings",
-      "icon": "📋",
+      "icon": "⚙️",
       "source": "general.json",
       "fields": [
         {

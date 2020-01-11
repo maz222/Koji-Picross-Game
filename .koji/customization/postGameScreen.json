@@ -29,7 +29,7 @@
     {
       "key": "postGameScreen",
       "name": "4. Post Game Screen",
-      "icon": "📋",
+      "icon": "🎴",
       "source": "postGameScreen.json",
       "fields": [
         {

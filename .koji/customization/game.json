@@ -4,7 +4,7 @@
     {
       "key": "settings",
       "name": "3. Game Settings",
-      "icon": "📋",
+      "icon": "🎮",
       "source": "settings.json",
       "fields": []
     }
