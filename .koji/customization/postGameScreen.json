@@ -4,9 +4,9 @@
     "playAgainButtonText": "Play Again",
     "playAgainButtonFontSize": 20,
     "playAgainButtonColor": "#c31919",
-    "title": "Thanks for Playing!",
+    "title": "Thanks for Playing",
     "actions": {
-      "action": "leads",
+      "action": "reveal",
       "emailCollection": "yes",
       "phoneCollection": "no",
       "optInText": "I agree to be contacted",
@@ -20,8 +20,8 @@
       "leaderboardColor": "#361db3",
       "leaderboardBackgroundColor": "#5a4d9c",
       "buttonColor": "#b4b933",
-      "winText": "You win!",
-      "loseText": "You lose!",
+      "winText": "Congratulations, you won!",
+      "loseText": "Good try, better luck next time!",
       "message": "Visit <a href=\"https://withkoji.com\">our site</a> to learn more."
     }
   },
