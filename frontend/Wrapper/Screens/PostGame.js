@@ -77,6 +77,23 @@ const Card = styled.div`
 
 `;
 
+const SocialWrapper = styled.div`
+  display: flex;
+  height: 48px;
+
+  a {
+      width: 48px;
+      margin: 0 8px;
+  }
+
+  img {
+      max-height: 100%;
+      padding: 8px;
+      background: #ffffff;
+  }
+
+`;
+
 class PostGameScreen extends PureComponent {
     static propTypes = {
         outcome: PropTypes.string,
@@ -93,19 +110,13 @@ class PostGameScreen extends PureComponent {
     };
 
     state = {
+        formSubmitting: false,
         formSubmitted: false,
         name: '',
         email: '',
         phone: '',
         optIn: true,
     };
-
-    componentDidMount() {
-        const elem = document.getElementById('content-wrapper');
-        if (elem && elem.offsetHeight > window.innerHeight) {
-            elem.style.transform = `scale(${(window.innerHeight / elem.offsetHeight) * 0.9})`;
-        }
-    }
 
     handleScoreSubmit = e => {
         e.preventDefault();
@@ -137,134 +148,63 @@ class PostGameScreen extends PureComponent {
             });
     };
 
+    handleClick = () => {
+        this.setState({ formSubmitting: true });
+        window.setTimeout(() => {
+            this.setState({ formSubmitted: true });
+        }, 2000);
+    };
+
     render() {
         return (
             <FlexWrapper>
                 <Reveal>
                     <ContentWrapper id={'content-wrapper'}>
+                        {
+                            !this.state.formSubmitted &&
+                            <CardWrapper>
+                                <div>{'Your Score'}</div>
+                                <div>{'10,000'}</div>
+                                <div>
+                                    <label>{'Your Name'}</label>
+                                </div>
+                                <div>
+                                    <input type={'text'} />
+                                </div>
+                                <PrimaryButton
+                                    loading={this.state.formSubmitting}
+                                    onClick={this.handleClick}
+                                    primaryColor={'#dedede'}
+                                    type={'submit'}
+                                    text={'Submit'}
+                                />
+                            </CardWrapper>
+                        }
+                        {
+                            this.state.formSubmitted &&
+                            <CardWrapper>
+                                <div>{'Leaderboard'}</div>
+                            </CardWrapper>
+                        }
                         <CardWrapper>
-                            <h1>{Koji.config.postGameScreen.title}</h1>
-                            {
-                                this.props.outcome === 'win' &&
-                                <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.winText }} />
-                            }
-                            {
-                                this.props.outcome === 'lose' &&
-                                <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.loseText }} />
-                            }
+                            <div>{'Check Out Our Site'}</div>
+                            <button>{'CTA'}</button>
                         </CardWrapper>
-                        <PlayAgainButton />
-                    </ContentWrapper>
-                </Reveal>
-            </FlexWrapper>
-        );
-        const { action } = Koji.config.postGameScreen.actions;
-
-        const PlayAgainButton = () => Koji.config.postGameScreen.showPlayAgainButton ? (
-            <PrimaryButton
-                fontSize={`${parseInt(Koji.config.postGameScreen.playAgainButtonFontSize, 10)}px`}
-                onClick={() => this.props.setAppView('game')}
-                primaryColor={Koji.config.postGameScreen.playAgainButtonColor}
-                text={Koji.config.postGameScreen.playAgainButtonText}
-            />
-        ) : null;
-
-        if (action === 'traffic') {
-            return (
-                <FlexWrapper>
-                    <Reveal>
-                        <ContentWrapper id={'content-wrapper'}>
-                            <CardWrapper>
-                                <h1>{Koji.config.postGameScreen.title}</h1>
-                                <p>{Koji.config.postGameScreen.actions.text}</p>
-                                <ButtonLinkWrapper
-                                    href={Koji.config.postGameScreen.actions.buttonLink}
-                                    rel={'nofollow noreferrer'}
-                                    target={'_blank'}
-                                >
-                                    <PrimaryButton
-                                        primaryColor={Koji.config.postGameScreen.actions.buttonColor}
-                                        text={Koji.config.postGameScreen.actions.buttonText}
-                                    />
-                                </ButtonLinkWrapper>
-                            </CardWrapper>
-                            <PlayAgainButton />
-                        </ContentWrapper>
-                    </Reveal>
-                </FlexWrapper>
-            );
-        }
-
-        if (action === 'reveal') {
-            return (
-                <FlexWrapper>
-                    <Reveal>
-                        <ContentWrapper id={'content-wrapper'}>
-                            <CardWrapper>
-                                <h1>{Koji.config.postGameScreen.title}</h1>
-                                {
-                                    this.props.outcome === 'win' &&
-                                    <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.winText }} />
-                                }
-                                {
-                                    this.props.outcome === 'lose' &&
-                                    <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.loseText }} />
-                                }
-                            </CardWrapper>
-                            <PlayAgainButton />
-                        </ContentWrapper>
-                    </Reveal>
-                </FlexWrapper>
-            );
-        }
-
-        if (action === 'leads') {
-            return (
-                <FlexWrapper>
-                    <Reveal>
-                        <ContentWrapper id={'content-wrapper'}>
-                            <CardWrapper>
-                                <h1>{Koji.config.postGameScreen.title}</h1>
-                                <p>{`Your Score: ${this.props.score}`}</p>
-                                {
-                                    this.props.score > 0 &&
-                                    <Fragment>
-                                        {
-                                            !this.state.formSubmitted &&
-                                            <LeaderboardSubmitForm
-                                                onSubmitSuccess={() => this.setState({ formSubmitted: true })}
-                                                score={this.props.score}
-                                            />
-                                        }
-                                        {
-                                            this.state.formSubmitted &&
-                                            <LeaderboardButtonWrapper>
-                                                <PrimaryButton
-                                                    onClick={() => this.props.showLeaderboard()}
-                                                    primaryColor={Koji.config.postGameScreen.actions.viewLeaderboardButtonColor}
-                                                    text={Koji.config.postGameScreen.actions.viewLeaderboardButtonText}
-                                                />
-                                            </LeaderboardButtonWrapper>
-                                        }
-                                    </Fragment>
-                                }
-                            </CardWrapper>
-                            <PlayAgainButton />
-                        </ContentWrapper>
-                    </Reveal>
-                </FlexWrapper>
-            );
-        }
-
-        return (
-            <FlexWrapper>
-                <Reveal>
-                    <ContentWrapper id={'content-wrapper'}>
-                        <CardWrapper>
-                            <h1>{Koji.config.postGameScreen.title}</h1>
-                            <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.message }} />
-                        </CardWrapper>
-                        <PlayAgainButton />
+                        <SocialWrapper>
+                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                                <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />    
+                            </a>
+                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                                <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />    
+                            </a>
+                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                                <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />    
+                            </a>
+                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                                <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />    
+                            </a>
+                        </SocialWrapper>
+                        <div>{'Play Again'}</div>
                     </ContentWrapper>
                 </Reveal>
             </FlexWrapper>
