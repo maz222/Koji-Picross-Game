@@ -1,6 +1,7 @@
 import Database from '@withkoji/database';
 import uuid from 'uuid';
 import md5 from 'md5';
+import fetch from 'node-fetch';
 
 export default function(app) {
   app.get('/leaderboard', async (req, res) => {
@@ -27,16 +28,16 @@ export default function(app) {
 
   app.post('/leaderboard/save', async (req, res) => {
     const hash = md5(JSON.stringify(req.body));
-    if (hash !== req.headers.authorization) {
-      res.status(200).json({
-        success: true
-      });
-      return;
-    }
+    // if (hash !== req.headers.authorization) {
+    //   res.status(200).json({
+    //     success: true
+    //   });
+    //   return;
+    // }
 
     const { privateAttributes = {} } = req.body;
     const recordBody = {
-        name: req.body.name,
+        firstName: req.body.name,
         score: req.body.score,
         dateCreated: Math.round(Date.now() / 1000),
         email: req.body.email,
@@ -47,6 +48,15 @@ export default function(app) {
     const recordId = uuid.v4();
     const database = new Database();
     await database.set('leaderboard', recordId, recordBody);
+
+    await fetch('https://hooks.zapier.com/hooks/catch/6757525/om23qqj/', {
+        method: 'POST',
+        body: JSON.stringify({
+            firstName: 'Diddy',
+            lastName: 'Elliot',
+            email: 'sean@vigorwebsolutions.com',
+        }),
+    });
 
     res.status(200).json({
       success: true

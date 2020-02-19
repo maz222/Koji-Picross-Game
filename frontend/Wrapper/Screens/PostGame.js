@@ -71,6 +71,10 @@ const Spacer = styled.div`
   margin: 24px 0;
 `;
 
+const Card = styled.div`
+
+`;
+
 class PostGameScreen extends PureComponent {
   static propTypes = {
     outcome: PropTypes.string,
@@ -132,6 +136,11 @@ class PostGameScreen extends PureComponent {
   };
 
   render() {
+    return (
+        <Card>
+
+        </Card>
+    );
     const { action } = Koji.config.postGameScreen.actions;
 
     const PlayAgainButton = () => Koji.config.postGameScreen.showPlayAgainButton ? (

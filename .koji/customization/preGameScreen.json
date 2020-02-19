@@ -1,5 +1,6 @@
 {
-  "homeScreen": {
+  "preGameScreen": {
+    "showPreGameScreen": true,
     "reveal": "fadeBottom",
     "displayType": "borderedCard",
     "cardBackgroundImage": "",
@@ -18,11 +19,16 @@
   },
   "@@editor": [
     {
-      "key": "homeScreen",
-      "name": "2. Home Screen",
+      "key": "preGameScreen",
+      "name": "1. Pre Game Screen",
       "icon": "🏠",
-      "source": "homeScreen.json",
+      "source": "preGameScreen.json",
       "fields": [
+        {
+          "key": "showPreGameScreen",
+          "name": "Show Pre Game Screen",
+          "type": "boolean"
+        },
         {
           "key": "reveal",
           "name": "Reveal Animation",

@@ -17,6 +17,7 @@ class GameScreen extends PureComponent {
   static propTypes = {
     getAppView: PropTypes.func,
     setAppView: PropTypes.func,
+    getTemplateConfig: PropTypes.func,
     setOutcome: PropTypes.func,
     setScore: PropTypes.func,
   };
@@ -24,6 +25,7 @@ class GameScreen extends PureComponent {
   static defaultProps = {
     getAppView() {},
     setAppView() {},
+    getTemplateConfig() {},
     setOutcome() {},
     setScore() {},
   };
@@ -38,6 +40,7 @@ class GameScreen extends PureComponent {
         <Game
           getAppView={this.props.getAppView}
           setAppView={this.props.setAppView}
+          getTemplateConfig={this.props.getTemplateConfig}
           setScore={this.props.setScore}
           setOutcome={this.props.setOutcome}
           view={this.props.view}

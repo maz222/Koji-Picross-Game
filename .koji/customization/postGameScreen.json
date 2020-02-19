@@ -104,9 +104,13 @@
           }
         },
         {
-          "key": "actions",
-          "name": "Actions",
-          "type": "custom<post-game-actions>"
+          "key": "leaderboard",
+          "name": "Enable Leaderboard",
+          "type": "custom<https://8080-d582b101-c740-4b23-953b-bed4a3408858.koji-staging.com>",
+          "typeOptions": {
+              "some": [],
+              "field": {}
+          }
         }
       ]
     }

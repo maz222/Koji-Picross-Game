@@ -26,9 +26,6 @@ const GameScreenWrapper = styled.div`
 // Set the root element for our modal
 Modal.setAppElement('#root');
 
-// Template level config is stored on the window
-window.__template_config = {};
-
 class App extends PureComponent {
   state = {
     initView: Koji.config.general.debug.startScreen,
@@ -38,7 +35,7 @@ class App extends PureComponent {
     templateConfig: {
       soundEnabled: true,
     },
-    view: Koji.config.general.debug.startScreen || 'home',
+    view: Koji.config.general.debug.startScreen || (Koji.config.preGameScreen.showPreGameScreen ? 'home' : 'game'),
   };
 
   componentDidMount() {
@@ -57,14 +54,16 @@ class App extends PureComponent {
     if (Koji.config.general.fontFamily !== document.body.style.fontFamily) {
       this.loadFont();
     }
-    
-    window.__template_config = this.state.templateConfig;
   }
 
   loadFont = () => {
     WebFont.load({ google: { families: [Koji.config.general.fontFamily] } });
     document.body.style.fontFamily = Koji.config.general.fontFamily;
   };
+
+  getTemplateConfig = () => ({
+      ...this.state.templateConfig,
+  });
 
   setTemplateConfig = (newConfig) => {
     this.setState({
@@ -76,6 +75,7 @@ class App extends PureComponent {
   }
 
   render() {
+      console.log('r', this.getTemplateConfig);
     return (
       <Container
         backgroundImage={Koji.config.general.backgroundImage}
@@ -94,6 +94,7 @@ class App extends PureComponent {
             <GameScreen
                 getAppView={() => this.state.view}
                 setAppView={view => this.setState({ view })}
+                getTemplateConfig={this.getTemplateConfig}
                 setOutcome={outcome => this.setState({ outcome })}
                 setScore={score => this.setState({ score })}
                 view={this.state.view === 'game'}

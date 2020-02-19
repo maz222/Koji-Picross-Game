@@ -5,6 +5,7 @@ class Game extends PureComponent {
   static propTypes = {
     getAppView: PropTypes.func,
     setAppView: PropTypes.func,
+    getTemplateConfig: PropTypes.func,
     setOutcome: PropTypes.func,
     setScore: PropTypes.func,
   };
@@ -12,6 +13,7 @@ class Game extends PureComponent {
   static defaultProps = {
     getAppView() {},
     setAppView() {},
+    getTemplateConfig() {},
     setOutcome() {},
     setScore() {},
   };
@@ -21,6 +23,7 @@ class Game extends PureComponent {
     window.setAppView = this.props.setAppView;
     window.setScore = this.props.setScore;
     window.setOutcome = this.props.setOutcome;
+    window.getTemplateConfig = this.props.getTemplateConfig;
 
     // Require the functions
     window.preload = require('./preload').default;
@@ -40,6 +43,7 @@ class Game extends PureComponent {
 
   componentDidUpdate() {
     try {
+      console.log('d', window.getTemplateConfig());
       // Allow refresh of game when the app changes
       this.p5Game.remove();
       this.initGame();
