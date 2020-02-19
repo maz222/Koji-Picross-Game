@@ -13,13 +13,13 @@ let Reveal = ({ children }) => (
     <div>{children}</div>
 );
 
-if (Koji.config.homeScreen.reveal === 'rubberBand') Reveal = ({ children }) => (<RubberBand>{children}</RubberBand>);
-if (Koji.config.homeScreen.reveal === 'bounceTop') Reveal = ({ children }) => (<Bounce top>{children}</Bounce>);
-if (Koji.config.homeScreen.reveal === 'bounceBottom') Reveal = ({ children }) => (<Bounce bottom>{children}</Bounce>);
-if (Koji.config.homeScreen.reveal === 'fadeTop') Reveal = ({ children }) => (<Fade top>{children}</Fade>);
-if (Koji.config.homeScreen.reveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
-if (Koji.config.homeScreen.reveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
-if (Koji.config.homeScreen.reveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
+if (Koji.config.preGameScreen.reveal === 'rubberBand') Reveal = ({ children }) => (<RubberBand>{children}</RubberBand>);
+if (Koji.config.preGameScreen.reveal === 'bounceTop') Reveal = ({ children }) => (<Bounce top>{children}</Bounce>);
+if (Koji.config.preGameScreen.reveal === 'bounceBottom') Reveal = ({ children }) => (<Bounce bottom>{children}</Bounce>);
+if (Koji.config.preGameScreen.reveal === 'fadeTop') Reveal = ({ children }) => (<Fade top>{children}</Fade>);
+if (Koji.config.preGameScreen.reveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
+if (Koji.config.preGameScreen.reveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
+if (Koji.config.preGameScreen.reveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -112,31 +112,31 @@ class HomeScreen extends PureComponent {
           <Reveal>
             <ContentWrapper
               id={'content-wrapper'}
-              secondaryColor={Koji.config.homeScreen.cardBackgroundColor}
-              homeScreenDisplayType={Koji.config.homeScreen.displayType} 
-              homeScreenCardBackgroundImage={Koji.config.homeScreen.cardBackgroundImage}
+              secondaryColor={Koji.config.preGameScreen.cardBackgroundColor}
+              homeScreenDisplayType={Koji.config.preGameScreen.displayType} 
+              homeScreenCardBackgroundImage={Koji.config.preGameScreen.cardBackgroundImage}
             >
               {
-                Koji.config.homeScreen.featuredImage && Koji.config.homeScreen.featuredImage !== '' &&
+                Koji.config.preGameScreen.featuredImage && Koji.config.preGameScreen.featuredImage !== '' &&
                 <Image
-                  imageHeight={parseInt(Koji.config.homeScreen.featuredImageSize, 10)}
-                  src={Koji.config.homeScreen.featuredImage}
+                  imageHeight={parseInt(Koji.config.preGameScreen.featuredImageSize, 10)}
+                  src={Koji.config.preGameScreen.featuredImage}
                 />
               }
               {
-                Koji.config.homeScreen.titleText && Koji.config.homeScreen.titleText !== '' &&
+                Koji.config.preGameScreen.titleText && Koji.config.preGameScreen.titleText !== '' &&
                   <TextWrapper
-                    textColor={Koji.config.homeScreen.titleColor}
-                    textFontSize={parseInt(Koji.config.homeScreen.titleFontSize, 10)}
+                    textColor={Koji.config.preGameScreen.titleColor}
+                    textFontSize={parseInt(Koji.config.preGameScreen.titleFontSize, 10)}
                   >
-                    {Koji.config.homeScreen.titleText}
+                    {Koji.config.preGameScreen.titleText}
                   </TextWrapper>
               }
               <PrimaryButton
-                fontSize={`${parseInt(Koji.config.homeScreen.playButtonFontSize, 10)}px`}
+                fontSize={`${parseInt(Koji.config.preGameScreen.playButtonFontSize, 10)}px`}
                 onClick={() => this.props.setAppView('game')}
-                primaryColor={Koji.config.homeScreen.playButtonColor}
-                text={Koji.config.homeScreen.playButtonText}
+                primaryColor={Koji.config.preGameScreen.playButtonColor}
+                text={Koji.config.preGameScreen.playButtonText}
               />
             </ContentWrapper>
           </Reveal>
