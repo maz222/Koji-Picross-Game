@@ -11,7 +11,7 @@ import LeaderboardSubmitForm from '../Forms/LeaderboardSubmit';
 import PrimaryButton from '../Buttons/Primary';
 
 let Reveal = ({ children }) => (
-  <div>{children}</div>
+    <div>{children}</div>
 );
 
 if (Koji.config.postGameScreen.reveal === 'rubberBand') Reveal = ({ children }) => (<RubberBand>{children}</RubberBand>);
@@ -21,6 +21,8 @@ if (Koji.config.postGameScreen.reveal === 'fadeTop') Reveal = ({ children }) => 
 if (Koji.config.postGameScreen.reveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
 if (Koji.config.postGameScreen.reveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
 if (Koji.config.postGameScreen.reveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
+
+console.log('r', Reveal);
 
 const ButtonLinkWrapper = styled.a`
   margin: 24px 0 0 0;
@@ -76,109 +78,66 @@ const Card = styled.div`
 `;
 
 class PostGameScreen extends PureComponent {
-  static propTypes = {
-    outcome: PropTypes.string,
-    setAppView: PropTypes.func,
-    showLeaderboard: PropTypes.func,
-    score: PropTypes.number,
-  };
-
-  static defaultProps = {
-    outcome: 'lose',
-    setAppView() {},
-    showLeaderboard() {},
-    score: 0,
-  };
-
-  state = {
-    formSubmitted: false,
-    name: '',
-    email: '',
-    phone: '',
-    optIn: true,
-  };
-
-  componentDidMount() {
-    const elem = document.getElementById('content-wrapper');
-    if (elem && elem.offsetHeight > window.innerHeight) {
-      elem.style.transform = `scale(${(window.innerHeight / elem.offsetHeight) * 0.9 })`;
-    }
-  }
-
-  handleScoreSubmit = e => {
-    e.preventDefault();
-
-    const body = {
-        name: this.state.name,
-        score: this.props.score,
-        email: this.state.email,
-        optIn: this.state.optIn,
-        phone: this.state.phone,
+    static propTypes = {
+        outcome: PropTypes.string,
+        setAppView: PropTypes.func,
+        showLeaderboard: PropTypes.func,
+        score: PropTypes.number,
     };
-    
-    const hash = md5(JSON.stringify(body));
 
-    fetch(`${Koji.config.serviceMap.backend}/leaderboard/save`, {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': hash,
-        },
-        body: JSON.stringify(body),
-    })
-        .then((response) => response.json())
-        .then((jsonResponse) => {
-            this.setState({ formSubmitted: true })
+    static defaultProps = {
+        outcome: 'lose',
+        setAppView() { },
+        showLeaderboard() { },
+        score: 0,
+    };
+
+    state = {
+        formSubmitted: false,
+        name: '',
+        email: '',
+        phone: '',
+        optIn: true,
+    };
+
+    componentDidMount() {
+        const elem = document.getElementById('content-wrapper');
+        if (elem && elem.offsetHeight > window.innerHeight) {
+            elem.style.transform = `scale(${(window.innerHeight / elem.offsetHeight) * 0.9})`;
+        }
+    }
+
+    handleScoreSubmit = e => {
+        e.preventDefault();
+
+        const body = {
+            name: this.state.name,
+            score: this.props.score,
+            email: this.state.email,
+            optIn: this.state.optIn,
+            phone: this.state.phone,
+        };
+
+        const hash = md5(JSON.stringify(body));
+
+        fetch(`${Koji.config.serviceMap.backend}/leaderboard/save`, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': hash,
+            },
+            body: JSON.stringify(body),
         })
-        .catch(err => {
-            console.log(err);
-        });
-  };
+            .then((response) => response.json())
+            .then((jsonResponse) => {
+                this.setState({ formSubmitted: true })
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
 
-  render() {
-    return (
-        <Card>
-
-        </Card>
-    );
-    const { action } = Koji.config.postGameScreen.actions;
-
-    const PlayAgainButton = () => Koji.config.postGameScreen.showPlayAgainButton ? (
-        <PrimaryButton
-            fontSize={`${parseInt(Koji.config.postGameScreen.playAgainButtonFontSize, 10)}px`}
-            onClick={() => this.props.setAppView('game')}
-            primaryColor={Koji.config.postGameScreen.playAgainButtonColor}
-            text={Koji.config.postGameScreen.playAgainButtonText}
-        />
-    ) : null;
-
-    if (action === 'traffic') {
-        return (
-            <FlexWrapper>
-                <Reveal>
-                    <ContentWrapper id={'content-wrapper'}>
-                        <CardWrapper>
-                            <h1>{Koji.config.postGameScreen.title}</h1>
-                            <p>{Koji.config.postGameScreen.actions.text}</p>
-                            <ButtonLinkWrapper
-                              href={Koji.config.postGameScreen.actions.buttonLink}
-                              rel={'nofollow noreferrer'}
-                              target={'_blank'}
-                            >
-                              <PrimaryButton
-                                primaryColor={Koji.config.postGameScreen.actions.buttonColor}
-                                text={Koji.config.postGameScreen.actions.buttonText}
-                              />
-                            </ButtonLinkWrapper>
-                        </CardWrapper>
-                        <PlayAgainButton />
-                    </ContentWrapper>
-                </Reveal>
-            </FlexWrapper>
-        );
-    }
-
-    if (action === 'reveal') {
+    render() {
         return (
             <FlexWrapper>
                 <Reveal>
@@ -186,12 +145,12 @@ class PostGameScreen extends PureComponent {
                         <CardWrapper>
                             <h1>{Koji.config.postGameScreen.title}</h1>
                             {
-                              this.props.outcome === 'win' &&
-                              <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.winText }} />
+                                this.props.outcome === 'win' &&
+                                <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.winText }} />
                             }
                             {
-                              this.props.outcome === 'lose' &&
-                              <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.loseText }} />
+                                this.props.outcome === 'lose' &&
+                                <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.loseText }} />
                             }
                         </CardWrapper>
                         <PlayAgainButton />
@@ -199,38 +158,111 @@ class PostGameScreen extends PureComponent {
                 </Reveal>
             </FlexWrapper>
         );
-    }
+        const { action } = Koji.config.postGameScreen.actions;
 
-    if (action === 'leads') {
-        return (
-            <FlexWrapper>
-                <Reveal>
-                    <ContentWrapper id={'content-wrapper'}>
-                        <CardWrapper>
-                            <h1>{Koji.config.postGameScreen.title}</h1>
-                            <p>{`Your Score: ${this.props.score}`}</p>
-                            {
-                                this.props.score > 0 &&
-                                <Fragment>
-                                    {
-                                        !this.state.formSubmitted &&
-                                        <LeaderboardSubmitForm
-                                            onSubmitSuccess={() => this.setState({ formSubmitted: true })}
-                                            score={this.props.score}
-                                        />
-                                    }
-                                    {
-                                        this.state.formSubmitted &&
-                                        <LeaderboardButtonWrapper>
-                                            <PrimaryButton
-                                                onClick={() => this.props.showLeaderboard()}
-                                                primaryColor={Koji.config.postGameScreen.actions.viewLeaderboardButtonColor}
-                                                text={Koji.config.postGameScreen.actions.viewLeaderboardButtonText}
+        const PlayAgainButton = () => Koji.config.postGameScreen.showPlayAgainButton ? (
+            <PrimaryButton
+                fontSize={`${parseInt(Koji.config.postGameScreen.playAgainButtonFontSize, 10)}px`}
+                onClick={() => this.props.setAppView('game')}
+                primaryColor={Koji.config.postGameScreen.playAgainButtonColor}
+                text={Koji.config.postGameScreen.playAgainButtonText}
+            />
+        ) : null;
+
+        if (action === 'traffic') {
+            return (
+                <FlexWrapper>
+                    <Reveal>
+                        <ContentWrapper id={'content-wrapper'}>
+                            <CardWrapper>
+                                <h1>{Koji.config.postGameScreen.title}</h1>
+                                <p>{Koji.config.postGameScreen.actions.text}</p>
+                                <ButtonLinkWrapper
+                                    href={Koji.config.postGameScreen.actions.buttonLink}
+                                    rel={'nofollow noreferrer'}
+                                    target={'_blank'}
+                                >
+                                    <PrimaryButton
+                                        primaryColor={Koji.config.postGameScreen.actions.buttonColor}
+                                        text={Koji.config.postGameScreen.actions.buttonText}
+                                    />
+                                </ButtonLinkWrapper>
+                            </CardWrapper>
+                            <PlayAgainButton />
+                        </ContentWrapper>
+                    </Reveal>
+                </FlexWrapper>
+            );
+        }
+
+        if (action === 'reveal') {
+            return (
+                <FlexWrapper>
+                    <Reveal>
+                        <ContentWrapper id={'content-wrapper'}>
+                            <CardWrapper>
+                                <h1>{Koji.config.postGameScreen.title}</h1>
+                                {
+                                    this.props.outcome === 'win' &&
+                                    <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.winText }} />
+                                }
+                                {
+                                    this.props.outcome === 'lose' &&
+                                    <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.loseText }} />
+                                }
+                            </CardWrapper>
+                            <PlayAgainButton />
+                        </ContentWrapper>
+                    </Reveal>
+                </FlexWrapper>
+            );
+        }
+
+        if (action === 'leads') {
+            return (
+                <FlexWrapper>
+                    <Reveal>
+                        <ContentWrapper id={'content-wrapper'}>
+                            <CardWrapper>
+                                <h1>{Koji.config.postGameScreen.title}</h1>
+                                <p>{`Your Score: ${this.props.score}`}</p>
+                                {
+                                    this.props.score > 0 &&
+                                    <Fragment>
+                                        {
+                                            !this.state.formSubmitted &&
+                                            <LeaderboardSubmitForm
+                                                onSubmitSuccess={() => this.setState({ formSubmitted: true })}
+                                                score={this.props.score}
                                             />
-                                        </LeaderboardButtonWrapper>
-                                    }
-                                </Fragment>
-                            }
+                                        }
+                                        {
+                                            this.state.formSubmitted &&
+                                            <LeaderboardButtonWrapper>
+                                                <PrimaryButton
+                                                    onClick={() => this.props.showLeaderboard()}
+                                                    primaryColor={Koji.config.postGameScreen.actions.viewLeaderboardButtonColor}
+                                                    text={Koji.config.postGameScreen.actions.viewLeaderboardButtonText}
+                                                />
+                                            </LeaderboardButtonWrapper>
+                                        }
+                                    </Fragment>
+                                }
+                            </CardWrapper>
+                            <PlayAgainButton />
+                        </ContentWrapper>
+                    </Reveal>
+                </FlexWrapper>
+            );
+        }
+
+        return (
+            <FlexWrapper>
+                <Reveal>
+                    <ContentWrapper id={'content-wrapper'}>
+                        <CardWrapper>
+                            <h1>{Koji.config.postGameScreen.title}</h1>
+                            <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.message }} />
                         </CardWrapper>
                         <PlayAgainButton />
                     </ContentWrapper>
@@ -238,21 +270,6 @@ class PostGameScreen extends PureComponent {
             </FlexWrapper>
         );
     }
-
-    return (
-         <FlexWrapper>
-            <Reveal>
-                <ContentWrapper id={'content-wrapper'}>
-                    <CardWrapper>
-                        <h1>{Koji.config.postGameScreen.title}</h1>
-                        <div dangerouslySetInnerHTML={{ __html: Koji.config.postGameScreen.actions.message }} />
-                    </CardWrapper>
-                    <PlayAgainButton />
-                </ContentWrapper>
-            </Reveal>
-        </FlexWrapper>
-    );
-  }
 }
 
 export default PostGameScreen;

@@ -1,5 +1,6 @@
 {
   "postGameScreen": {
+    "showPostGameScreen": true,
     "showPlayAgainButton": true,
     "playAgainButtonText": "Play Again",
     "playAgainButtonFontSize": 20,
@@ -23,15 +24,90 @@
       "winText": "Congratulations, you won!",
       "loseText": "Good try, better luck next time!",
       "message": "Visit <a href=\"https://withkoji.com\">our site</a> to learn more."
-    }
+    },
+    "reveal": "bounceBottom",
+    "leaderboardFields": [
+      {
+        "label": "First Name"
+      }
+    ]
   },
   "@@editor": [
     {
       "key": "postGameScreen",
-      "name": "4. Post Game Screen",
-      "icon": "🎴",
+      "name": "3. End Card",
       "source": "postGameScreen.json",
       "fields": [
+        {
+          "key": "showPostGameScreen",
+          "name": "Show End Card",
+          "type": "boolean"
+        },
+        {
+          "key": "enableLeaderboard",
+          "name": "Enable Leaderboard",
+          "type": "boolean"
+        },
+        {
+          "key": "collectEmail",
+          "name": "Collect Email",
+          "type": "boolean"
+        },
+        {
+          "key": "collectPhone",
+          "name": "Collect Phone",
+          "type": "boolean"
+        },
+        {
+          "key": "optInText",
+          "name": "Opt In Text",
+          "type": "text"
+        },
+        {
+          "key": "leaderboardWebhookURL",
+          "name": "Leaderboard Webhook URL",
+          "type": "text"
+        },
+        {
+          "key": "enableCallToAction",
+          "name": "Enable CTA",
+          "type": "boolean"
+        },
+        {
+          "key": "ctaHeadline",
+          "name": "CTA Headline",
+          "type": "text"
+        },
+        {
+          "key": "ctaButtonText",
+          "name": "CTA Button Text",
+          "type": "text"
+        },
+        {
+          "key": "ctaButtonLink",
+          "name": "CTA Button Link",
+          "type": "text"
+        },
+        {
+          "key": "ctaButtonColor",
+          "name": "CTA Button Color",
+          "type": "color"
+        },
+        {
+          "key": "enableSocialShare",
+          "name": "Enable Social Share",
+          "type": "boolean"
+        },
+        {
+          "key": "showPlayAgainLink",
+          "name": "Show Play Again Link",
+          "type": "boolean"
+        },
+        {
+          "key": "playAgainLinkText",
+          "name": "Play Again Link Text",
+          "type": "text"
+        },
         {
           "key": "reveal",
           "name": "Reveal Animation",
@@ -69,47 +145,6 @@
                 "value": "rubberBand"
               }
             ]
-          }
-        },
-        {
-          "key": "title",
-          "name": "Title Text",
-          "description": "The title for the post game card (e.g., Thanks for playing!)",
-          "type": "text"
-        },
-        {
-          "key": "showPlayAgainButton",
-          "name": "Show Play Again Button",
-          "type": "boolean"
-        },
-        {
-          "key": "playAgainButtonText",
-          "name": "Play Again Button Text",
-          "type": "text"
-        },
-        {
-          "key": "playAgainButtonColor",
-          "name": "Play Again Button Color",
-          "type": "color"
-        },
-        {
-          "key": "playAgainButtonFontSize",
-          "name": "Play Again Button Font Size",
-          "description": "Note: Values are capped automatically to make sure the content stays on screen",
-          "type": "range",
-          "typeOptions": {
-            "min": 8,
-            "max": 32,
-            "step": 1
-          }
-        },
-        {
-          "key": "leaderboard",
-          "name": "Enable Leaderboard",
-          "type": "custom<https://8080-d582b101-c740-4b23-953b-bed4a3408858.koji-staging.com>",
-          "typeOptions": {
-              "some": [],
-              "field": {}
           }
         }
       ]

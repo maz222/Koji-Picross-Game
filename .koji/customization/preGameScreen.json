@@ -21,82 +21,12 @@
     {
       "key": "preGameScreen",
       "name": "1. Pre Game Screen",
-      "icon": "🏠",
       "source": "preGameScreen.json",
       "fields": [
         {
           "key": "showPreGameScreen",
           "name": "Show Pre Game Screen",
           "type": "boolean"
-        },
-        {
-          "key": "reveal",
-          "name": "Reveal Animation",
-          "description": "How the home screen reveal is animated",
-          "type": "select",
-          "typeOptions": {
-            "placeholder": "Choose an option...",
-            "options": [
-              {
-                "label": "Bounce Bottom",
-                "value": "bounceBottom"
-              },
-              {
-                "label": "Bounce Top",
-                "value": "bounceTop"
-              },
-              {
-                "label": "Fade Bottom",
-                "value": "fadeBottom"
-              },
-              {
-                "label": "Fade Top",
-                "value": "fadeTop"
-              },
-              {
-                "label": "Zoom Bottom",
-                "value": "zoomBottom"
-              },
-              {
-                "label": "Zoom Top",
-                "value": "zoomTop"
-              },
-              {
-                "label": "Rubber Band",
-                "value": "rubberBand"
-              }
-            ]
-          }
-        },
-        {
-          "key": "displayType",
-          "name": "Display Type",
-          "description": "Use a card for the home screen",
-          "type": "select",
-          "typeOptions": {
-            "placeholder": "Choose an option...",
-            "options": [
-              {
-                "label": "Default (No Card)",
-                "value": "default"
-              },
-              {
-                "label": "Bordered Card",
-                "value": "borderedCard"
-              }
-            ]
-          }
-        },
-        {
-          "key": "cardBackgroundImage",
-          "name": "Card Background Image",
-          "description": "If no image is supplied, will use Card Background Color",
-          "type": "image"
-        },
-        {
-          "key": "cardBackgroundColor",
-          "name": "Card Background Color",
-          "type": "color"
         },
         {
           "key": "featuredImage",
@@ -154,6 +84,50 @@
             "min": 8,
             "max": 32,
             "step": 1
+          }
+        },
+        {
+          "key": "backgroundImage",
+          "name": "Background Image",
+          "type": "image"
+        },
+        {
+          "key": "reveal",
+          "name": "Reveal Animation",
+          "description": "How the home screen reveal is animated",
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "label": "Bounce Bottom",
+                "value": "bounceBottom"
+              },
+              {
+                "label": "Bounce Top",
+                "value": "bounceTop"
+              },
+              {
+                "label": "Fade Bottom",
+                "value": "fadeBottom"
+              },
+              {
+                "label": "Fade Top",
+                "value": "fadeTop"
+              },
+              {
+                "label": "Zoom Bottom",
+                "value": "zoomBottom"
+              },
+              {
+                "label": "Zoom Top",
+                "value": "zoomTop"
+              },
+              {
+                "label": "Rubber Band",
+                "value": "rubberBand"
+              }
+            ]
           }
         }
       ]

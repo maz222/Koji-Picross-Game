@@ -3,10 +3,16 @@
   "@@editor": [
     {
       "key": "settings",
-      "name": "3. Game Settings",
-      "icon": "🎮",
+      "name": "2. Game Settings",
       "source": "settings.json",
-      "fields": []
+      "fields": [
+        {
+          "key": "gameBackgroundImage",
+          "name": "Game Background Image",
+          "description": "In game background image",
+          "type": "image"
+        }
+      ]
     }
   ]
 }

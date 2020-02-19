@@ -35,7 +35,7 @@ class App extends PureComponent {
     templateConfig: {
       soundEnabled: true,
     },
-    view: Koji.config.general.debug.startScreen || (Koji.config.preGameScreen.showPreGameScreen ? 'home' : 'game'),
+    view: 'postGame', // Koji.config.general.debug.startScreen || (Koji.config.preGameScreen.showPreGameScreen ? 'home' : 'game'),
   };
 
   componentDidMount() {
