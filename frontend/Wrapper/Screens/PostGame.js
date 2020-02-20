@@ -25,6 +25,7 @@ const ContentWrapper = styled.div`
 `;
 
 const CardWrapper = styled.div`
+  border-radius: 2px;
   width: 80vw;
   min-width: 280px;
   max-width: 480px;
@@ -32,9 +33,58 @@ const CardWrapper = styled.div`
   padding: 24px;
   margin-bottom: 16px;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   h1 {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 8px;
+  }
+
+  .cta-text {
+    font-size: 20px;
+  }
+
+  .button-wrapper {
+    margin-top: 8px;
+  }
+
+  .label-wrapper {
+    text-align: left;
+    margin-bottom: 4px;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-wrapper {
+    margin-bottom: 8px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .input-wrapper > input {
+    width: 100%;
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 2px;
+    border: 1px solid lightgray;
+  }
+
+  input[type="checkbox"] {
+    margin-left: 0px;
+  }
+
+  .score-text {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .score {
+    font-size: 32px;
+    margin-bottom: 16px;
   }
 `;
 
@@ -51,10 +101,37 @@ const SocialWrapper = styled.div`
 
   img {
       max-height: 100%;
-      padding: 8px;
-      background: #ffffff;
+  }
+`;
+
+const LeaderboardWrapper = styled.div`
+  max-height: 30vh;
+  overflow: auto;
+  width: 100%;
+`;
+
+const LeaderboardContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+
+  > div {
+    display: flex;
   }
 
+  .leaderboard-entry {
+    position: relative;
+  }
+
+  .leaderboard-score {
+    flex: 1;
+    text-align: right;
+  }
+
+  .leaderboard-name {
+    position: absolute;
+    left: 32px;
+  }
 `;
 
 class PostGameScreen extends PureComponent {
@@ -104,7 +181,15 @@ class PostGameScreen extends PureComponent {
     })
       .then((response) => response.json())
       .then(() => {
-        this.setState({ formSubmitted: true })
+        fetch(`${Koji.config.serviceMap.backend}/leaderboard`)
+          .then((response) => response.json())
+          .then(({ scores }) => {
+            this.setState({ formSubmitted: true, scores });
+          })
+          .catch(err => {
+            console.log('Fetch Error: ', err);
+            this.setState({ error: true });
+          });
       })
       .catch(err => {
         console.log(err);
@@ -114,7 +199,7 @@ class PostGameScreen extends PureComponent {
   handleClick = () => {
     this.setState({ formSubmitting: true });
     window.setTimeout(() => {
-      this.setState({ formSubmitted: true });
+      this.setState({ formSubmitted: true, formSubmitting: false });
     }, 2000);
   };
 
@@ -145,29 +230,62 @@ class PostGameScreen extends PureComponent {
               Koji.config.postGameScreen.leaderboardEnabled &&
               <Fragment>
                 {
-                  !this.state.formSubmitted &&
+                  this.state.formSubmitting &&
                   <CardWrapper>
-                    <div>{'Your Score'}</div>
-                    <div>{'10,000'}</div>
-                    <div>
-                      <label>{'Your Name'}</label>
+                    <div className={'lds-ring'}><div></div><div></div><div></div><div></div></div>
+                  </CardWrapper>
+                }
+                {
+                  !this.state.formSubmitted && !this.state.formSubmitting &&
+                  <CardWrapper>
+                    <div className={'score-text'}>{'Your Score'}</div>
+                    <div className={'score'}>{'10,000'}</div>
+                    <div className={'label-wrapper'}>
+                      <label>{'Name'}</label>
                     </div>
-                    <div>
+                    <div className={'input-wrapper'}>
                       <input type={'text'} />
                     </div>
-                    <PrimaryButton
-                      loading={this.state.formSubmitting}
-                      onClick={this.handleClick}
-                      primaryColor={'#dedede'}
-                      type={'submit'}
-                      text={'Submit'}
-                    />
+                    <div className={'label-wrapper'}>
+                      <label>{'Email'}</label>
+                    </div>
+                    <div className={'input-wrapper'}>
+                      <input type={'text'} />
+                    </div>
+                    <div className={'label-wrapper'}>
+                      <input type={'checkbox'} />
+                      {'Opt In'}
+                    </div>
+                    <div className={'button-wrapper'}>
+                      <PrimaryButton
+                        loading={this.state.formSubmitting}
+                        onClick={this.handleClick}
+                        primaryColor={'#dedede'}
+                        type={'submit'}
+                        text={'Submit'}
+                      />
+                    </div>
                   </CardWrapper>
                 }
                 {
                   this.state.formSubmitted &&
                   <CardWrapper>
-                    <div>{'Leaderboard'}</div>
+                    <h1>{'Leaderboard'}</h1>
+                    <LeaderboardWrapper>
+                      <LeaderboardContent>
+                        {
+                          (this.state.scores || []).map((entry, idx) => (
+                            <div className={'leaderboard-entry'}>
+                              <div>
+                                {`${idx + 1}.`}
+                              </div>
+                              <div className={'leaderboard-name'}>{entry.name}</div>
+                              <div className={'leaderboard-score'}>{entry.score}</div>
+                            </div>
+                          ))
+                        }
+                      </LeaderboardContent>
+                    </LeaderboardWrapper>
                   </CardWrapper>
                 }
               </Fragment>
@@ -175,25 +293,27 @@ class PostGameScreen extends PureComponent {
             {
               Koji.config.postGameScreen.ctaEnabled &&
               <CardWrapper>
-                <div>{'Check Out Our Site'}</div>
-                <button>{'CTA'}</button>
+                <div className={'cta-text'}>{'Check Out Our Site'}</div>
+                <div className={'button-wrapper'}>
+                  <PrimaryButton text={'Visit Site'} />
+                </div>
               </CardWrapper>
             }
             {
               Koji.config.postGameScreen.socialEnabled &&
               <CardWrapper>
                 <SocialWrapper>
-                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                  <a href={`http://www.reddit.com/submit?url=${window.encodeURIComponent(window.location.href)}`} target="_blank">
+                    <img src={Koji.config.postGameScreen.redditIcon} />
                   </a>
-                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                  <a href={`https://twitter.com/intent/tweet?text=${window.encodeURIComponent(document.title)}: ${window.encodeURIComponent(window.location.href)}`} target="_blank">
+                    <img src={Koji.config.postGameScreen.twitterIcon} />
                   </a>
-                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                  <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.encodeURIComponent(window.location.href)}&title=${window.encodeURIComponent(document.title)}&source=LinkedIn`} target="_blank">
+                    <img src={Koji.config.postGameScreen.linkedInIcon} />
                   </a>
-                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.encodeURIComponent(window.location.href)}`} target="_blank">
+                    <img src={Koji.config.postGameScreen.facebookIcon} />
                   </a>
                 </SocialWrapper>
               </CardWrapper>
