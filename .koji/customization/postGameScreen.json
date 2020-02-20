@@ -116,7 +116,7 @@
         {
           "key": "reveal",
           "name": "Reveal Animation",
-          "description": "How the home screen reveal is animated",
+          "description": "How the pre game screen reveal is animated",
           "type": "select",
           "typeOptions": {
             "placeholder": "Choose an option...",

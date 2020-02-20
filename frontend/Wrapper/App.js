@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import GameScreen from './Screens/Game';
 import PostGameScreen from './Screens/PostGame';
-import HomeScreen from './Screens/Home';
+import PreGameScreen from './Screens/PreGame';
 import LeaderboardModal from './Modals/Leaderboard';
 import Koji from '@withkoji/vcc';
 import Modal from 'react-modal';
@@ -20,7 +20,7 @@ const Container = styled.div`
 `;
 
 const GameScreenWrapper = styled.div`
-    display: ${({ show }) => show ? 'block' : 'none'}
+  display: ${({ show }) => show ? 'block' : 'none'}
 `;
 
 // Set the root element for our modal
@@ -41,12 +41,12 @@ class App extends PureComponent {
   componentDidMount() {
     // Expose the setScore function
     window.setScore = score => this.setState({ score });
-    
+
     // Set the font; fallback to Roboto
     this.loadFont();
   }
 
-  componentDidUpdate(prevState, prevProps) {
+  componentDidUpdate() {
     if (this.state.initView !== Koji.config.general.debug.startScreen) {
       this.setState({ initView: Koji.config.general.debug.startScreen, view: Koji.config.general.debug.startScreen });
     }
@@ -62,7 +62,7 @@ class App extends PureComponent {
   };
 
   getTemplateConfig = () => ({
-      ...this.state.templateConfig,
+    ...this.state.templateConfig,
   });
 
   setTemplateConfig = (newConfig) => {
@@ -75,15 +75,14 @@ class App extends PureComponent {
   }
 
   render() {
-      console.log('r', this.getTemplateConfig);
     return (
       <Container
         backgroundImage={Koji.config.general.backgroundImage}
         backgroundImageMode={Koji.config.general.backgroundImageMode}
       >
         {
-          this.state.view === 'home' &&
-          <HomeScreen
+          this.state.view === 'preGame' &&
+          <PreGameScreen
             setAppView={view => this.setState({ view })}
             setTemplateConfig={this.setTemplateConfig}
             templateConfig={this.state.templateConfig}
@@ -91,14 +90,14 @@ class App extends PureComponent {
         }
 
         <GameScreenWrapper show={this.state.view === 'game'}>
-            <GameScreen
-                getAppView={() => this.state.view}
-                setAppView={view => this.setState({ view })}
-                getTemplateConfig={this.getTemplateConfig}
-                setOutcome={outcome => this.setState({ outcome })}
-                setScore={score => this.setState({ score })}
-                view={this.state.view === 'game'}
-            />
+          <GameScreen
+            getAppView={() => this.state.view}
+            setAppView={view => this.setState({ view })}
+            getTemplateConfig={this.getTemplateConfig}
+            setOutcome={outcome => this.setState({ outcome })}
+            setScore={score => this.setState({ score })}
+            view={this.state.view === 'game'}
+          />
         </GameScreenWrapper>
 
         {

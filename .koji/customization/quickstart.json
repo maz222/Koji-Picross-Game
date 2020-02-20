@@ -5,7 +5,7 @@
             "general.backgroundImage",
             {
                 "keys": [
-                    "homeScreen.playButtonColor"
+                    "preGameScreen.playButtonColor"
                     
                 ],
                 "name": "Primary Color",
@@ -13,7 +13,7 @@
             },
             {
                 "keys": [
-                    "homeScreen.cardBackgroundColor",
+                    "preGameScreen.cardBackgroundColor",
                     "postGameScreen.playAgainButtonColor"
                 ],
                 "name": "Secondary Color",

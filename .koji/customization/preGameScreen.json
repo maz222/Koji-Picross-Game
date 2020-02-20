@@ -1,7 +1,7 @@
 {
   "preGameScreen": {
     "showPreGameScreen": true,
-    "reveal": "fadeBottom",
+    "reveal": "fadeTop",
     "displayType": "borderedCard",
     "cardBackgroundImage": "",
     "cardBackgroundColor": "#542525",
@@ -9,13 +9,10 @@
     "textColor": "#ffffff",
     "titleTextColor": "#fbfbfb",
     "featuredImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/d7q7q-yourimagehere2.png",
-    "titleText": " ",
+    "titleText": "",
     "titleColor": "#120303",
     "playButtonText": "Play Now",
-    "playButtonColor": "#1c4da8",
-    "titleFontSize": 50,
-    "playButtonFontSize": 32,
-    "featuredImageSize": 40
+    "playButtonColor": "#1c4da8"
   },
   "@@editor": [
     {
@@ -34,31 +31,9 @@
           "type": "image"
         },
         {
-          "key": "featuredImageSize",
-          "name": "Featured Image Size",
-          "description": "Note: Values are capped automatically to make sure the content stays on screen",
-          "type": "range",
-          "typeOptions": {
-            "min": 8,
-            "max": 40,
-            "step": 1
-          }
-        },
-        {
           "key": "titleText",
           "name": "Title Text",
           "type": "text"
-        },
-        {
-          "key": "titleFontSize",
-          "name": "Title Font Size",
-          "description": "Note: Values are capped automatically to make sure the content stays on screen",
-          "type": "range",
-          "typeOptions": {
-            "min": 8,
-            "max": 32,
-            "step": 1
-          }
         },
         {
           "key": "titleColor",
@@ -76,20 +51,9 @@
           "type": "color"
         },
         {
-          "key": "playButtonFontSize",
-          "name": "Play Button Font Size",
-          "description": "Note: Values are capped automatically to make sure the content stays on screen",
-          "type": "range",
-          "typeOptions": {
-            "min": 8,
-            "max": 32,
-            "step": 1
-          }
-        },
-        {
           "key": "reveal",
           "name": "Reveal Animation",
-          "description": "How the home screen reveal is animated",
+          "description": "How the pre game screen reveal is animated",
           "type": "select",
           "typeOptions": {
             "placeholder": "Choose an option...",

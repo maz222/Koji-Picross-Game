@@ -1,50 +1,18 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, { Fragment, PureComponent } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import Koji from '@withkoji/vcc';
-import Bounce from 'react-reveal/Bounce';
-import Fade from 'react-reveal/Fade';
-import RubberBand from 'react-reveal/RubberBand';
-import Zoom from 'react-reveal/Zoom';
 import PropTypes from 'prop-types';
-import isDarkColor from 'is-dark-color';
-import LeaderboardSubmitForm from '../Forms/LeaderboardSubmit';
+import Reveal from '../Components/Reveal';
 import PrimaryButton from '../Buttons/Primary';
-
-let Reveal = ({ children }) => (
-    <div>{children}</div>
-);
-
-if (Koji.config.postGameScreen.reveal === 'rubberBand') Reveal = ({ children }) => (<RubberBand>{children}</RubberBand>);
-if (Koji.config.postGameScreen.reveal === 'bounceTop') Reveal = ({ children }) => (<Bounce top>{children}</Bounce>);
-if (Koji.config.postGameScreen.reveal === 'bounceBottom') Reveal = ({ children }) => (<Bounce bottom>{children}</Bounce>);
-if (Koji.config.postGameScreen.reveal === 'fadeTop') Reveal = ({ children }) => (<Fade top>{children}</Fade>);
-if (Koji.config.postGameScreen.reveal === 'fadeBottom') Reveal = ({ children }) => (<Fade bottom>{children}</Fade>);
-if (Koji.config.postGameScreen.reveal === 'zoomTop') Reveal = ({ children }) => (<Zoom top>{children}</Zoom>);
-if (Koji.config.postGameScreen.reveal === 'zoomBottom') Reveal = ({ children }) => (<Zoom bottom>{children}</Zoom>);
-
-console.log('r', Reveal);
-
-const ButtonLinkWrapper = styled.a`
-  margin: 24px 0 0 0;
-  border: 0;
-  padding: 0;
-  outline: 0;
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
-`;
 
 const FlexWrapper = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   justify-content: center;
   align-items: center;
-`;
-
-const LeaderboardButtonWrapper = styled.div`
-  margin-top: 16px;
+  overflow-x: hidden;
 `;
 
 const ContentWrapper = styled.div`
@@ -53,6 +21,7 @@ const ContentWrapper = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin: 32px auto;
 `;
 
 const CardWrapper = styled.div`
@@ -69,21 +38,14 @@ const CardWrapper = styled.div`
   }
 `;
 
-const Spacer = styled.div`
-  margin: 24px 0;
-`;
-
-const Card = styled.div`
-
-`;
-
 const SocialWrapper = styled.div`
   display: flex;
-  height: 48px;
-  margin-bottom: 16px;
+  align-items: center;
+  justify-content: center;
 
   a {
       width: 48px;
+      height: 48px;
       margin: 0 8px;
   }
 
@@ -96,135 +58,155 @@ const SocialWrapper = styled.div`
 `;
 
 class PostGameScreen extends PureComponent {
-    static propTypes = {
-        outcome: PropTypes.string,
-        setAppView: PropTypes.func,
-        showLeaderboard: PropTypes.func,
-        score: PropTypes.number,
+  static propTypes = {
+    outcome: PropTypes.string,
+    setAppView: PropTypes.func,
+    showLeaderboard: PropTypes.func,
+    score: PropTypes.number,
+  };
+
+  static defaultProps = {
+    outcome: 'lose',
+    setAppView() { },
+    showLeaderboard() { },
+    score: 0,
+  };
+
+  state = {
+    formSubmitting: false,
+    formSubmitted: false,
+    name: '',
+    email: '',
+    phone: '',
+    optIn: true,
+  };
+
+  handleScoreSubmit = e => {
+    e.preventDefault();
+
+    const body = {
+      name: this.state.name,
+      score: this.props.score,
+      email: this.state.email,
+      optIn: this.state.optIn,
+      phone: this.state.phone,
     };
 
-    static defaultProps = {
-        outcome: 'lose',
-        setAppView() { },
-        showLeaderboard() { },
-        score: 0,
-    };
+    const hash = md5(JSON.stringify(body));
 
-    state = {
-        formSubmitting: false,
-        formSubmitted: false,
-        name: '',
-        email: '',
-        phone: '',
-        optIn: true,
-    };
+    fetch(`${Koji.config.serviceMap.backend}/leaderboard/save`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': hash,
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        this.setState({ formSubmitted: true })
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
-    handleScoreSubmit = e => {
-        e.preventDefault();
+  handleClick = () => {
+    this.setState({ formSubmitting: true });
+    window.setTimeout(() => {
+      this.setState({ formSubmitted: true });
+    }, 2000);
+  };
 
-        const body = {
-            name: this.state.name,
-            score: this.props.score,
-            email: this.state.email,
-            optIn: this.state.optIn,
-            phone: this.state.phone,
-        };
+  handleReveal = () => {
+    // On reveal, calculate the height of the element and see if
+    // we need to adjust some flex properties so that overflowing
+    // content renders using flex-start
 
-        const hash = md5(JSON.stringify(body));
-
-        fetch(`${Koji.config.serviceMap.backend}/leaderboard/save`, {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': hash,
-            },
-            body: JSON.stringify(body),
-        })
-            .then((response) => response.json())
-            .then((jsonResponse) => {
-                this.setState({ formSubmitted: true })
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    };
-
-    handleClick = () => {
-        this.setState({ formSubmitting: true });
-        window.setTimeout(() => {
-            this.setState({ formSubmitted: true });
-        }, 2000);
-    };
-
-    render() {
-        return (
-            <FlexWrapper>
-                <Reveal>
-                    <ContentWrapper id={'content-wrapper'}>
-                        {
-                            Koji.config.postGameScreen.leaderboardEnabled &&
-                            <Fragment>
-                                {
-                                    !this.state.formSubmitted &&
-                                    <CardWrapper>
-                                        <div>{'Your Score'}</div>
-                                        <div>{'10,000'}</div>
-                                        <div>
-                                            <label>{'Your Name'}</label>
-                                        </div>
-                                        <div>
-                                            <input type={'text'} />
-                                        </div>
-                                        <PrimaryButton
-                                            loading={this.state.formSubmitting}
-                                            onClick={this.handleClick}
-                                            primaryColor={'#dedede'}
-                                            type={'submit'}
-                                            text={'Submit'}
-                                        />
-                                    </CardWrapper>
-                                }
-                                {
-                                    this.state.formSubmitted &&
-                                    <CardWrapper>
-                                        <div>{'Leaderboard'}</div>
-                                    </CardWrapper>
-                                }
-                            </Fragment>
-                        }
-                        {
-                            Koji.config.postGameScreen.ctaEnabled &&
-                            <CardWrapper>
-                                <div>{'Check Out Our Site'}</div>
-                                <button>{'CTA'}</button>
-                            </CardWrapper>
-                        }
-                        {
-                            Koji.config.postGameScreen.socialEnabled &&
-                            <SocialWrapper>
-                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
-                                </a>
-                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
-                                </a>
-                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
-                                </a>
-                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
-                                </a>
-                            </SocialWrapper>
-                        }
-                        {
-                            Koji.config.postGameScreen.playAgainButtonEnabled &&
-                            <PrimaryButton text={'Play Again'} />
-                        }
-                    </ContentWrapper>
-                </Reveal>
-            </FlexWrapper>
-        );
+    const elem = document.getElementsByClassName('react-reveal')[0];
+    if (elem.offsetHeight > window.innerHeight) {
+      const flexWrapperElem = document.getElementById('flex-wrapper');
+      if (flexWrapperElem) {
+        flexWrapperElem.style.alignItems = 'flex-start';
+      }
     }
+  }
+
+  render() {
+    return (
+      <FlexWrapper id={'flex-wrapper'}>
+        <Reveal
+          id={'test'}
+          onReveal={() => this.handleReveal()}
+          revealType={Koji.config.postGameScreen.reveal}
+        >
+          <ContentWrapper id={'content-wrapper'}>
+            {
+              Koji.config.postGameScreen.leaderboardEnabled &&
+              <Fragment>
+                {
+                  !this.state.formSubmitted &&
+                  <CardWrapper>
+                    <div>{'Your Score'}</div>
+                    <div>{'10,000'}</div>
+                    <div>
+                      <label>{'Your Name'}</label>
+                    </div>
+                    <div>
+                      <input type={'text'} />
+                    </div>
+                    <PrimaryButton
+                      loading={this.state.formSubmitting}
+                      onClick={this.handleClick}
+                      primaryColor={'#dedede'}
+                      type={'submit'}
+                      text={'Submit'}
+                    />
+                  </CardWrapper>
+                }
+                {
+                  this.state.formSubmitted &&
+                  <CardWrapper>
+                    <div>{'Leaderboard'}</div>
+                  </CardWrapper>
+                }
+              </Fragment>
+            }
+            {
+              Koji.config.postGameScreen.ctaEnabled &&
+              <CardWrapper>
+                <div>{'Check Out Our Site'}</div>
+                <button>{'CTA'}</button>
+              </CardWrapper>
+            }
+            {
+              Koji.config.postGameScreen.socialEnabled &&
+              <CardWrapper>
+                <SocialWrapper>
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                  </a>
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                  </a>
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                  </a>
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                  </a>
+                </SocialWrapper>
+              </CardWrapper>
+            }
+            {
+              Koji.config.postGameScreen.playAgainButtonEnabled &&
+              <PrimaryButton text={'Play Again'} />
+            }
+          </ContentWrapper>
+        </Reveal>
+      </FlexWrapper>
+    );
+  }
 }
 
 export default PostGameScreen;
