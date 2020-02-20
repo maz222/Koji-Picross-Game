@@ -3,6 +3,7 @@ import React, { Fragment, PureComponent } from 'react';
 import styled from 'styled-components';
 import Koji from '@withkoji/vcc';
 import PropTypes from 'prop-types';
+import md5 from 'md5';
 import Reveal from '../Components/Reveal';
 import PrimaryButton from '../Buttons/Primary';
 
@@ -240,7 +241,12 @@ class PostGameScreen extends PureComponent {
                       <label>{'Name'}</label>
                     </div>
                     <div className={'input-wrapper'}>
-                      <input type={'text'} />
+                      <input
+                        onChange={e => this.setState({ name: e.currentTarget.value })}
+                        required
+                        type={'text'}
+                        value={this.state.name}
+                      />
                     </div>
                     <div className={'label-wrapper'}>
                       <label>{'Email'}</label>
