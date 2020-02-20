@@ -8,12 +8,12 @@
     "buttonColor": "#e01111",
     "textColor": "#ffffff",
     "titleTextColor": "#fbfbfb",
-    "featuredImage": "https://images.koji-cdn.com/d4d2aab7-1847-481d-8aa6-6866d81d5e0f/rlnvl-enemy1copy.png",
-    "titleText": "This is a fun game!",
-    "titleColor": "#cbbdbd",
+    "featuredImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/d7q7q-yourimagehere2.png",
+    "titleText": " ",
+    "titleColor": "#120303",
     "playButtonText": "Play Now",
     "playButtonColor": "#1c4da8",
-    "titleFontSize": 32,
+    "titleFontSize": 50,
     "playButtonFontSize": 32,
     "featuredImageSize": 40
   },
@@ -85,11 +85,6 @@
             "max": 32,
             "step": 1
           }
-        },
-        {
-          "key": "backgroundImage",
-          "name": "Background Image",
-          "type": "image"
         },
         {
           "key": "reveal",

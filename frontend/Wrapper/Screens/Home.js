@@ -43,16 +43,8 @@ const ContentWrapper = styled.div`
   padding: 32px;
   max-width: 90vw;
 
-  background: ${({ homeScreenDisplayType, homeScreenCardBackgroundImage, secondaryColor }) => {
-      if (homeScreenDisplayType === 'borderedCard') {
-          if (homeScreenCardBackgroundImage) {
-              return `url("${homeScreenCardBackgroundImage}") no-repeat center center / cover`;
-          }
-          return secondaryColor;
-      } return 'none';
-    }};
+  background: none;
   border: none;
-  border-radius: ${({ homeScreenDisplayType }) => homeScreenDisplayType === 'borderedCard' ? '4px' : '0'};
 `;
 
 const ImageLinkWrapper = styled.a`

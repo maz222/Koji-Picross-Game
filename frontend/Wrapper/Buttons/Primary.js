@@ -8,10 +8,20 @@ const StyledButton = styled.button`
   outline: 0;
   font-size: ${({ fontSize }) => fontSize};
   background: ${({ primaryColor }) => primaryColor};
-  color: ${({ primaryColor }) => isDarkColor(primaryColor) ? '#f1f1f1' : '#111111' };
+  color: ${({ primaryColor }) => isDarkColor(primaryColor) ? '#f1f1f1' : '#111111'};
   cursor: pointer;
   padding: 16px;
   border-radius: 4px;
+
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 class PrimaryButton extends PureComponent {
@@ -27,7 +37,7 @@ class PrimaryButton extends PureComponent {
     static defaultProps = {
         fontSize: '16px',
         loading: false,
-        onClick() {},
+        onClick() { },
         primaryColor: '#000000',
         type: 'button',
     };

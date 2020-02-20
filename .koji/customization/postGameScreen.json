@@ -30,7 +30,12 @@
       {
         "label": "First Name"
       }
-    ]
+    ],
+    "leaderboardEnabled": true,
+    "ctaEnabled": true,
+    "socialEnabled": true,
+    "playAgainButtonEnabled": true,
+    "playAgainLinkText": ""
   },
   "@@editor": [
     {
@@ -44,7 +49,7 @@
           "type": "boolean"
         },
         {
-          "key": "enableLeaderboard",
+          "key": "leaderboardEnabled",
           "name": "Enable Leaderboard",
           "type": "boolean"
         },
@@ -69,7 +74,7 @@
           "type": "text"
         },
         {
-          "key": "enableCallToAction",
+          "key": "ctaEnabled",
           "name": "Enable CTA",
           "type": "boolean"
         },
@@ -94,12 +99,12 @@
           "type": "color"
         },
         {
-          "key": "enableSocialShare",
+          "key": "socialEnabled",
           "name": "Enable Social Share",
           "type": "boolean"
         },
         {
-          "key": "showPlayAgainLink",
+          "key": "playAgainButtonEnabled",
           "name": "Show Play Again Link",
           "type": "boolean"
         },

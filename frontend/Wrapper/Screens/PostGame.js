@@ -80,6 +80,7 @@ const Card = styled.div`
 const SocialWrapper = styled.div`
   display: flex;
   height: 48px;
+  margin-bottom: 16px;
 
   a {
       width: 48px;
@@ -161,50 +162,64 @@ class PostGameScreen extends PureComponent {
                 <Reveal>
                     <ContentWrapper id={'content-wrapper'}>
                         {
-                            !this.state.formSubmitted &&
+                            Koji.config.postGameScreen.leaderboardEnabled &&
+                            <Fragment>
+                                {
+                                    !this.state.formSubmitted &&
+                                    <CardWrapper>
+                                        <div>{'Your Score'}</div>
+                                        <div>{'10,000'}</div>
+                                        <div>
+                                            <label>{'Your Name'}</label>
+                                        </div>
+                                        <div>
+                                            <input type={'text'} />
+                                        </div>
+                                        <PrimaryButton
+                                            loading={this.state.formSubmitting}
+                                            onClick={this.handleClick}
+                                            primaryColor={'#dedede'}
+                                            type={'submit'}
+                                            text={'Submit'}
+                                        />
+                                    </CardWrapper>
+                                }
+                                {
+                                    this.state.formSubmitted &&
+                                    <CardWrapper>
+                                        <div>{'Leaderboard'}</div>
+                                    </CardWrapper>
+                                }
+                            </Fragment>
+                        }
+                        {
+                            Koji.config.postGameScreen.ctaEnabled &&
                             <CardWrapper>
-                                <div>{'Your Score'}</div>
-                                <div>{'10,000'}</div>
-                                <div>
-                                    <label>{'Your Name'}</label>
-                                </div>
-                                <div>
-                                    <input type={'text'} />
-                                </div>
-                                <PrimaryButton
-                                    loading={this.state.formSubmitting}
-                                    onClick={this.handleClick}
-                                    primaryColor={'#dedede'}
-                                    type={'submit'}
-                                    text={'Submit'}
-                                />
+                                <div>{'Check Out Our Site'}</div>
+                                <button>{'CTA'}</button>
                             </CardWrapper>
                         }
                         {
-                            this.state.formSubmitted &&
-                            <CardWrapper>
-                                <div>{'Leaderboard'}</div>
-                            </CardWrapper>
+                            Koji.config.postGameScreen.socialEnabled &&
+                            <SocialWrapper>
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                                </a>
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                                </a>
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                                </a>
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
+                                    <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />
+                                </a>
+                            </SocialWrapper>
                         }
-                        <CardWrapper>
-                            <div>{'Check Out Our Site'}</div>
-                            <button>{'CTA'}</button>
-                        </CardWrapper>
-                        <SocialWrapper>
-                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                                <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />    
-                            </a>
-                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                                <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />    
-                            </a>
-                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                                <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />    
-                            </a>
-                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target="_blank">
-                                <img src={'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook2_colored_svg-128.png'} />    
-                            </a>
-                        </SocialWrapper>
-                        <div>{'Play Again'}</div>
+                        {
+                            Koji.config.postGameScreen.playAgainButtonEnabled &&
+                            <PrimaryButton text={'Play Again'} />
+                        }
                     </ContentWrapper>
                 </Reveal>
             </FlexWrapper>
