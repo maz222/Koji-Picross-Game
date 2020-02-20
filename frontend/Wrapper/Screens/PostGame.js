@@ -161,6 +161,8 @@ class PostGameScreen extends PureComponent {
   handleScoreSubmit = e => {
     e.preventDefault();
 
+    this.setState({ formSubmitting: true });
+
     const body = {
       name: this.state.name,
       score: this.props.score,
@@ -184,7 +186,8 @@ class PostGameScreen extends PureComponent {
         fetch(`${Koji.config.serviceMap.backend}/leaderboard`)
           .then((response) => response.json())
           .then(({ scores }) => {
-            this.setState({ formSubmitted: true, scores });
+            this.setState({ formSubmitting: false, formSubmitted: true, scores });
+            console.log('t', this.state.scores);
           })
           .catch(err => {
             console.log('Fetch Error: ', err);
@@ -194,13 +197,6 @@ class PostGameScreen extends PureComponent {
       .catch(err => {
         console.log(err);
       });
-  };
-
-  handleClick = () => {
-    this.setState({ formSubmitting: true });
-    window.setTimeout(() => {
-      this.setState({ formSubmitted: true, formSubmitting: false });
-    }, 2000);
   };
 
   handleReveal = () => {
@@ -215,7 +211,7 @@ class PostGameScreen extends PureComponent {
         flexWrapperElem.style.alignItems = 'flex-start';
       }
     }
-  }
+  };
 
   render() {
     return (
@@ -259,7 +255,7 @@ class PostGameScreen extends PureComponent {
                     <div className={'button-wrapper'}>
                       <PrimaryButton
                         loading={this.state.formSubmitting}
-                        onClick={this.handleClick}
+                        onClick={this.handleScoreSubmit}
                         primaryColor={'#dedede'}
                         type={'submit'}
                         text={'Submit'}
