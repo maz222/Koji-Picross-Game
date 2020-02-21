@@ -66,6 +66,7 @@ const CardWrapper = styled.div`
 
   .input-wrapper > input {
     width: 100%;
+    font-size: 16px;
     font-size: 4vh;
     padding: 4px;
     border-radius: 2px;
