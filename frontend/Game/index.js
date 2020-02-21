@@ -5,7 +5,6 @@ class Game extends PureComponent {
   static propTypes = {
     getAppView: PropTypes.func,
     setAppView: PropTypes.func,
-    getTemplateConfig: PropTypes.func,
     setOutcome: PropTypes.func,
     setScore: PropTypes.func,
   };
@@ -13,31 +12,26 @@ class Game extends PureComponent {
   static defaultProps = {
     getAppView() {},
     setAppView() {},
-    getTemplateConfig() {},
     setOutcome() {},
     setScore() {},
   };
 
   initGame = () => {
+    window.getAppView = this.props.getAppView;
+    window.setAppView = this.props.setAppView;
+    window.setScore = this.props.setScore;
+    window.setOutcome = this.props.setOutcome;
+
+    // Require the functions
+    window.preload = require('./preload').default;
+    window.setup = require('./setup').default;
+    window.draw = require('./draw').default;
+
     // Create the game
     this.p5Game = new window.p5(null, document.getElementById('game-container'));
   }
   componentDidMount() {
     try {
-        console.log('t', this.props);
-        console.log('w', window.draw);
-        window.getAppView = this.props.getAppView;
-        window.setAppView = this.props.setAppView;
-        window.setScore = this.props.setScore;
-        window.setOutcome = this.props.setOutcome;
-        window.getTemplateConfig = this.props.getTemplateConfig;
-        console.log('mount', window.setAppView);
-
-        // Require the functions
-        window.preload = require('./preload').default;
-        window.setup = require('./setup').default;
-        window.draw = require('./draw').default;
-
       this.initGame();
     } catch (err) {
       console.log('Error starting game: ', err);
@@ -47,8 +41,8 @@ class Game extends PureComponent {
   componentDidUpdate() {
     try {
       // Allow refresh of game when the app changes
-    //   this.p5Game.remove();
-    //   this.initGame();
+      this.p5Game.remove();
+      this.initGame();
     } catch (err) {
       console.log('Error hot reloading game: ', err);
     }
@@ -56,7 +50,6 @@ class Game extends PureComponent {
 
   componentWillUnmount() {
     try {
-      console.log('unmount');
       this.p5Game.remove();
     } catch (err) {
       console.log('Error removing game: ', err)
@@ -64,7 +57,6 @@ class Game extends PureComponent {
   }
 
   render() {
-    console.log('render');
     return null;
   }
 }
