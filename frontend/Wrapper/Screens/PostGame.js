@@ -68,23 +68,23 @@ const CardWrapper = styled.div`
     width: 100%;
     font-size: 16px;
     font-size: 4vh;
-    padding: 4px;
-    border-radius: 2px;
-    border: 1px solid lightgray;
+    padding: 1vh;
+    border-radius: 0.5vh;
+    border: 1px solid #dedede;
   }
 
   input[type="checkbox"] {
-    margin-left: 0px;
+    margin-left: 0;
   }
 
   .score-text {
-    font-size: 16px;
-    margin-bottom: 8px;
+    font-size: 4vh;
+    margin-bottom: 2vh;
   }
 
   .score {
-    font-size: 32px;
-    margin-bottom: 16px;
+    font-size: 6vh;
+    margin-bottom: 2vh;
   }
 `;
 
@@ -92,7 +92,7 @@ const SocialWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 2vh;
 
   a {
       width: 48px;
@@ -114,7 +114,7 @@ const LeaderboardWrapper = styled.div`
 const LeaderboardContent = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
+  padding: 0 2vh;
 
   > div {
     display: flex;
@@ -131,7 +131,7 @@ const LeaderboardContent = styled.div`
 
   .leaderboard-name {
     position: absolute;
-    left: 32px;
+    left: 4vh;
   }
 `;
 
@@ -139,6 +139,12 @@ const FormWrapper = styled.form`
   .submit-button-wrapper {
     margin-top: 4vh;
   }
+`;
+
+const PlayAgainLink = styled.a`
+  font-size: 3vh;
+  color: ${({ color }) => color};
+  text-decoration: underline;
 `;
 
 class PostGameScreen extends PureComponent {
@@ -165,9 +171,7 @@ class PostGameScreen extends PureComponent {
     optIn: true,
   };
 
-  handleScoreSubmit = e => {
-    e.preventDefault();
-
+  handleScoreSubmit = () => {
     this.setState({ formSubmitting: true });
 
     const body = {
@@ -213,9 +217,9 @@ class PostGameScreen extends PureComponent {
 
     const flexWrapperElem = document.getElementById('flex-wrapper');
     if (flexWrapperElem) {
-        window.setTimeout(() => {
-            flexWrapperElem.style.overflowY = 'auto';
-        }, 1000);
+      window.setTimeout(() => {
+        flexWrapperElem.style.overflowY = 'auto';
+      }, 1000);
     }
     const elem = document.getElementsByClassName('react-reveal')[0];
     if (elem.offsetHeight > window.innerHeight) {
@@ -226,6 +230,9 @@ class PostGameScreen extends PureComponent {
   };
 
   render() {
+    const collectEmail = ['yes', 'required'].includes(Koji.config.postGameScreen.collectEmail);
+    const collectPhone = ['yes', 'required'].includes(Koji.config.postGameScreen.collectPhone);
+
     return (
       <FlexWrapper id={'flex-wrapper'}>
         <Reveal
@@ -248,32 +255,73 @@ class PostGameScreen extends PureComponent {
                   <CardWrapper>
                     <FormWrapper onSubmit={this.handleScoreSubmit}>
                       <div className={'score-text'}>{'Your Score'}</div>
-                      <div className={'score'}>{'10,000'}</div>
-                      <div className={'label-wrapper'}>
-                        <label>{'Name'}</label>
+                      <div className={'score'}>{this.props.score}</div>
+
+                      <div className={'field-wrapper'}>
+                        <div className={'label-wrapper'}>
+                          <label>{'Name'}</label>
+                        </div>
+                        <div className={'input-wrapper'}>
+                          <input
+                            onChange={e => this.setState({ name: e.currentTarget.value })}
+                            required
+                            type={'text'}
+                            value={this.state.name}
+                          />
+                        </div>
                       </div>
-                      <div className={'input-wrapper'}>
-                        <input
-                          onChange={e => this.setState({ name: e.currentTarget.value })}
-                          required
-                          type={'text'}
-                          value={this.state.name}
-                        />
-                      </div>
-                      <div className={'label-wrapper'}>
-                        <label>{'Email'}</label>
-                      </div>
-                      <div className={'input-wrapper'}>
-                        <input type={'text'} />
-                      </div>
-                      <div className={'label-wrapper'}>
-                        <input type={'checkbox'} />
-                        {'Opt In'}
-                      </div>
+
+                      {
+                        collectEmail &&
+                        <div className={'field-wrapper'}>
+                          <div className={'label-wrapper'}>
+                            <label>{'Email'}</label>
+                          </div>
+                          <div className={'input-wrapper'}>
+                            <input
+                              onChange={e => this.setState({ email: e.currentTarget.value })}
+                              required={Koji.config.postGameScreen.collectEmail === 'required'}
+                              type={'email'}
+                              value={this.state.email}
+                            />
+                          </div>
+                        </div>
+                      }
+
+                      {
+                        collectPhone &&
+                        <div className={'field-wrapper'}>
+                          <div className={'label-wrapper'}>
+                            <label>{'Phone'}</label>
+                          </div>
+                          <div className={'input-wrapper'}>
+                            <input
+                              onChange={e => this.setState({ phone: e.currentTarget.value })}
+                              required={Koji.config.postGameScreen.collectPhone === 'required'}
+                              type={'tel'}
+                              value={this.state.phone}
+                            />
+                          </div>
+                        </div>
+                      }
+
+                      {
+                        (collectEmail || collectPhone) &&
+                        <div className={'field-wrapper'}>
+                          <div className={'label-wrapper'}>
+                            <input
+                              checked={this.state.optIn}
+                              onChange={e => this.setState({ optIn: e.currentTarget.checked })}
+                              type={'checkbox'}
+                            />
+                            {'Opt In'}
+                          </div>
+                        </div>
+                      }
+
                       <div className={'submit-button-wrapper'}>
                         <PrimaryButton
                           loading={this.state.formSubmitting}
-                          onClick={this.handleScoreSubmit}
                           primaryColor={'#dedede'}
                           type={'submit'}
                           text={'Submit'}
@@ -335,8 +383,13 @@ class PostGameScreen extends PureComponent {
               </CardWrapper>
             }
             {
-              Koji.config.postGameScreen.playAgainButtonEnabled &&
-              <PrimaryButton text={'Play Again'} />
+              Koji.config.postGameScreen.playAgainLinkEnabled &&
+              <PlayAgainLink
+                color={Koji.config.postGameScreen.playAgainLinkColor}
+                onClick={() => this.props.setAppView('game')}
+              >
+                {Koji.config.postGameScreen.playAgainLinkText}
+              </PlayAgainLink>
             }
           </ContentWrapper>
         </Reveal>
