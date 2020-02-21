@@ -45,7 +45,7 @@ const CardWrapper = styled.div`
   }
 
   .cta-headline, .social-headline {
-    font-size: 3vh;
+    font-size: 4vh;
     margin-bottom: 2vh;
   }
 
@@ -142,9 +142,10 @@ const FormWrapper = styled.form`
 `;
 
 const PlayAgainLink = styled.a`
-  font-size: 3vh;
+  font-size: 4vh;
   color: ${({ color }) => color};
   text-decoration: underline;
+  cursor: pointer;
 `;
 
 class PostGameScreen extends PureComponent {
@@ -367,17 +368,17 @@ class PostGameScreen extends PureComponent {
               <CardWrapper>
                 <div className={'social-headline'}>{Koji.config.postGameScreen.socialShareHeadline}</div>
                 <SocialWrapper>
-                  <a href={`http://www.reddit.com/submit?url=${window.encodeURIComponent(window.location.href)}`} target="_blank">
-                    <img src={Koji.config.postGameScreen.redditIcon} />
-                  </a>
                   <a href={`https://twitter.com/intent/tweet?text=${window.encodeURIComponent(document.title)}: ${window.encodeURIComponent(window.location.href)}`} target="_blank">
                     <img src={Koji.config.postGameScreen.twitterIcon} />
+                  </a>
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.encodeURIComponent(window.location.href)}`} target="_blank">
+                    <img src={Koji.config.postGameScreen.facebookIcon} />
                   </a>
                   <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.encodeURIComponent(window.location.href)}&title=${window.encodeURIComponent(document.title)}&source=LinkedIn`} target="_blank">
                     <img src={Koji.config.postGameScreen.linkedInIcon} />
                   </a>
-                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.encodeURIComponent(window.location.href)}`} target="_blank">
-                    <img src={Koji.config.postGameScreen.facebookIcon} />
+                  <a href={`http://www.reddit.com/submit?url=${window.encodeURIComponent(window.location.href)}`} target="_blank">
+                    <img src={Koji.config.postGameScreen.redditIcon} />
                   </a>
                 </SocialWrapper>
               </CardWrapper>

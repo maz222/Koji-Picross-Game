@@ -32,7 +32,7 @@
       }
     ],
     "leaderboardEnabled": true,
-    "ctaEnabled": true,
+    "ctaEnabled": false,
     "ctaHeadline": "Check out our site!",
     "socialShareEnabled": true,
     "socialShareHeadline": "Invite Friends",
@@ -43,8 +43,8 @@
     "linkedInIcon": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/qlyjr-roundedlinkedin.png",
     "twitterIcon": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/o7q85-roundedtwitter.png",
     "redditIcon": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/kovap-roundedreddit.png",
-    "collectEmail": "no",
-    "collectPhone": "no",
+    "collectEmail": "yes",
+    "collectPhone": "yes",
     "optInText": "I agree to receive updates"
   },
   "@@editor": [
