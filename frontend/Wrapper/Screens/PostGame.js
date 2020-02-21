@@ -14,6 +14,7 @@ const FlexWrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
+  overflow-y: hidden;
 `;
 
 const ContentWrapper = styled.div`
@@ -205,9 +206,14 @@ class PostGameScreen extends PureComponent {
     // we need to adjust some flex properties so that overflowing
     // content renders using flex-start
 
+    const flexWrapperElem = document.getElementById('flex-wrapper');
+    if (flexWrapperElem) {
+        window.setTimeout(() => {
+            flexWrapperElem.style.overflowY = 'auto';
+        }, 1000);
+    }
     const elem = document.getElementsByClassName('react-reveal')[0];
     if (elem.offsetHeight > window.innerHeight) {
-      const flexWrapperElem = document.getElementById('flex-wrapper');
       if (flexWrapperElem) {
         flexWrapperElem.style.alignItems = 'flex-start';
       }
