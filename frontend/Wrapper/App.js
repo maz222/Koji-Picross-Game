@@ -17,6 +17,7 @@ const Container = styled.div`
     }
     return backgroundColor;
   }}
+  overflow: hidden;
 `;
 
 const GameScreenWrapper = styled.div`
