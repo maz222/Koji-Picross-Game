@@ -32,7 +32,7 @@
       }
     ],
     "leaderboardEnabled": true,
-    "ctaEnabled": false,
+    "ctaEnabled": true,
     "ctaHeadline": "Check out our site!",
     "socialShareEnabled": true,
     "socialShareHeadline": "Invite Friends",
@@ -45,7 +45,10 @@
     "redditIcon": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/kovap-roundedreddit.png",
     "collectEmail": "yes",
     "collectPhone": "yes",
-    "optInText": "I agree to receive updates"
+    "optInText": "I agree to receive updates",
+    "ctaButtonColor": "#1c4da8",
+    "ctaButtonText": "Visit Site",
+    "ctaButtonLink": "https://withkoji.com"
   },
   "@@editor": [
     {

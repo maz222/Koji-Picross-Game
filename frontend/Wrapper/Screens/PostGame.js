@@ -170,13 +170,15 @@ const SubmitButton = styled.button`
 `;
 
 const CTALink = styled.a`
-  font-size: 3vh;
+  display: block;
+  font-size: 4vh;
   padding: 1.5vh 10vh;
   border: 0;
   border-radius: 2vh;
   background: ${({ backgroundColor }) => backgroundColor};
   color: ${({ backgroundColor }) => isDarkColor(backgroundColor) ? '#f1f1f1' : '#111111'};
   cursor: pointer;
+  text-decoration: none;
 
   transition: transform 0.1s;
 
@@ -405,7 +407,7 @@ class PostGameScreen extends PureComponent {
                     href={Koji.config.postGameScreen.ctaButtonLink}
                     target={'_blank'}
                   >
-                    {Koji.config.ctaButtonText}
+                    {Koji.config.postGameScreen.ctaButtonText}
                   </CTALink>
                 </div>
               </CardWrapper>
