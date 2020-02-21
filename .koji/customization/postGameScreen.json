@@ -1,39 +1,9 @@
 {
   "postGameScreen": {
-    "showPostGameScreen": true,
-    "showPlayAgainButton": true,
-    "playAgainButtonText": "Play Again",
-    "playAgainButtonFontSize": 20,
-    "playAgainButtonColor": "#c31919",
-    "title": "Thanks for Playing",
-    "actions": {
-      "action": "reveal",
-      "emailCollection": "yes",
-      "phoneCollection": "no",
-      "optInText": "I agree to be contacted",
-      "submitButtonText": "Submit",
-      "submitButtonColor": "#2d179b",
-      "viewLeaderboardButtonText": "View Leaderboard",
-      "viewLeaderboardButtonColor": "#2f1f7d",
-      "text": "Create a game on Koji in 5 minutes!",
-      "buttonText": "Get Started",
-      "buttonLink": "https://withkoji.com",
-      "leaderboardColor": "#361db3",
-      "leaderboardBackgroundColor": "#5a4d9c",
-      "buttonColor": "#b4b933",
-      "winText": "Congratulations, you won!",
-      "loseText": "Good try, better luck next time!",
-      "message": "Visit <a href=\"https://withkoji.com\">our site</a> to learn more."
-    },
     "reveal": "bounceBottom",
-    "leaderboardFields": [
-      {
-        "label": "First Name"
-      }
-    ],
     "leaderboardEnabled": true,
     "ctaEnabled": true,
-    "ctaHeadline": "Check out our site!",
+    "ctaHeadline": "Check out our site!!",
     "socialShareEnabled": true,
     "socialShareHeadline": "Invite Friends",
     "playAgainLinkEnabled": true,
@@ -56,11 +26,6 @@
       "name": "3. End Card",
       "source": "postGameScreen.json",
       "fields": [
-        {
-          "key": "showPostGameScreen",
-          "name": "Show End Card",
-          "type": "boolean"
-        },
         {
           "key": "leaderboardEnabled",
           "name": "LEADERBOARD",

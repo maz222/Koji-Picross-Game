@@ -27,11 +27,14 @@ const GameScreenWrapper = styled.div`
 // Set the root element for our modal
 Modal.setAppElement('#root');
 
+const isEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
 class App extends PureComponent {
   state = {
     initView: Koji.config.general.debug.startScreen,
     leaderBoardModalIsOpen: false,
     outcome: undefined,
+    postGameScreenConfig: Koji.config.postGameScreen,
     score: 0,
     templateConfig: {
       soundEnabled: true,
