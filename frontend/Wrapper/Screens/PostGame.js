@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Koji from '@withkoji/vcc';
 import PropTypes from 'prop-types';
 import md5 from 'md5';
+import isDarkColor from 'is-dark-color';
 import Reveal from '../Components/Reveal';
 import PrimaryButton from '../Buttons/Primary';
 
@@ -146,6 +147,46 @@ const PlayAgainLink = styled.a`
   color: ${({ color }) => color};
   text-decoration: underline;
   cursor: pointer;
+`;
+
+const SubmitButton = styled.button`
+  font-size: 3vh;
+  padding: 1.5vh 10vh;
+  border: 0;
+  border-radius: 2vh;
+  background: ${({ backgroundColor }) => backgroundColor};
+  color: ${({ backgroundColor }) => isDarkColor(backgroundColor) ? '#f1f1f1' : '#111111'};
+  cursor: pointer;
+
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`;
+
+const CTALink = styled.a`
+  font-size: 3vh;
+  padding: 1.5vh 10vh;
+  border: 0;
+  border-radius: 2vh;
+  background: ${({ backgroundColor }) => backgroundColor};
+  color: ${({ backgroundColor }) => isDarkColor(backgroundColor) ? '#f1f1f1' : '#111111'};
+  cursor: pointer;
+
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 class PostGameScreen extends PureComponent {
@@ -321,12 +362,12 @@ class PostGameScreen extends PureComponent {
                       }
 
                       <div className={'submit-button-wrapper'}>
-                        <PrimaryButton
-                          loading={this.state.formSubmitting}
-                          primaryColor={'#dedede'}
+                        <SubmitButton
+                          backgroundColor={'#dedede'}
                           type={'submit'}
-                          text={'Submit'}
-                        />
+                        >
+                          {'Submit'}
+                        </SubmitButton>
                       </div>
                     </FormWrapper>
                   </CardWrapper>
@@ -359,7 +400,13 @@ class PostGameScreen extends PureComponent {
               <CardWrapper>
                 <div className={'cta-headline'}>{Koji.config.postGameScreen.ctaHeadline}</div>
                 <div className={'button-wrapper'}>
-                  <PrimaryButton text={'Visit Site'} />
+                  <CTALink
+                    backgroundColor={Koji.config.postGameScreen.ctaButtonColor}
+                    href={Koji.config.postGameScreen.ctaButtonLink}
+                    target={'_blank'}
+                  >
+                    {Koji.config.ctaButtonText}
+                  </CTALink>
                 </div>
               </CardWrapper>
             }
@@ -368,16 +415,28 @@ class PostGameScreen extends PureComponent {
               <CardWrapper>
                 <div className={'social-headline'}>{Koji.config.postGameScreen.socialShareHeadline}</div>
                 <SocialWrapper>
-                  <a href={`https://twitter.com/intent/tweet?text=${window.encodeURIComponent(document.title)}: ${window.encodeURIComponent(window.location.href)}`} target="_blank">
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${window.encodeURIComponent(document.title)}: ${window.encodeURIComponent(window.location.href)}`}
+                    target={'_blank'}
+                  >
                     <img src={Koji.config.postGameScreen.twitterIcon} />
                   </a>
-                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.encodeURIComponent(window.location.href)}`} target="_blank">
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${window.encodeURIComponent(window.location.href)}`}
+                    target={'_blank'}
+                  >
                     <img src={Koji.config.postGameScreen.facebookIcon} />
                   </a>
-                  <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.encodeURIComponent(window.location.href)}&title=${window.encodeURIComponent(document.title)}&source=LinkedIn`} target="_blank">
+                  <a
+                    href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.encodeURIComponent(window.location.href)}&title=${window.encodeURIComponent(document.title)}&source=LinkedIn`}
+                    target={'_blank'}
+                  >
                     <img src={Koji.config.postGameScreen.linkedInIcon} />
                   </a>
-                  <a href={`http://www.reddit.com/submit?url=${window.encodeURIComponent(window.location.href)}`} target="_blank">
+                  <a
+                    href={`http://www.reddit.com/submit?url=${window.encodeURIComponent(window.location.href)}`}
+                    target={'_blank'}
+                  >
                     <img src={Koji.config.postGameScreen.redditIcon} />
                   </a>
                 </SocialWrapper>
