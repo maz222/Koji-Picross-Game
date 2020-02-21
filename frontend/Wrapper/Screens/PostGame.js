@@ -134,6 +134,12 @@ const LeaderboardContent = styled.div`
   }
 `;
 
+const FormWrapper = styled.form`
+  .submit-button-wrapper {
+    margin-top: 4vh;
+  }
+`;
+
 class PostGameScreen extends PureComponent {
   static propTypes = {
     outcome: PropTypes.string,
@@ -239,38 +245,40 @@ class PostGameScreen extends PureComponent {
                 {
                   !this.state.formSubmitted && !this.state.formSubmitting &&
                   <CardWrapper>
-                    <div className={'score-text'}>{'Your Score'}</div>
-                    <div className={'score'}>{'10,000'}</div>
-                    <div className={'label-wrapper'}>
-                      <label>{'Name'}</label>
-                    </div>
-                    <div className={'input-wrapper'}>
-                      <input
-                        onChange={e => this.setState({ name: e.currentTarget.value })}
-                        required
-                        type={'text'}
-                        value={this.state.name}
-                      />
-                    </div>
-                    <div className={'label-wrapper'}>
-                      <label>{'Email'}</label>
-                    </div>
-                    <div className={'input-wrapper'}>
-                      <input type={'text'} />
-                    </div>
-                    <div className={'label-wrapper'}>
-                      <input type={'checkbox'} />
-                      {'Opt In'}
-                    </div>
-                    <div className={'button-wrapper'}>
-                      <PrimaryButton
-                        loading={this.state.formSubmitting}
-                        onClick={this.handleScoreSubmit}
-                        primaryColor={'#dedede'}
-                        type={'submit'}
-                        text={'Submit'}
-                      />
-                    </div>
+                    <FormWrapper onSubmit={this.handleScoreSubmit}>
+                      <div className={'score-text'}>{'Your Score'}</div>
+                      <div className={'score'}>{'10,000'}</div>
+                      <div className={'label-wrapper'}>
+                        <label>{'Name'}</label>
+                      </div>
+                      <div className={'input-wrapper'}>
+                        <input
+                          onChange={e => this.setState({ name: e.currentTarget.value })}
+                          required
+                          type={'text'}
+                          value={this.state.name}
+                        />
+                      </div>
+                      <div className={'label-wrapper'}>
+                        <label>{'Email'}</label>
+                      </div>
+                      <div className={'input-wrapper'}>
+                        <input type={'text'} />
+                      </div>
+                      <div className={'label-wrapper'}>
+                        <input type={'checkbox'} />
+                        {'Opt In'}
+                      </div>
+                      <div className={'submit-button-wrapper'}>
+                        <PrimaryButton
+                          loading={this.state.formSubmitting}
+                          onClick={this.handleScoreSubmit}
+                          primaryColor={'#dedede'}
+                          type={'submit'}
+                          text={'Submit'}
+                        />
+                      </div>
+                    </FormWrapper>
                   </CardWrapper>
                 }
                 {
