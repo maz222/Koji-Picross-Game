@@ -31,6 +31,7 @@ class GameScreen extends PureComponent {
   };
 
   render() {
+    console.log('T', JSON.stringify(this.props, null, 2));
     return (
       <GameContainer
         gameBackgroundImage={Koji.config.general.backgroundImage}

@@ -92,12 +92,12 @@ class App extends PureComponent {
 
         <GameScreenWrapper show={this.state.view === 'game'}>
           <GameScreen
+            view={this.state.view === 'game'}
             getAppView={() => this.state.view}
             setAppView={view => this.setState({ view })}
             getTemplateConfig={this.getTemplateConfig}
             setOutcome={outcome => this.setState({ outcome })}
             setScore={score => this.setState({ score })}
-            view={this.state.view === 'game'}
           />
         </GameScreenWrapper>
 

@@ -24,11 +24,13 @@ class Game extends PureComponent {
   }
   componentDidMount() {
     try {
+        console.log('t', JSON.stringify(this.props, null, 2));
         window.getAppView = this.props.getAppView;
         window.setAppView = this.props.setAppView;
         window.setScore = this.props.setScore;
         window.setOutcome = this.props.setOutcome;
         window.getTemplateConfig = this.props.getTemplateConfig;
+        console.log('mount', window.setAppView);
 
         // Require the functions
         window.preload = require('./preload').default;
