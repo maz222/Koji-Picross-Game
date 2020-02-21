@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import md5 from 'md5';
 import isDarkColor from 'is-dark-color';
 import Reveal from '../Components/Reveal';
-import PrimaryButton from '../Buttons/Primary';
 
 const FlexWrapper = styled.div`
   display: flex;

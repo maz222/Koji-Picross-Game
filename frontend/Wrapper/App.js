@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import GameScreen from './Screens/Game';
 import PostGameScreen from './Screens/PostGame';
 import PreGameScreen from './Screens/PreGame';
-import LeaderboardModal from './Modals/Leaderboard';
 import Koji from '@withkoji/vcc';
-import Modal from 'react-modal';
 import WebFont from 'webfontloader';
 
 const Container = styled.div`
@@ -23,11 +21,6 @@ const Container = styled.div`
 const GameScreenWrapper = styled.div`
   display: ${({ show }) => show ? 'block' : 'none'}
 `;
-
-// Set the root element for our modal
-Modal.setAppElement('#root');
-
-const isEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 class App extends PureComponent {
   state = {
@@ -113,10 +106,6 @@ class App extends PureComponent {
             setAppView={view => this.setState({ view })}
           />
         }
-        <LeaderboardModal
-          isOpen={this.state.leaderBoardModalIsOpen}
-          onCloseClick={() => this.setState({ leaderBoardModalIsOpen: false })}
-        />
       </Container>
     );
   }
