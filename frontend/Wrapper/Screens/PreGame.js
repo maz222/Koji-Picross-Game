@@ -49,6 +49,7 @@ const PlayButton = styled.button`
   border-radius: 2vh;
   background: ${({ backgroundColor }) => backgroundColor};
   color: ${({ backgroundColor }) => isDarkColor(backgroundColor) ? '#f1f1f1' : '#111111'};
+  cursor: pointer;
 `;
 
 class HomeScreen extends PureComponent {

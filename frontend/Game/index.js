@@ -24,7 +24,8 @@ class Game extends PureComponent {
   }
   componentDidMount() {
     try {
-        console.log('t', JSON.stringify(this.props, null, 2));
+        console.log('t', this.props);
+        console.log('w', window.draw);
         window.getAppView = this.props.getAppView;
         window.setAppView = this.props.setAppView;
         window.setScore = this.props.setScore;
@@ -55,6 +56,7 @@ class Game extends PureComponent {
 
   componentWillUnmount() {
     try {
+      console.log('unmount');
       this.p5Game.remove();
     } catch (err) {
       console.log('Error removing game: ', err)
@@ -62,6 +64,7 @@ class Game extends PureComponent {
   }
 
   render() {
+    console.log('render');
     return null;
   }
 }
