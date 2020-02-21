@@ -44,9 +44,9 @@ const Content = styled.div`
 
 const PlayButton = styled.button`
   font-size: 5vh;
-  padding: 1.5vh;
-  width: 80vw;
-  max-width: 320px;
+  padding: 1.5vh 10vh;
+  border: 0;
+  border-radius: 2vh;
 `;
 
 class HomeScreen extends PureComponent {
