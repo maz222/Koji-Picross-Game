@@ -1,6 +1,5 @@
 {
   "preGameScreen": {
-    "showPreGameScreen": true,
     "reveal": "fadeTop",
     "displayType": "borderedCard",
     "cardBackgroundImage": "",
@@ -9,22 +8,17 @@
     "textColor": "#ffffff",
     "titleTextColor": "#fbfbfb",
     "featuredImage": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/d7q7q-yourimagehere2.png",
-    "titleText": "",
+    "titleText": "Our game is amazing!",
     "titleColor": "#120303",
-    "playButtonText": "Play Now",
+    "playButtonText": "Play",
     "playButtonColor": "#1c4da8"
   },
   "@@editor": [
     {
       "key": "preGameScreen",
-      "name": "1. Pre Game Screen",
+      "name": "1. Start Screen",
       "source": "preGameScreen.json",
       "fields": [
-        {
-          "key": "showPreGameScreen",
-          "name": "Show Pre Game Screen",
-          "type": "boolean"
-        },
         {
           "key": "featuredImage",
           "name": "Featured Image",

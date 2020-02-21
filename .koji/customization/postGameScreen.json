@@ -34,12 +34,15 @@
     "leaderboardEnabled": true,
     "ctaEnabled": true,
     "socialEnabled": true,
-    "playAgainButtonEnabled": true,
+    "playAgainLinkEnabled": true,
     "playAgainLinkText": "",
     "facebookIcon": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/ovg2x-roundedfacebook.png",
     "linkedInIcon": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/qlyjr-roundedlinkedin.png",
     "twitterIcon": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/o7q85-roundedtwitter.png",
-    "redditIcon": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/kovap-roundedreddit.png"
+    "redditIcon": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/kovap-roundedreddit.png",
+    "collectEmail": "no",
+    "collectPhone": "no",
+    "optInText": "I agree to receive updates"
   },
   "@@editor": [
     {
@@ -54,18 +57,52 @@
         },
         {
           "key": "leaderboardEnabled",
-          "name": "Enable Leaderboard",
+          "name": "LEADERBOARD",
           "type": "boolean"
         },
         {
           "key": "collectEmail",
           "name": "Collect Email",
-          "type": "boolean"
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "value": "no",
+                "label": "Do Not Collect"
+              },
+              {
+                "value": "yes",
+                "label": "Collect"
+              },
+              {
+                "value": "require",
+                "label": "Collect & Require For Submission"
+              }
+            ]
+          }
         },
         {
           "key": "collectPhone",
           "name": "Collect Phone",
-          "type": "boolean"
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "value": "no",
+                "label": "Do Not Collect"
+              },
+              {
+                "value": "yes",
+                "label": "Collect"
+              },
+              {
+                "value": "require",
+                "label": "Collect & Require For Submission"
+              }
+            ]
+          }
         },
         {
           "key": "optInText",
@@ -74,12 +111,13 @@
         },
         {
           "key": "leaderboardWebhookURL",
-          "name": "Leaderboard Webhook URL",
+          "name": "Zapier Webhook URL",
+          "description": "If you have a Zapier integration, you can connect with their webhook service. Watch a tutorial here: https://withkoji.com",
           "type": "text"
         },
         {
           "key": "ctaEnabled",
-          "name": "Enable CTA",
+          "name": "CALL TO ACTION",
           "type": "boolean"
         },
         {
@@ -104,18 +142,13 @@
         },
         {
           "key": "socialEnabled",
-          "name": "Enable Social Share",
+          "name": "SOCIAL SHARE",
           "type": "boolean"
         },
         {
-          "key": "playAgainButtonEnabled",
+          "key": "playAgainLinkEnabled",
           "name": "Show Play Again Link",
           "type": "boolean"
-        },
-        {
-          "key": "playAgainLinkText",
-          "name": "Play Again Link Text",
-          "type": "text"
         },
         {
           "key": "reveal",

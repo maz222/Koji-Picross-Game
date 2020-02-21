@@ -3,7 +3,7 @@
   "@@editor": [
     {
       "key": "settings",
-      "name": "2. Game Settings",
+      "name": "2. Gameplay",
       "source": "settings.json",
       "fields": [
         {
