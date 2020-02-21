@@ -23,38 +23,35 @@ const ContentWrapper = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 32px auto;
+  margin: 4vh auto;
 `;
 
 const CardWrapper = styled.div`
-  border-radius: 2px;
-  width: 80vw;
+  border-radius: 0.5vh;
+  width: 90vw;
   min-width: 280px;
   max-width: 480px;
   background: rgba(255, 255, 255, 0.9);
-  padding: 24px;
-  margin-bottom: 16px;
+  padding: 4vh;
+  margin-bottom: 4vh;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
   h1 {
-    font-size: 20px;
-    margin-bottom: 8px;
+    font-size: 4vh;
+    margin-bottom: 1vh;
   }
 
-  .cta-text {
-    font-size: 20px;
-  }
-
-  .button-wrapper {
-    margin-top: 8px;
+  .cta-headline, .social-headline {
+    font-size: 3vh;
+    margin-bottom: 2vh;
   }
 
   .label-wrapper {
     text-align: left;
-    margin-bottom: 4px;
+    margin-bottom: 0.5vh;
     width: 100%;
     max-width: 320px;
     display: flex;
@@ -62,14 +59,14 @@ const CardWrapper = styled.div`
   }
 
   .input-wrapper {
-    margin-bottom: 8px;
+    margin-bottom: 2vh;
     width: 100%;
     max-width: 320px;
   }
 
   .input-wrapper > input {
     width: 100%;
-    font-size: 14px;
+    font-size: 4vh;
     padding: 4px;
     border-radius: 2px;
     border: 1px solid lightgray;
@@ -94,6 +91,7 @@ const SocialWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 8px;
 
   a {
       width: 48px;
@@ -301,15 +299,16 @@ class PostGameScreen extends PureComponent {
             {
               Koji.config.postGameScreen.ctaEnabled &&
               <CardWrapper>
-                <div className={'cta-text'}>{'Check Out Our Site'}</div>
+                <div className={'cta-headline'}>{Koji.config.postGameScreen.ctaHeadline}</div>
                 <div className={'button-wrapper'}>
                   <PrimaryButton text={'Visit Site'} />
                 </div>
               </CardWrapper>
             }
             {
-              Koji.config.postGameScreen.socialEnabled &&
+              Koji.config.postGameScreen.socialShareEnabled &&
               <CardWrapper>
+                <div className={'social-headline'}>{Koji.config.postGameScreen.socialShareHeadline}</div>
                 <SocialWrapper>
                   <a href={`http://www.reddit.com/submit?url=${window.encodeURIComponent(window.location.href)}`} target="_blank">
                     <img src={Koji.config.postGameScreen.redditIcon} />

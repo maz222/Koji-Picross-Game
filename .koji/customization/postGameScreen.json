@@ -33,7 +33,9 @@
     ],
     "leaderboardEnabled": true,
     "ctaEnabled": true,
-    "socialEnabled": true,
+    "ctaHeadline": "Check out our site!",
+    "socialShareEnabled": true,
+    "socialShareHeadline": "Invite Friends",
     "playAgainLinkEnabled": true,
     "playAgainLinkText": "",
     "facebookIcon": "https://images.koji-cdn.com/4fba5aca-3a39-409c-8db0-c660207a39ee/ovg2x-roundedfacebook.png",
@@ -141,9 +143,14 @@
           "type": "color"
         },
         {
-          "key": "socialEnabled",
+          "key": "socialShareEnabled",
           "name": "SOCIAL SHARE",
           "type": "boolean"
+        },
+        {
+          "key": "socialShareHeadline",
+          "name": "Social Share Headline",
+          "type": "text"
         },
         {
           "key": "playAgainLinkEnabled",

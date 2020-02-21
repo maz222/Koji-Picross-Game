@@ -15,21 +15,8 @@ const FlexWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  max-height: 50vh;
+  max-height: 100%;
   max-width: 100%;
-`;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 32px;
-  max-width: 100vw;
-
-  background: none;
-  border: none;
 `;
 
 const TextWrapper = styled.div`
@@ -40,12 +27,25 @@ const TextWrapper = styled.div`
 
 const SoundIcon = styled.img`
   position: absolute;
-  bottom: 8px;
-  right: 8px;
+  bottom: 2vh;
+  right: 2vh;
 `;
 
-const Divider = styled.div`
-  height: ${({ height }) => height};
+const Content = styled.div`
+  text-align: center;
+  > div {
+    height: 25vh;
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const PlayButton = styled.button`
+  font-size: 5vh;
+  padding: 1.5vh;
+  min-width: 50vw;
 `;
 
 class HomeScreen extends PureComponent {
@@ -79,17 +79,14 @@ class HomeScreen extends PureComponent {
       <Fragment>
         <FlexWrapper>
           <Reveal revealType={Koji.config.preGameScreen.reveal}>
-            <ContentWrapper
-              id={'content-wrapper'}
-              secondaryColor={Koji.config.preGameScreen.cardBackgroundColor}
-            >
-              {
-                Koji.config.preGameScreen.featuredImage && Koji.config.preGameScreen.featuredImage !== '' &&
-                <Image
+            <Content>
+              <div>
+              <Image
                   imageHeight={parseInt(Koji.config.preGameScreen.featuredImageSize, 10)}
                   src={Koji.config.preGameScreen.featuredImage}
                 />
-              }
+              </div>
+              <div>
               {
                 Koji.config.preGameScreen.titleText && Koji.config.preGameScreen.titleText !== '' &&
                 <TextWrapper
@@ -99,17 +96,13 @@ class HomeScreen extends PureComponent {
                   {Koji.config.preGameScreen.titleText}
                 </TextWrapper>
               }
-              {
-                (!Koji.config.preGameScreen.titleText || Koji.config.preGameScreen.titleText === '') &&
-                <Divider height={'7.5vh'} />
-              }
-              <PrimaryButton
-                fontSize={'7.5vh'}
-                onClick={() => this.props.setAppView('game')}
-                primaryColor={Koji.config.preGameScreen.playButtonColor}
-                text={Koji.config.preGameScreen.playButtonText}
-              />
-            </ContentWrapper>
+              </div>
+              <div>
+                <PlayButton onClick={() => this.props.setAppView('game')}>
+                  {'Play'}
+                </PlayButton>
+              </div>
+            </Content>
           </Reveal>
         </FlexWrapper>
         <SoundIcon
