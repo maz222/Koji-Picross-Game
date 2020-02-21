@@ -2,8 +2,8 @@ import React, { Fragment, PureComponent } from 'react';
 import styled from 'styled-components';
 import Koji from '@withkoji/vcc';
 import PropTypes from 'prop-types';
+import isDarkColor from 'is-dark-color';
 import Reveal from '../Components/Reveal';
-import PrimaryButton from '../Buttons/Primary';
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -47,6 +47,8 @@ const PlayButton = styled.button`
   padding: 1.5vh 10vh;
   border: 0;
   border-radius: 2vh;
+  background: ${({ backgroundColor }) => backgroundColor};
+  color: ${({ backgroundColor }) => isDarkColor(backgroundColor) ? '#f1f1f1' : '#111111'};
 `;
 
 class HomeScreen extends PureComponent {
@@ -99,7 +101,10 @@ class HomeScreen extends PureComponent {
               }
               </div>
               <div>
-                <PlayButton onClick={() => this.props.setAppView('game')}>
+                <PlayButton
+                  backgroundColor={Koji.config.preGameScreen.playButtonColor}
+                  onClick={() => this.props.setAppView('game')}
+                >
                   {'Play'}
                 </PlayButton>
               </div>
