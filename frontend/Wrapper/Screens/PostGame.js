@@ -254,7 +254,6 @@ class PostGameScreen extends PureComponent {
           .then((response) => response.json())
           .then(({ scores }) => {
             this.setState({ formSubmitting: false, formSubmitted: true, scores });
-            console.log('t', this.state.scores);
           })
           .catch(err => {
             console.log('Fetch Error: ', err);
@@ -395,7 +394,10 @@ class PostGameScreen extends PureComponent {
                       <LeaderboardContent>
                         {
                           (this.state.scores || []).map((entry, idx) => (
-                            <div className={'leaderboard-entry'}>
+                            <div
+                              className={'leaderboard-entry'}
+                              key={idx}
+                            >
                               <div>
                                 {`${idx + 1}.`}
                               </div>

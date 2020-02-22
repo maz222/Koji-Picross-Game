@@ -20,6 +20,7 @@ class GameScreen extends PureComponent {
     getTemplateConfig: PropTypes.func,
     setOutcome: PropTypes.func,
     setScore: PropTypes.func,
+    view: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -31,7 +32,6 @@ class GameScreen extends PureComponent {
   };
 
   render() {
-    console.log('T', this.props);
     return (
       <GameContainer
         gameBackgroundImage={Koji.config.general.backgroundImage}

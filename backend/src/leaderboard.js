@@ -29,8 +29,6 @@ export default function(app) {
 
   app.post('/leaderboard/save', async (req, res) => {
     const hash = md5(JSON.stringify(req.body));
-    console.log('h', hash);
-    console.log('r', req.headers.authorization);
     if (hash !== req.headers.authorization) {
       res.status(200).json({
         success: true
@@ -47,16 +45,12 @@ export default function(app) {
         phone: req.body.phone,
     };
 
-    console.log('r', recordBody);
-
     const recordId = uuid.v4();
     const database = new Database();
     const promises = [];
 
     promises.push(async () => {
-        console.log('set in');
         await database.set('leaderboard', recordId, recordBody);
-        console.log('set out');
     });
 
     if (Koji.config.postGameScreen.leaderboardWebhookURL) {
@@ -67,8 +61,6 @@ export default function(app) {
             });
         });
     }
-
-    console.log('p', promises);
     
     // Run in parallel
     await Promise.all(promises.map(async p => p()));
