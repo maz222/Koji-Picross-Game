@@ -1,24 +1,7 @@
 {
     "quickstart": {
         "items": [
-            "general.fontFamily",
-            "general.backgroundImage",
-            {
-                "keys": [
-                    "preGameScreen.playButtonColor"
-                    
-                ],
-                "name": "Primary Color",
-                "type": "color"
-            },
-            {
-                "keys": [
-                    "preGameScreen.cardBackgroundColor",
-                    "postGameScreen.playAgainButtonColor"
-                ],
-                "name": "Secondary Color",
-                "type": "color"
-            }
+            "general.backgroundImage"
         ]
     }
 }
