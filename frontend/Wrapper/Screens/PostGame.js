@@ -39,14 +39,9 @@ const CardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  h1 {
+  .cta-headline, .social-headline, .leaderboard-title {
     font-size: 4vh;
-    margin-bottom: 1vh;
-  }
-
-  .cta-headline, .social-headline {
-    font-size: 4vh;
-    margin-bottom: 2vh;
+    margin-bottom: 4vh;
   }
 
   .label-wrapper {
@@ -92,12 +87,13 @@ const SocialWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2vh;
 
   a {
-      width: 48px;
-      height: 48px;
-      margin: 0 8px;
+      width: 16vw;
+      height: 16vw;
+      max-width: 72px;
+      max-height: 72px;
+      margin: 2vw;
   }
 
   img {
@@ -107,8 +103,21 @@ const SocialWrapper = styled.div`
 
 const LeaderboardWrapper = styled.div`
   max-height: 30vh;
-  overflow: auto;
   width: 100%;
+
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+    height: 7px;
+    -webkit-overflow-scrolling: auto;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+  }
 `;
 
 const LeaderboardContent = styled.div`
@@ -122,6 +131,8 @@ const LeaderboardContent = styled.div`
 
   .leaderboard-entry {
     position: relative;
+    font-size: 3vh;
+    line-height: 4.5vh;
   }
 
   .leaderboard-score {
@@ -131,7 +142,7 @@ const LeaderboardContent = styled.div`
 
   .leaderboard-name {
     position: absolute;
-    left: 4vh;
+    left: 6vh;
   }
 `;
 
@@ -214,7 +225,9 @@ class PostGameScreen extends PureComponent {
     optIn: true,
   };
 
-  handleScoreSubmit = () => {
+  handleScoreSubmit = e => {
+    e.preventDefault();
+
     this.setState({ formSubmitting: true });
 
     const body = {
@@ -273,8 +286,8 @@ class PostGameScreen extends PureComponent {
   };
 
   render() {
-    const collectEmail = ['yes', 'required'].includes(Koji.config.postGameScreen.collectEmail);
-    const collectPhone = ['yes', 'required'].includes(Koji.config.postGameScreen.collectPhone);
+    const collectEmail = ['yes', 'require'].includes(Koji.config.postGameScreen.collectEmail);
+    const collectPhone = ['yes', 'require'].includes(Koji.config.postGameScreen.collectPhone);
 
     return (
       <FlexWrapper id={'flex-wrapper'}>
@@ -288,13 +301,7 @@ class PostGameScreen extends PureComponent {
               Koji.config.postGameScreen.leaderboardEnabled &&
               <Fragment>
                 {
-                  this.state.formSubmitting &&
-                  <CardWrapper>
-                    <div className={'lds-ring'}><div></div><div></div><div></div><div></div></div>
-                  </CardWrapper>
-                }
-                {
-                  !this.state.formSubmitted && !this.state.formSubmitting &&
+                  !this.state.formSubmitted &&
                   <CardWrapper>
                     <FormWrapper onSubmit={this.handleScoreSubmit}>
                       <div className={'score-text'}>{'Your Score'}</div>
@@ -323,7 +330,7 @@ class PostGameScreen extends PureComponent {
                           <div className={'input-wrapper'}>
                             <input
                               onChange={e => this.setState({ email: e.currentTarget.value })}
-                              required={Koji.config.postGameScreen.collectEmail === 'required'}
+                              required={Koji.config.postGameScreen.collectEmail === 'require'}
                               type={'email'}
                               value={this.state.email}
                             />
@@ -340,7 +347,7 @@ class PostGameScreen extends PureComponent {
                           <div className={'input-wrapper'}>
                             <input
                               onChange={e => this.setState({ phone: e.currentTarget.value })}
-                              required={Koji.config.postGameScreen.collectPhone === 'required'}
+                              required={Koji.config.postGameScreen.collectPhone === 'require'}
                               type={'tel'}
                               value={this.state.phone}
                             />
@@ -363,12 +370,19 @@ class PostGameScreen extends PureComponent {
                       }
 
                       <div className={'submit-button-wrapper'}>
-                        <SubmitButton
-                          backgroundColor={'#dedede'}
-                          type={'submit'}
-                        >
-                          {'Submit'}
-                        </SubmitButton>
+                        {
+                            !this.state.formSubmitting &&
+                            <SubmitButton
+                                backgroundColor={'#dedede'}
+                                type={'submit'}
+                            >
+                                {'Submit'}
+                            </SubmitButton>
+                        }
+                        {
+                            this.state.formSubmitting &&
+                            <div className={'lds-ring'}><div></div><div></div><div></div><div></div></div>
+                        }
                       </div>
                     </FormWrapper>
                   </CardWrapper>
@@ -376,7 +390,7 @@ class PostGameScreen extends PureComponent {
                 {
                   this.state.formSubmitted &&
                   <CardWrapper>
-                    <h1>{'Leaderboard'}</h1>
+                    <div className={'leaderboard-title'}>{'Leaderboard'}</div>
                     <LeaderboardWrapper>
                       <LeaderboardContent>
                         {

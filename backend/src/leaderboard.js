@@ -17,6 +17,7 @@ export default function(app) {
         score,
         dateCreated
       }))
+      .filter((e) => e.score)
       .sort((a, b) => b.score - a.score)
       .slice(0, 100);
 
@@ -53,7 +54,9 @@ export default function(app) {
     const promises = [];
 
     promises.push(async () => {
+        console.log('set in');
         await database.set('leaderboard', recordId, recordBody);
+        console.log('set out');
     });
 
     if (Koji.config.postGameScreen.leaderboardWebhookURL) {
@@ -64,9 +67,11 @@ export default function(app) {
             });
         });
     }
+
+    console.log('p', promises);
     
     // Run in parallel
-    await Promise.all(promises);
+    await Promise.all(promises.map(async p => p()));
     
     res.status(200).json({
       success: true
