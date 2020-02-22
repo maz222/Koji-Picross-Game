@@ -181,7 +181,7 @@ const SubmitButton = styled.button`
 
 const CTALink = styled.a`
   display: block;
-  font-size: 4vh;
+  font-size: 3vh;
   padding: 1.5vh 10vh;
   border: 0;
   border-radius: 2vh;
@@ -254,6 +254,7 @@ class PostGameScreen extends PureComponent {
           .then((response) => response.json())
           .then(({ scores }) => {
             this.setState({ formSubmitting: false, formSubmitted: true, scores });
+            console.log('t', this.state.scores);
           })
           .catch(err => {
             console.log('Fetch Error: ', err);
@@ -375,7 +376,7 @@ class PostGameScreen extends PureComponent {
                                 backgroundColor={'#dedede'}
                                 type={'submit'}
                             >
-                                {'Submit'}
+                                {'Submit Score'}
                             </SubmitButton>
                         }
                         {
@@ -394,10 +395,7 @@ class PostGameScreen extends PureComponent {
                       <LeaderboardContent>
                         {
                           (this.state.scores || []).map((entry, idx) => (
-                            <div
-                              className={'leaderboard-entry'}
-                              key={idx}
-                            >
+                            <div className={'leaderboard-entry'}>
                               <div>
                                 {`${idx + 1}.`}
                               </div>
