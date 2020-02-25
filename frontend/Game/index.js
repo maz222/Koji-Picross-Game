@@ -5,12 +5,14 @@ class Game extends PureComponent {
   static propTypes = {
     getAppView: PropTypes.func,
     setAppView: PropTypes.func,
+    setOutcome: PropTypes.func,
     setScore: PropTypes.func,
   };
 
   static defaultProps = {
     getAppView() {},
     setAppView() {},
+    setOutcome() {},
     setScore() {},
   };
 

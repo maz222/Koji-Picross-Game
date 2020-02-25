@@ -89,6 +89,7 @@ class App extends PureComponent {
             getAppView={() => this.state.view}
             setAppView={view => this.setState({ view })}
             getTemplateConfig={this.getTemplateConfig}
+            setOutcome={outcome => this.setState({ outcome })}
             setScore={score => this.setState({ score })}
           />
         </GameScreenWrapper>
@@ -96,6 +97,7 @@ class App extends PureComponent {
         {
           this.state.view === 'postGame' &&
           <PostGameScreen
+            outcome={this.state.outcome}
             showLeaderboard={() => this.setState({ leaderBoardModalIsOpen: true })}
             score={this.state.score}
             setAppView={view => this.setState({ view })}
