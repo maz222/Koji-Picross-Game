@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import Bounce from 'react-reveal/Bounce';
 import Fade from 'react-reveal/Fade';
 import RubberBand from 'react-reveal/RubberBand';
@@ -12,7 +12,7 @@ class Reveal extends PureComponent {
       PropTypes.node
     ]),
     onReveal: PropTypes.func,
-    revealType: string,
+    revealType: PropTypes.string,
   };
 
   static defaultProps = {

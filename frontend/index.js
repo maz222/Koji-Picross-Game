@@ -17,11 +17,15 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import './index.css';
 import App from './Wrapper/App';
+import Container from './Wrapper/Components/Container';
 
 const render = Component => {
+  console.log('render');
   ReactDOM.render(
     <AppContainer>
-      <Component />
+      <Container>
+        <Component />
+      </Container>
     </AppContainer>,
     document.getElementById('root')
   );
