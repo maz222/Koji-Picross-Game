@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import GameScreen from './Screens/Game';
 import PostGameScreen from './Screens/PostGame';
@@ -8,6 +8,15 @@ import WebFont from 'webfontloader';
 
 const GameScreenWrapper = styled.div`
   display: ${({ show }) => show ? 'block' : 'none'}
+`;
+
+// Note: Putting the image url inside the styled component
+// causes the image to be re-downloaded even when re-renders
+// aren't triggered
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 `;
 
 class App extends PureComponent {
@@ -59,7 +68,9 @@ class App extends PureComponent {
 
   render() {
     return (
-      <Fragment>
+      <Container
+        style={{ background: `url("${Koji.config.general.backgroundImage}?auto=format,compress&fit=max&h=${window.innerHeight * 2}&w=${window.innerWidth * 2}") no-repeat center center / cover` }}
+      >
         {
           this.state.view === 'preGame' &&
           <PreGameScreen
@@ -89,7 +100,7 @@ class App extends PureComponent {
             setAppView={view => this.setState({ view })}
           />
         }
-      </Fragment>
+      </Container>
     );
   }
 }

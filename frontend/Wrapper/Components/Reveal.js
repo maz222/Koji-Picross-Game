@@ -9,7 +9,7 @@ class Reveal extends PureComponent {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
+      PropTypes.node,
     ]),
     onReveal: PropTypes.func,
     revealType: PropTypes.string,
