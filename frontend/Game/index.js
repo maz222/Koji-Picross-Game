@@ -7,6 +7,7 @@ class Game extends PureComponent {
     setAppView: PropTypes.func,
     setOutcome: PropTypes.func,
     setScore: PropTypes.func,
+    view: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -17,6 +18,8 @@ class Game extends PureComponent {
   };
 
   render() {
+    if (!this.props.view) return null;
+
     return (
       <div>
         <button
