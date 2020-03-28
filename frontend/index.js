@@ -30,6 +30,7 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
+    document.getElementById("root").style.height = window.innerHeight+'px';
   module.hot.accept('./Wrapper/App', () => {
     render(App);
   });

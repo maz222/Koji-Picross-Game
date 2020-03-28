@@ -1,0 +1,116 @@
+{
+  "titleScreen": {
+    "title": {
+      "content": "Picross",
+      "color": "#161515"
+    },
+    "playButton": {
+      "content": "Puzzle Select",
+      "color": "#f7f1f1",
+      "backgroundColor": "#1a87da"
+    },
+    "howToPlayButton": {
+      "content": "How To Play",
+      "color": "#f4efef",
+      "backgroundColor": "#282626"
+    },
+    "background": {
+      "backgroundColor": "#dcdcdc"
+    }
+  },
+  "@@editor": [
+    {
+      "key": "titleScreen",
+      "name": "1. Title Screen",
+      "icon": "🎬",
+      "source": "TitleScreen.json",
+      "fields": [
+        {
+          "key": "title",
+          "name": "Title",
+          "type": "object<Title>",
+          "typeOptions": {
+            "Title": {
+              "content": {
+                "name": "Title Text",
+                "description": "Title text, only used if no logo is provided.",
+                "type": "text"
+              },
+              "color": {
+                "name": "Text Color",
+                "type": "color"
+              },
+              "logo": {
+                "name": "Title Logo",
+                "description": "Title logo. Leave blank to use simple text instead. (300 x 300 recommended size)",
+                "type": "image"
+              }
+            }
+          }
+        },
+        {
+          "key": "playButton",
+          "name": "Level Select Button",
+          "type": "object<Button>",
+          "typeOptions": {
+            "Button": {
+              "content": {
+                "name": "Button Text",
+                "type": "text"
+              },
+              "color": {
+                "name": "Text Color",
+                "type": "color"
+              },
+              "backgroundColor": {
+                "name": "Background Color",
+                "type": "color"
+              }
+            }
+          }
+        },
+        {
+          "key": "howToPlayButton",
+          "name": "Tutorial Button",
+          "type": "object<Button>",
+          "typeOptions": {
+            "Button": {
+              "content": {
+                "name": "Button Text",
+                "type": "text"
+              },
+              "color": {
+                "name": "Text Color",
+                "type": "color"
+              },
+              "backgroundColor": {
+                "name": "Background Color",
+                "type": "color"
+              }
+            }
+          }
+        },
+        {
+          "key": "background",
+          "name": "Background",
+          "description": "The background for the page.",
+          "type": "object<Background>",
+          "typeOptions": {
+            "Background": {
+              "backgroundImage": {
+                "name": "Background Image",
+                "description": "A background image. Leave empty to use a solid color instead. (1680 x 1050 suggested size)",
+                "type": "image"
+              },
+              "backgroundColor": {
+                "name": "Background Color",
+                "description": "A solid background color.",
+                "type": "color"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

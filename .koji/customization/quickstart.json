@@ -1,7 +1,8 @@
 {
     "quickstart": {
-        "items": [
-            "general.backgroundImage"
+        "items":[
+            "titleScreen.title",
+            "levelSelect.gameLevels"
         ]
     }
 }
