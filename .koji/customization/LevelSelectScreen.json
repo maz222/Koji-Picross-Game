@@ -301,10 +301,10 @@
             false
           ]
         ],
-        "title": "Random 5x5 - 1"
+        "title": "Sample 5x5 - 1"
       },
       {
-        "title": "Random 5x5 - 2",
+        "title": "Sample 5x5 - 2",
         "level": [
           [
             true,
@@ -344,7 +344,7 @@
         ]
       },
       {
-        "title": "Random 5x5 - 3",
+        "title": "Sample 5x5 - 3",
         "level": [
           [
             false,
@@ -384,7 +384,7 @@
         ]
       },
       {
-        "title": "Random 10x10 - 2",
+        "title": "Sample 10x10 - 1",
         "level": [
           [
             false,
@@ -509,7 +509,7 @@
         ]
       },
       {
-        "title": "Random 10x10 - 3",
+        "title": "Sample 10x10 - 2",
         "level": [
           [
             true,

@@ -27,7 +27,6 @@ class TitleScreen extends React.Component {
         pageImage = pageImage == undefined ? "" : pageImage;
         let PageDiv = styled.div`
             width:100%;
-            height:100%;
             display:flex;
             justify-content:center;
             background-size:cover;

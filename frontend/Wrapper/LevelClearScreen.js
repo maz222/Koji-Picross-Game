@@ -12,7 +12,6 @@ class LevelClearScreen extends React.Component {
         pageImage = pageImage == undefined ? "" : pageImage;
         let PageDiv = styled.div`
             width:100%;
-            height:100%;
             display:flex;
             justify-content:center;
             background-size:cover;
@@ -93,7 +92,9 @@ class LevelClearScreen extends React.Component {
 		let nextCallback = () => {
 			this.props.audio.playAudio(2);
 			let currentLevel = parseInt(localStorage.getItem('currentLevel'));
-			localStorage.setItem('currentLevel',Math.min(currentLevel+1,Koji.config.levelSelect.gameLevels.length-1));
+            if(currentLevel >= 0) {
+			    localStorage.setItem('currentLevel',Math.min(currentLevel+1,Koji.config.levelSelect.gameLevels.length-1));
+            }
 			window.setAppView("game");
 		}
 		return(

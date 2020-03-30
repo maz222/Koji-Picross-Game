@@ -12,7 +12,6 @@ class LevelPage extends React.Component {
         pageImage = pageImage == undefined ? "" : pageImage;
         let PageDiv = styled.div`
             width:100%;
-            height:100%;
             display:flex;
             justify-content:center;
             background-size:cover;
@@ -95,6 +94,29 @@ class LevelPage extends React.Component {
             }
         `;
 
+
+        let randomColor = hextoHSL('#DA6D1A');
+        randomColor[2] = Math.max(0,randomColor[2]-20);
+        randomColor = `hsl(${randomColor[0]},${randomColor[1]}%,${randomColor[2]}%)`;
+        let StyledRandomButton = styled.button`
+            background-color:#DA6D1A;
+            color:black;
+            padding:10px;
+            margin:10px;
+            border-radius:4px;
+            border:1px solid rgba(0,0,0,.15);
+            box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            transition:all 0.3s cubic-bezier(.25,.8,.25,1);
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            font-size:1.25em;
+            &:hover{
+                background-color:${randomColor}
+            }
+        `;
+
+        const RANDOM_LEVELS = ['Random 5x5', 'Random 10x10'];
         return(
             <PageDiv>
                 <Banner>
@@ -103,12 +125,18 @@ class LevelPage extends React.Component {
                     <div />
                 </Banner>
                 <div style={{width:'100%',display:'flex',flexDirection:'column',marginTop:'80px'}}>
-                    {VCC.gameLevels.map((level,index) => {
-                        let name = level.title == "" || level.title == undefined ? `Level ${index+1}` : level.title;
-                        return(
-                            <StyledLevelButton onClick={() => {this.props.audio.playAudio(2); levelCallback(index)}}>{name}</StyledLevelButton>
-                        );
-                    })}
+                    {
+                        RANDOM_LEVELS.map((level,index) => {
+                            return(<StyledRandomButton onClick={() => {this.props.audio.playAudio(2); levelCallback((index*-1)-1)}}>{level}</StyledRandomButton>);
+                        }).concat(
+                            VCC.gameLevels.map((level,index) => {
+                                let name = level.title == "" || level.title == undefined ? `Level ${index+1}` : level.title;
+                                return(
+                                    <StyledLevelButton onClick={() => {this.props.audio.playAudio(2); levelCallback(index)}}>{name}</StyledLevelButton>
+                                );
+                            })
+                        )
+                    }
                 </div>
             </PageDiv>
         );

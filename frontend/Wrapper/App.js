@@ -9,6 +9,8 @@ import LevelPage from './LevelSelectScreen.js';
 import GameScene from './GameScreen.js';
 import TutorialScreen from './TutorialScreen.js';
 
+import LevelFactory from './RandomLevelFactory.js';
+
 import AudioManager from './AudioManager.js';
 
 const GameScreenWrapper = styled.div`
@@ -60,9 +62,17 @@ class App extends PureComponent {
     if(this.state.view === 'game') {
         const VCC = Koji.config.levelSelect;
         const LEVEL_ID = parseInt(localStorage.getItem('currentLevel'));
-		console.log(LEVEL_ID);
-        let level = VCC.gameLevels[LEVEL_ID].level;
-        let title = VCC.gameLevels[LEVEL_ID].title;
+        console.log(LEVEL_ID);
+        let level = null;
+        let title = null;
+        if(LEVEL_ID >= 0) {
+            level = VCC.gameLevels[LEVEL_ID].level;
+            title = VCC.gameLevels[LEVEL_ID].title;
+        }
+        else {
+            level = LevelFactory.build([(LEVEL_ID*-1)*5,(LEVEL_ID*-1)*5]);
+            title = "Random Level";
+        }
         return(<GameScene level={level} title={title} audio={this.state.audio}/>);
     }
     if(this.state.view === 'tutorial') {
