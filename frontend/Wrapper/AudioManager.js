@@ -6,49 +6,72 @@ class AudioManager {
 		const VCC = Koji.config.sounds;
 		this.files = [];
 		//load music [0]
-		this.files.push(
-			new Howl({
-				src:VCC.music,
-				loop:true,
-				volume:1
-			})
-		);
+		if(VCC.music != undefined && VCC.music != "") {
+			this.files.push(
+				new Howl({
+					src:VCC.music,
+					loop:true,
+					volume:1
+				})
+			);
+		}
+		else {
+			this.files.push(null);
+		}
 		//load level clear [1]
-		this.files.push(
-			new Howl({
-				src:VCC.levelClear,
-				volume:1
-			})
-		);
+		if(VCC.levelClear != undefined && VCC.levelClear != "") {
+			this.files.push(
+				new Howl({
+					src:VCC.levelClear,
+					volume:1
+				})
+			);
+		}
+		else {
+			this.files.push(null);
+		}
 		//load click [2]
-		this.files.push(
-			new Howl({
-				src:VCC.click,
-				volume:1
-			})
-		);
+		if(VCC.click != undefined && VCC.click != "") {
+			this.files.push(
+				new Howl({
+					src:VCC.click,
+					volume:1
+				})
+			);
+		}
+		else {
+			this.files.push(null);
+		}
         this.muted = false;
 	}
-	playAudio(index,loop=false) {
-		if(!this.muted) {
+	playAudio(index) {
+		if(!this.muted && this.files[index] != null) {
 			this.files[index].play();
 		}
 	}
 	pauseAudio(index) {
-		this.files[index].pause();
+		if(this.files[index] != null) {
+			this.files[index].pause();
+		}
 	}
 	stopAudio(index) {
-		this.files[index].stop();
+		if(this.files[index] != null) {
+			this.files[index].stop();
+		}
 	}
 	pauseAll() {
 		for(var i in this.files) {
-			this.files[i].pause();
+			if(this.files[i] != null) {
+				this.files[i].pause();
+			}
 		}
 	}
 	stopAll() {
 		for(var i in this.files) {
-			this.files[i].stop();
-		}
+			if(this.files[i] != null) {
+				this.files[i].stop();
+			}
+		}		
 	}
 }
 
