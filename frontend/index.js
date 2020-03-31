@@ -30,8 +30,6 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-    document.getElementById("root").style.minHeight = window.innerHeight+'px';
-    document.getElementById("root").style.display = 'flex';
 
   module.hot.accept('./Wrapper/App', () => {
     render(App);

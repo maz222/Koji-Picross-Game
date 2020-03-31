@@ -33,6 +33,7 @@ class App extends PureComponent {
   };
 
   componentDidMount() {
+    document.getElementById("root").style.height = window.innerHeight+'px';
     window.setAppView = view => { this.setState({ view }); }
     // Set the font; fallback to Roboto
     this.loadFont();

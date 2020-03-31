@@ -19,6 +19,7 @@ class TutorialScreen extends React.Component {
         let pageImage = VCC.background.backgroundImage;
         pageImage = pageImage == undefined ? "" : pageImage;
         let PageDiv = styled.div`
+            height:100%;
             width:100%;
             display:flex;
             justify-content:center;
