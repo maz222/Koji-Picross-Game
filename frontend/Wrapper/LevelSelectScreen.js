@@ -80,8 +80,8 @@ class LevelPage extends React.Component {
         let StyledLevelButton = styled.button`
             background-color:${levelColor};
             color:${levelTitleColor};
-            padding:10px;
-            margin:10px;
+            padding:8px;
+            margin:4px;
             border-radius:4px;
             border:1px solid rgba(0,0,0,.15);
             box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -89,7 +89,7 @@ class LevelPage extends React.Component {
             display:flex;
             align-items:center;
             justify-content:space-between;
-            font-size:1.25em;
+            font-size:.75em;
             &:hover{
                 background-color:${levelHoverColor}
             }
@@ -102,8 +102,8 @@ class LevelPage extends React.Component {
         let StyledRandomButton = styled.button`
             background-color:#DA6D1A;
             color:black;
-            padding:10px;
-            margin:10px;
+            padding:8px;
+            margin:5px;
             border-radius:4px;
             border:1px solid rgba(0,0,0,.15);
             box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -111,7 +111,7 @@ class LevelPage extends React.Component {
             display:flex;
             align-items:center;
             justify-content:space-between;
-            font-size:1.25em;
+            font-size:.75em;
             &:hover{
                 background-color:${randomColor}
             }

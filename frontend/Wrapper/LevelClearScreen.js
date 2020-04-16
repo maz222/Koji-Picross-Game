@@ -20,8 +20,8 @@ class LevelClearScreen extends React.Component {
             background-image:url${pageImage};
         `;
         let WrapperDiv = styled.div`
-            width:600px;
             height:100%;
+            width:${Math.min(window.innerWidth, 600)}px
             display:flex;
             flex-direction:column;
             align-items:center;

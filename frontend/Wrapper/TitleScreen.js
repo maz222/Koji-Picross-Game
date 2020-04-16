@@ -35,7 +35,7 @@ class TitleScreen extends React.Component {
             background-image:url${pageImage};
         `;
         let WrapperDiv = styled.div`
-            width:600px;
+            width:${Math.min(window.innerWidth, 600)}px
             height:100%;
             display:flex;
             flex-direction:column;
